@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>New Website Builds — Dhoop Bournemouth Web Design Agency</title>
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="stylesheet" href="styles.css">
+
+<style>
+  /* ── NEW BUILDS PAGE SPECIFIC ── */
+
+  #hero {
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-top: 9rem;
+    padding-bottom: clamp(4rem, 8vw, 7rem);
+    position: relative;
+  }
+
+  #hero::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 50vw; height: 50vw;
+    background: radial-gradient(circle, rgba(0,245,160,0.06) 0%, transparent 65%);
+    pointer-events: none;
+  }
+
+  .hero-eyebrow { font-size: 0.82rem; letter-spacing: 0.06em; color: var(--accent); font-weight: 400; margin-bottom: 1.8rem; display: block; }
+  .hero-sub { margin-top: 2.5rem; font-size: clamp(1rem, 1.4vw, 1.15rem); font-weight: 300; color: rgba(245,244,240,0.55); max-width: 60ch; line-height: 1.8; }
+  #hero h3 { font-size: 0.8rem; font-style: italic; font-weight: 300; letter-spacing: 0.03em; color: rgba(245,244,240,0.28); margin-top: 0.8rem; }
+
+  /* Includes */
+  #includes { padding-top: var(--gap); padding-bottom: var(--gap); }
+
+  .includes-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem clamp(3rem, 6vw, 7rem);
+    align-items: end;
+    margin-bottom: 4rem;
+  }
+
+  .includes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1px;
+    background: rgba(255,255,255,0.05);
+  }
+
+  .include-item { background: var(--black); padding: clamp(2rem, 3.5vw, 3rem); transition: background 0.25s; }
+  .include-item:hover { background: #111; }
+
+  .include-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 4vw, 3.5rem);
+    color: rgba(0,245,160,0.12);
+    line-height: 1;
+    display: block;
+    margin-bottom: 1rem;
+    transition: color 0.25s;
+  }
+
+  .include-item:hover .include-num { color: rgba(0,245,160,0.25); }
+
+  .include-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(1.3rem, 2vw, 1.8rem); color: var(--white); line-height: 1; margin-bottom: 1rem; letter-spacing: 0.02em; }
+  .include-item p { font-size: 0.88rem; max-width: 36ch; }
+
+  /* Process */
+  #process { border-top: 1px solid rgba(255,255,255,0.06); padding-top: var(--gap); padding-bottom: var(--gap); }
+  .process-header { margin-bottom: 4rem; }
+  .process-steps { display: grid; grid-template-columns: 1fr; gap: 0; }
+
+  .step {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 3rem;
+    padding: 2.5rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    transition: padding-left 0.3s ease;
+    cursor: default;
+  }
+
+  .step:first-child { border-top: 1px solid rgba(255,255,255,0.06); }
+  .step:hover { padding-left: 1.5rem; }
+
+  .step-num { font-family: 'Bebas Neue', sans-serif; font-size: 0.95rem; color: var(--accent); letter-spacing: 0.08em; min-width: 3rem; }
+
+  .step-content h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(1.3rem, 2.2vw, 2rem);
+    color: var(--white);
+    font-weight: 400;
+    margin-top: 0;
+    letter-spacing: 0.02em;
+    line-height: 1;
+    margin-bottom: 0.6rem;
+  }
+
+  .step-content p { font-size: 0.88rem; max-width: 55ch; margin-top: 0.4rem; }
+  .step-tag { font-size: 0.72rem; letter-spacing: 0.06em; color: var(--mid); white-space: nowrap; font-weight: 400; align-self: start; padding-top: 0.3rem; }
+
+  /* For who */
+  #forwho { border-top: 1px solid rgba(255,255,255,0.06); padding-top: var(--gap); padding-bottom: var(--gap); }
+
+  .forwho-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1px;
+    background: rgba(255,255,255,0.05);
+    margin-top: 3.5rem;
+  }
+
+  .forwho-card { background: var(--black); padding: clamp(1.8rem, 3vw, 2.5rem); display: flex; flex-direction: column; gap: 1rem; transition: background 0.25s; }
+  .forwho-card:hover { background: #111; }
+
+  .forwho-icon { width: 36px; height: 36px; border: 1px solid rgba(0,245,160,0.25); border-radius: 2px; display: flex; align-items: center; justify-content: center; }
+  .forwho-icon svg { width: 16px; height: 16px; stroke: var(--accent); fill: none; stroke-width: 1.5; }
+  .forwho-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(1.2rem, 1.8vw, 1.6rem); color: var(--white); line-height: 1; letter-spacing: 0.02em; }
+  .forwho-card p { font-size: 0.88rem; max-width: none; }
+
+  /* Other services */
+  #other-services { border-top: 1px solid rgba(255,255,255,0.06); padding-top: var(--gap); padding-bottom: var(--gap); }
+
+  @media (max-width: 900px) {
+    .includes-header { grid-template-columns: 1fr; }
+    .step { grid-template-columns: auto 1fr; }
+    .step-tag { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">Dhoop<span>.</span></a>
+  <ul>
+    <li><a href="web-design.html">Web Design</a></li>
+    <li><a href="rebuilds.html">Rebuilds</a></li>
+    <li><a href="health-check.html">Health Check</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="work.html">Work</a></li>
+    <li><a href="insights.html">Insights</a></li>
+  </ul>
+  <a href="contact.html" class="nav-cta">Get Performance Audit</a>
+  <button class="hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-overlay" id="mobileOverlay">
+  <ul class="mobile-nav-links">
+    <li><a href="web-design.html">Web Design</a></li>
+    <li><a href="rebuilds.html">Rebuilds</a></li>
+    <li><a href="health-check.html">Health Check</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="work.html">Work</a></li>
+    <li><a href="insights.html">Insights</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="contact.html" class="mobile-cta">Get Performance Audit</a>
+  <a href="mailto:hello@madebydhoop.co.uk" class="mobile-email">hello@madebydhoop.co.uk</a>
+</div>
+
+<section id="hero">
+  <div class="breadcrumb">
+    <a href="index.html">Home</a>
+    <span class="breadcrumb-sep">/</span>
+    <span>Web Design</span>
+  </div>
+  <span class="hero-eyebrow">New Website Builds — Bournemouth</span>
+  <h1>Your website.<br>Built properly.<br>From scratch.</h1>
+  <p class="hero-sub">Custom website design and development for businesses that need a fast, scalable, and high-performing online presence — built with clean code, no page builders.</p>
+  <div class="btn-group">
+    <a href="contact.html" class="btn btn-primary">Start Your Project</a>
+    <a href="#includes" class="btn btn-outline">See What's Included</a>
+  </div>
+  <h3>Hand-built in Bournemouth. Optimised for Google Web Vitals from day one.</h3>
+</section>
+
+<section id="includes">
+  <div class="includes-header">
+    <div class="reveal">
+      <span class="section-label">What's Included</span>
+      <h2>Everything your new website needs — nothing it doesn't</h2>
+    </div>
+    <div class="reveal">
+      <p>Every new build comes with a full set of deliverables designed to give your business a fast, professional online presence that performs from launch day.</p>
+      <div class="stat-row">
+        <div class="stat"><span class="stat-num">100</span><p>Lighthouse Score Target</p></div>
+        <div class="stat"><span class="stat-num">&lt;2s</span><p>Target Load Time</p></div>
+        <div class="stat"><span class="stat-num">0</span><p>Page Builders</p></div>
+      </div>
+    </div>
+  </div>
+  <div class="includes-grid">
+    <div class="include-item reveal">
+      <span class="include-num">01</span>
+      <div class="include-title">Custom Design</div>
+      <p>A unique design built around your brand — not a template. Every layout, colour choice, and typographic decision is made with purpose.</p>
+    </div>
+    <div class="include-item reveal">
+      <span class="include-num">02</span>
+      <div class="include-title">Clean Hand-Coded Build</div>
+      <p>No WordPress. No Wix. No page builders. Your site is hand-coded for maximum performance, security, and long-term maintainability.</p>
+    </div>
+    <div class="include-item reveal">
+      <span class="include-num">03</span>
+      <div class="include-title">Google Web Vitals Optimisation</div>
+      <p>Built to score well against Core Web Vitals from the start — LCP, CLS, FID — the performance metrics Google uses as ranking signals.</p>
+    </div>
+    <div class="include-item reveal">
+      <span class="include-num">04</span>
+      <div class="include-title">On-Page SEO Foundation</div>
+      <p>Semantic HTML structure, proper heading hierarchy, meta tags, schema markup, and a sitemap — all in place before launch.</p>
+    </div>
+    <div class="include-item reveal">
+      <span class="include-num">05</span>
+      <div class="include-title">Mobile-First Responsive Layout</div>
+      <p>Designed and tested across all screen sizes. Your website will look and perform exactly as intended on every device.</p>
+    </div>
+    <div class="include-item reveal">
+      <span class="include-num">06</span>
+      <div class="include-title">Launch & Handover</div>
+      <p>We handle deployment, DNS, and setup — then provide a full handover so you know exactly how to manage your new site.</p>
+    </div>
+  </div>
+</section>
+
+<section id="process">
+  <div class="process-header">
+    <span class="section-label reveal">How It Works</span>
+    <h2 class="reveal">Our build process</h2>
+  </div>
+  <div class="process-steps">
+    <div class="step reveal">
+      <span class="step-num">01</span>
+      <div class="step-content">
+        <h3>Discovery & Brief</h3>
+        <p>We start by understanding your business, your goals, and what you need from your website. No assumptions — just a clear brief we both sign off on.</p>
+      </div>
+      <span class="step-tag">Week 1</span>
+    </div>
+    <div class="step reveal">
+      <span class="step-num">02</span>
+      <div class="step-content">
+        <h3>Design & Wireframes</h3>
+        <p>We create a visual design and page layout for your approval before a single line of code is written. You see exactly what you're getting.</p>
+      </div>
+      <span class="step-tag">Week 1–2</span>
+    </div>
+    <div class="step reveal">
+      <span class="step-num">03</span>
+      <div class="step-content">
+        <h3>Development</h3>
+        <p>Clean, hand-written code. No bloated frameworks, no page builders. Built to perform from the ground up, with performance checks at every stage.</p>
+      </div>
+      <span class="step-tag">Week 2–4</span>
+    </div>
+    <div class="step reveal">
+      <span class="step-num">04</span>
+      <div class="step-content">
+        <h3>Review & Refinement</h3>
+        <p>You review the build in a staging environment. We make revisions, run performance tests, and ensure everything is exactly right before launch.</p>
+      </div>
+      <span class="step-tag">Week 4</span>
+    </div>
+    <div class="step reveal">
+      <span class="step-num">05</span>
+      <div class="step-content">
+        <h3>Launch</h3>
+        <p>We handle DNS, hosting setup, and go-live. Your site launches with a full Lighthouse audit report so you know exactly where it stands from day one.</p>
+      </div>
+      <span class="step-tag">Week 4–5</span>
+    </div>
+  </div>
+</section>
+
+<section id="forwho">
+  <div class="two-col">
+    <div class="reveal">
+      <span class="section-label">Who It's For</span>
+      <h2>Built for businesses that want to do this properly</h2>
+    </div>
+    <div class="reveal">
+      <p>A new website build from Dhoop is for businesses that understand the difference between a website that exists and a website that performs. If you're serious about search visibility, speed, and long-term scalability — this is for you.</p>
+    </div>
+  </div>
+  <div class="forwho-grid">
+    <div class="forwho-card reveal">
+      <div class="forwho-icon">
+        <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+      </div>
+      <div class="forwho-title">New Businesses</div>
+      <p>Launching something new and want to start with a strong, professional online presence that performs from day one.</p>
+    </div>
+    <div class="forwho-card reveal">
+      <div class="forwho-icon">
+        <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+      </div>
+      <div class="forwho-title">Growth-Focused SMEs</div>
+      <p>Established businesses that want a website built to scale — one that improves SEO visibility and converts more visitors into enquiries.</p>
+    </div>
+    <div class="forwho-card reveal">
+      <div class="forwho-icon">
+        <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+      </div>
+      <div class="forwho-title">Brands Leaving Page Builders</div>
+      <p>You've outgrown Wix, Squarespace, or a slow WordPress theme and need something custom-built that actually performs.</p>
+    </div>
+    <div class="forwho-card reveal">
+      <div class="forwho-icon">
+        <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+      </div>
+      <div class="forwho-title">SEO-Led Businesses</div>
+      <p>Businesses where organic search is a key growth channel and performance metrics are non-negotiable — not an afterthought.</p>
+    </div>
+  </div>
+</section>
+
+<section id="other-services">
+  <span class="section-label reveal">Also Available</span>
+  <h2 class="reveal">Not sure a new build is right for you?</h2>
+  <div class="services-row">
+    <a href="rebuilds.html" class="service-link-card reveal">
+      <div>
+        <span class="slc-tag">Rebuilds</span>
+        <div class="slc-title">Website Rebuilds</div>
+      </div>
+      <div class="slc-footer">
+        <p>Already have a site? We take underperforming websites and rebuild them from scratch.</p>
+        <span class="arrow">↗</span>
+      </div>
+    </a>
+    <a href="health-check.html" class="service-link-card reveal">
+      <div>
+        <span class="slc-tag">Audits</span>
+        <div class="slc-title">Website Health Checks</div>
+      </div>
+      <div class="slc-footer">
+        <p>Not ready to commit? Start with a full technical audit of your current website.</p>
+        <span class="arrow">↗</span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<section id="cta">
+  <div class="two-col">
+    <div class="reveal">
+      <span class="section-label">Start Your Project</span>
+      <h2>Ready to build your new website?</h2>
+      <h3>No jargon. Just clear, honest conversations about what you need.</h3>
+    </div>
+    <div class="reveal">
+      <p>Tell us about your business and what you're looking to achieve. We'll come back to you with an honest assessment and a clear quote — no obligation.</p>
+      <div class="btn-group">
+        <a href="contact.html" class="btn btn-primary">Start a Conversation</a>
+        <a href="contact.html" class="btn btn-outline">Get a Performance Audit First</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <h2>Dhoop — Bournemouth web design agency</h2>
+      <p>We design and build fast, clean-coded websites optimised for performance, SEO, and long-term scalability.</p>
+      <a href="mailto:hello@madebydhoop.co.uk" class="email-link">hello@madebydhoop.co.uk</a>
+    </div>
+    <div class="footer-nav">
+      <p class="footer-nav-label">Services</p>
+      <ul>
+        <li><a href="web-design.html">Web Design</a></li>
+        <li><a href="rebuilds.html">Website Rebuilds</a></li>
+        <li><a href="health-check.html">Health Check</a></li>
+        <li><a href="contact.html">Performance Audit</a></li>
+      </ul>
+    </div>
+    <div class="footer-nav">
+      <p class="footer-nav-label">Company</p>
+      <ul>
+        <li><a href="about.html">About</a></li>
+        <li><a href="work.html">Work</a></li>
+        <li><a href="insights.html">Insights</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="privacy.html">Privacy Policy</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Dhoop Ltd &nbsp;·&nbsp; Co. Reg. No. 12345678 &nbsp;·&nbsp; Registered in England &amp; Wales</p>
+    <a href="index.html" class="footer-logo">Dhoop<span>.</span></a>
+  </div>
+</footer>
+<script src="main.js" defer></script>
+</body>
+</html>
