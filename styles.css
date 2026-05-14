@@ -104,7 +104,7 @@ nav ul {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 2rem;
+  gap: 1.2rem;
 }
 
 nav ul li { display: flex; align-items: center; }
@@ -112,7 +112,7 @@ nav ul li { display: flex; align-items: center; }
 nav ul a {
   color: var(--mid);
   text-decoration: none;
-  font-size: 0.85rem;
+  font-size: 0.78rem;
   font-weight: 400;
   letter-spacing: 0.02em;
   transition: color 0.2s;
@@ -184,8 +184,8 @@ nav ul a:hover { color: var(--white); }
 
 .mobile-overlay.open { opacity: 1; pointer-events: all; }
 .mobile-nav-links { list-style: none; display: flex; flex-direction: column; gap: 0; }
-.mobile-nav-links li { border-bottom: 1px solid rgba(255,255,255,0.06); }
-.mobile-nav-links li:first-child { border-top: 1px solid rgba(255,255,255,0.06); }
+.mobile-nav-links li { border-bottom: none; }
+.mobile-nav-links li:first-child { border-top: none; }
 
 .mobile-nav-links a {
   display: block;
