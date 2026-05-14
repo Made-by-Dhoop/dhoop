@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Insights — Dhoop Bournemouth Web Design Agency</title>
+<meta name="description" content="Insights from Dhoop — practical advice on web performance, SEO, and building websites that actually work.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.madebydhoop.co.uk/insights.html">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="stylesheet" href="styles.css">
+
+<style>
+  #hero {
+    min-height: 60svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-top: 9rem;
+    padding-bottom: clamp(3rem, 6vw, 5rem);
+    position: relative;
+  }
+
+  #hero::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 50vw; height: 50vw;
+    background: radial-gradient(circle, rgba(0,245,160,0.06) 0%, transparent 65%);
+    pointer-events: none;
+  }
+
+  .hero-eyebrow { font-size: 0.82rem; letter-spacing: 0.06em; color: var(--accent); font-weight: 400; margin-bottom: 1.8rem; display: block; }
+  .hero-sub { margin-top: 2rem; font-size: clamp(1rem, 1.4vw, 1.15rem); font-weight: 300; color: rgba(245,244,240,0.55); max-width: 52ch; line-height: 1.8; }
+
+  /* ── GRID ── */
+  #posts {
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding-top: var(--gap);
+    padding-bottom: var(--gap);
+  }
+
+  .posts-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: rgba(255,255,255,0.05);
+    margin-top: 3.5rem;
+  }
+
+  .post-card {
+    background: var(--black);
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    transition: background 0.25s;
+    overflow: hidden;
+  }
+
+  .post-card:hover { background: #0d0d0d; }
+
+  .post-image {
+    aspect-ratio: 16/10;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .post-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s ease;
+  }
+
+  .post-card:hover .post-image img { transform: scale(1.04); }
+
+  .post-content {
+    padding: clamp(1.5rem, 2.5vw, 2rem);
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .post-meta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .post-tag {
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  .post-date {
+    font-size: 0.7rem;
+    letter-spacing: 0.04em;
+    color: var(--mid);
+  }
+
+  .post-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(1.4rem, 2vw, 1.9rem);
+    color: var(--white);
+    line-height: 1.05;
+    letter-spacing: 0.02em;
+    margin-bottom: 0.8rem;
+    transition: color 0.2s;
+  }
+
+  .post-card:hover .post-title { color: var(--accent); }
+
+  .post-excerpt {
+    font-size: 0.85rem;
+    color: rgba(245,244,240,0.55);
+    line-height: 1.75;
+    max-width: none;
+    flex: 1;
+  }
+
+  .post-read-more {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.78rem;
+    color: var(--accent);
+    letter-spacing: 0.04em;
+    font-weight: 500;
+    margin-top: 1.5rem;
+    transition: gap 0.2s;
+  }
+
+  .post-card:hover .post-read-more { gap: 0.7rem; }
+
+  .cta-note { font-size: 0.85rem; font-weight: 300; font-style: italic; color: rgba(0,0,0,0.38); margin-top: 1rem; max-width: none; }
+
+  @media (max-width: 900px) { .posts-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 560px) { .posts-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">Dhoop<span>.</span></a>
+  <ul>
+    <li><a href="new-builds.html">Web Design</a></li>
+    <li><a href="rebuilds.html">Rebuilds</a></li>
+    <li><a href="health-check.html">Health Check</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="work.html">Work</a></li>
+    <li><a href="insights.html">Insights</a></li>
+  </ul>
+  <a href="contact.html" class="nav-cta">Get Performance Audit</a>
+  <button class="hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-overlay" id="mobileOverlay">
+  <ul class="mobile-nav-links">
+    <li><a href="new-builds.html">Web Design</a></li>
+    <li><a href="rebuilds.html">Rebuilds</a></li>
+    <li><a href="health-check.html">Health Check</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="work.html">Work</a></li>
+    <li><a href="insights.html">Insights</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="contact.html" class="mobile-cta">Get Performance Audit</a>
+  <a href="mailto:hello@madebydhoop.co.uk" class="mobile-email">hello@madebydhoop.co.uk</a>
+</div>
+
+<main>
+<section id="hero">
+  <div class="breadcrumb">
+    <a href="index.html">Home</a>
+    <span class="breadcrumb-sep">/</span>
+    <span>Insights</span>
+  </div>
+  <span class="hero-eyebrow">Insights</span>
+  <h1>Practical advice<br>on building better<br>websites.</h1>
+  <p class="hero-sub">No fluff. Just honest, useful writing on web performance, SEO, and what actually makes a website work.</p>
+</section>
+
+<section id="posts">
+  <div class="two-col reveal">
+    <div>
+      <span class="section-label">Latest</span>
+      <h2>From the Dhoop team</h2>
+    </div>
+    <div>
+      <p>We write about the things that actually matter when it comes to building websites — performance, search visibility, and the decisions that separate a good website from a fast one.</p>
+    </div>
+  </div>
+
+  <div class="posts-grid">
+
+    <!-- Post 1 -->
+    <a href="post-pagespeed.html" class="post-card reveal">
+      <div class="post-image">
+        <img
+          src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=700&q=80&auto=format&fit=crop"
+          alt="Why your PageSpeed score matters more than you think"
+          loading="lazy"
+        >
+      </div>
+      <div class="post-content">
+        <div class="post-meta">
+          <span class="post-tag">Performance</span>
+          <span class="post-date">May 2025</span>
+        </div>
+        <div class="post-title">Why Your PageSpeed Score Matters More Than You Think</div>
+        <p class="post-excerpt">Most business owners have never seen their PageSpeed score. The ones that have often don't know what to do about it. Here's why it matters — and what's actually dragging it down.</p>
+        <span class="post-read-more">Read more ↗</span>
+      </div>
+    </a>
+
+    <!-- Post 2 -->
+    <a href="post-page-builders.html" class="post-card reveal">
+      <div class="post-image">
+        <img
+          src="https://images.unsplash.com/photo-1432888622747-4eb9a8efeb07?w=700&q=80&auto=format&fit=crop"
+          alt="Page builders vs hand-coded websites"
+          loading="lazy"
+        >
+      </div>
+      <div class="post-content">
+        <div class="post-meta">
+          <span class="post-tag">Web Design</span>
+          <span class="post-date">April 2025</span>
+        </div>
+        <div class="post-title">Page Builders vs Hand-Coded Websites — What's the Real Difference?</div>
+        <p class="post-excerpt">Wix, Squarespace, Elementor — they all make it easy to build a website. But easy and good aren't the same thing. Here's what you're actually giving up when you use a page builder.</p>
+        <span class="post-read-more">Read more ↗</span>
+      </div>
+    </a>
+
+    <!-- Post 3 -->
+    <a href="post-core-web-vitals.html" class="post-card reveal">
+      <div class="post-image">
+        <img
+          src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=700&q=80&auto=format&fit=crop"
+          alt="Core Web Vitals explained"
+          loading="lazy"
+        >
+      </div>
+      <div class="post-content">
+        <div class="post-meta">
+          <span class="post-tag">SEO</span>
+          <span class="post-date">March 2025</span>
+        </div>
+        <div class="post-title">Core Web Vitals Explained — What They Are and Why Google Cares</div>
+        <p class="post-excerpt">LCP, CLS, FID — Google uses these three metrics as ranking signals. Most websites fail at least one of them. Here's what they mean in plain English and how to fix them.</p>
+        <span class="post-read-more">Read more ↗</span>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<section id="cta">
+  <div class="two-col">
+    <div class="reveal">
+      <span class="section-label">Get Started</span>
+      <h2>Want us to look at your website?</h2>
+      <p class="cta-note">No jargon. Just honest, actionable findings.</p>
+    </div>
+    <div class="reveal">
+      <p>Get a full technical audit of your website — performance, SEO, and Core Web Vitals — with clear recommendations on exactly what to fix.</p>
+      <div class="btn-group">
+        <a href="contact.html" class="btn btn-primary">Get a Health Check</a>
+        <a href="work.html" class="btn btn-outline">See Our Work</a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <h2>Dhoop — Bournemouth web design agency</h2>
+      <p>We design and build fast, clean-coded websites optimised for performance, SEO, and long-term scalability.</p>
+      <a href="mailto:hello@madebydhoop.co.uk" class="email-link">hello@madebydhoop.co.uk</a>
+    </div>
+    <div class="footer-nav">
+      <p class="footer-nav-label">Services</p>
+      <ul>
+        <li><a href="new-builds.html">Web Design</a></li>
+        <li><a href="rebuilds.html">Website Rebuilds</a></li>
+        <li><a href="health-check.html">Health Check</a></li>
+        <li><a href="contact.html">Performance Audit</a></li>
+      </ul>
+    </div>
+    <div class="footer-nav">
+      <p class="footer-nav-label">Company</p>
+      <ul>
+        <li><a href="about.html">About</a></li>
+        <li><a href="work.html">Work</a></li>
+        <li><a href="insights.html">Insights</a></li>
+        <li><a href="privacy.html">Privacy Policy</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Dhoop Ltd &nbsp;·&nbsp; Co. Reg. No. 12345678 &nbsp;·&nbsp; Registered in England &amp; Wales</p>
+    <a href="index.html" class="footer-logo">Dhoop<span>.</span></a>
+  </div>
+</footer>
+
+<script src="main.js" defer></script>
+</body>
+</html>

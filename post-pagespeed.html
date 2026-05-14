@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Why Your PageSpeed Score Matters More Than You Think — Dhoop</title>
+<meta name="description" content="Most business owners have never seen their PageSpeed score. Here's why it matters, what's dragging it down, and what you can do about it.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.madebydhoop.co.uk/post-pagespeed.html">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="stylesheet" href="styles.css">
+
+<style>
+  #hero {
+    min-height: 60svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-top: 9rem;
+    padding-bottom: clamp(3rem, 6vw, 5rem);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .hero-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.15;
+    display: block;
+  }
+
+  .hero-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, var(--black) 40%, transparent 100%);
+  }
+
+  #hero > *:not(.hero-bg) { position: relative; z-index: 1; }
+
+  .hero-eyebrow { font-size: 0.82rem; letter-spacing: 0.06em; color: var(--accent); font-weight: 400; margin-bottom: 1.8rem; display: block; }
+
+  .post-meta-hero {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .post-meta-hero span {
+    font-size: 0.8rem;
+    color: var(--mid);
+    letter-spacing: 0.04em;
+  }
+
+  .post-meta-hero .tag {
+    color: var(--accent);
+    font-weight: 500;
+    letter-spacing: 0.08em;
+  }
+
+  /* ── ARTICLE ── */
+  #article {
+    padding-top: var(--gap);
+    padding-bottom: var(--gap);
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .article-layout {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    gap: 4rem clamp(3rem, 6vw, 7rem);
+    align-items: start;
+  }
+
+  /* Sticky sidebar */
+  .article-sidebar {
+    position: sticky;
+    top: 8rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .sidebar-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    font-weight: 500;
+    display: block;
+    margin-bottom: 0.8rem;
+  }
+
+  .sidebar-toc ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+
+  .sidebar-toc a {
+    font-size: 0.82rem;
+    color: var(--mid);
+    text-decoration: none;
+    line-height: 1.5;
+    transition: color 0.2s;
+  }
+
+  .sidebar-toc a:hover { color: var(--white); }
+
+  .sidebar-cta {
+    padding: 1.5rem;
+    border: 1px solid rgba(0,245,160,0.2);
+    border-radius: 2px;
+  }
+
+  .sidebar-cta p {
+    font-size: 0.82rem;
+    margin-bottom: 1rem;
+    max-width: none;
+    color: rgba(245,244,240,0.55);
+  }
+
+  .sidebar-cta .btn { width: 100%; text-align: center; font-size: 0.78rem; padding: 0.7rem 1rem; }
+
+  /* Article body */
+  .article-body { max-width: 68ch; }
+
+  .article-body h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(1.6rem, 2.5vw, 2.4rem);
+    color: var(--white);
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    margin-top: 3rem;
+    margin-bottom: 1.2rem;
+    line-height: 1;
+    padding-top: 3rem;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .article-body h2:first-child { margin-top: 0; padding-top: 0; border-top: none; }
+
+  .article-body p {
+    font-size: 1rem;
+    color: rgba(245,244,240,0.72);
+    line-height: 1.9;
+    max-width: none;
+    margin-bottom: 1.4rem;
+  }
+
+  .article-body p:last-child { margin-bottom: 0; }
+
+  .article-body strong { color: var(--white); font-weight: 500; }
+
+  .article-body ul, .article-body ol {
+    margin: 1.2rem 0 1.4rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .article-body ul li, .article-body ol li {
+    font-size: 1rem;
+    color: rgba(245,244,240,0.72);
+    line-height: 1.75;
+    padding-left: 1.5rem;
+    position: relative;
+  }
+
+  .article-body ul li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 0.85rem;
+  }
+
+  .article-body ol { counter-reset: ol-counter; }
+
+  .article-body ol li {
+    counter-increment: ol-counter;
+  }
+
+  .article-body ol li::before {
+    content: counter(ol-counter) '.';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 0.85rem;
+    font-family: 'Bebas Neue', sans-serif;
+    letter-spacing: 0.04em;
+  }
+
+  .article-callout {
+    border-left: 2px solid var(--accent);
+    padding: 1.2rem 1.5rem;
+    margin: 2rem 0;
+    background: rgba(0,245,160,0.04);
+  }
+
+  .article-callout p {
+    font-size: 0.95rem;
+    color: rgba(245,244,240,0.8);
+    margin: 0;
+    font-style: italic;
+  }
+
+  .article-end {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .back-link {
+    font-size: 0.82rem;
+    color: var(--mid);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    transition: color 0.2s;
+  }
+
+  .back-link:hover { color: var(--white); }
+
+  .cta-note { font-size: 0.85rem; font-weight: 300; font-style: italic; color: rgba(0,0,0,0.38); margin-top: 1rem; max-width: none; }
+
+  @media (max-width: 900px) {
+    .article-layout { grid-template-columns: 1fr; }
+    .article-sidebar { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">Dhoop<span>.</span></a>
+  <ul>
+    <li><a href="new-builds.html">Web Design</a></li>
+    <li><a href="rebuilds.html">Rebuilds</a></li>
+    <li><a href="health-check.html">Health Check</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="work.html">Work</a></li>
+  </ul>
+  <a href="contact.html" class="nav-cta">Get Performance Audit</a>
+  <button class="hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-overlay" id="mobileOverlay">
+  <ul class="mobile-nav-links">
+    <li><a href="new-builds.html">Web Design</a></li>
+    <li><a href="rebuilds.html">Rebuilds</a></li>
+    <li><a href="health-check.html">Health Check</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="work.html">Work</a></li>
+    <li><a href="insights.html">Insights</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="contact.html" class="mobile-cta">Get Performance Audit</a>
+  <a href="mailto:hello@madebydhoop.co.uk" class="mobile-email">hello@madebydhoop.co.uk</a>
+</div>
+
+<main>
+<section id="hero">
+  <div class="hero-bg">
+    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1400&q=80&auto=format&fit=crop" alt="">
+  </div>
+  <div class="breadcrumb">
+    <a href="index.html">Home</a>
+    <span class="breadcrumb-sep">/</span>
+    <a href="insights.html">Insights</a>
+    <span class="breadcrumb-sep">/</span>
+    <span>PageSpeed</span>
+  </div>
+  <span class="hero-eyebrow">Performance</span>
+  <h1>Why Your PageSpeed<br>Score Matters More<br>Than You Think</h1>
+  <div class="post-meta-hero">
+    <span class="tag">Performance</span>
+    <span>May 2025</span>
+    <span>6 min read</span>
+  </div>
+</section>
+
+<section id="article">
+  <div class="article-layout">
+
+    <aside class="article-sidebar">
+      <div class="sidebar-toc">
+        <span class="sidebar-label">In This Article</span>
+        <ul>
+          <li><a href="#what-is-pagespeed">What is PageSpeed?</a></li>
+          <li><a href="#why-it-matters">Why it matters</a></li>
+          <li><a href="#what-kills-scores">What kills your score</a></li>
+          <li><a href="#what-good-looks-like">What good looks like</a></li>
+          <li><a href="#how-to-fix-it">How to fix it</a></li>
+        </ul>
+      </div>
+      <div class="sidebar-cta">
+        <span class="sidebar-label">Free Audit</span>
+        <p>Want to know your score? We'll run a full audit and tell you exactly what's holding it back.</p>
+        <a href="contact.html" class="btn btn-primary">Get a Health Check</a>
+      </div>
+    </aside>
+
+    <div class="article-body">
+
+      <h2 id="what-is-pagespeed">What is PageSpeed, exactly?</h2>
+      <p>PageSpeed Insights is a free tool from Google that measures how fast your website loads and how well it performs for users. It gives you a score out of 100 — separately for mobile and desktop — and breaks down exactly what's slowing your site down.</p>
+      <p>The score is based on a set of real-world performance metrics called <strong>Core Web Vitals</strong>. These measure things like how quickly your main content appears on screen, how stable the page is as it loads, and how fast it responds to user interaction.</p>
+      <p>Most business owners have never checked their score. Of those that have, most don't know what to do about it. That's a problem — because Google does.</p>
+
+      <h2 id="why-it-matters">Why it matters for your business</h2>
+      <p>In 2021, Google officially made Core Web Vitals a ranking factor. That means your PageSpeed score directly affects where you appear in search results. A slow website doesn't just frustrate visitors — it actively costs you rankings.</p>
+      <p>But it goes beyond SEO. Research consistently shows that:</p>
+      <ul>
+        <li>53% of mobile users abandon a page that takes longer than 3 seconds to load</li>
+        <li>A 1-second delay in page load time can reduce conversions by up to 7%</li>
+        <li>Pages that load in under 2 seconds have a significantly lower bounce rate than slower pages</li>
+      </ul>
+
+      <div class="article-callout">
+        <p>A slow website isn't just a technical problem. It's a business problem. Every second your site takes to load, you're losing visitors — and potential customers — before they've even seen what you offer.</p>
+      </div>
+
+      <h2 id="what-kills-scores">What kills most PageSpeed scores</h2>
+      <p>The most common causes of poor PageSpeed scores are almost always the same — and most of them trace back to how the website was built in the first place.</p>
+      <ul>
+        <li><strong>Page builders</strong> — Wix, Squarespace, Elementor, and similar tools load enormous amounts of JavaScript and CSS that your page doesn't need. This alone can account for 2-3 seconds of extra load time.</li>
+        <li><strong>Render-blocking resources</strong> — External fonts, tracking scripts, and stylesheets that load before the page content can be displayed.</li>
+        <li><strong>Unoptimised images</strong> — Large, uncompressed images in outdated formats are one of the most common performance killers on small business websites.</li>
+        <li><strong>No caching</strong> — Without proper cache headers, every visitor has to download every asset from scratch, every time.</li>
+        <li><strong>Cheap or slow hosting</strong> — A slow server means a slow Time to First Byte (TTFB), which delays everything that follows.</li>
+      </ul>
+
+      <h2 id="what-good-looks-like">What a good score actually looks like</h2>
+      <p>Google categorises scores into three bands:</p>
+      <ul>
+        <li><strong>0–49</strong> — Poor. Your website has serious performance issues that are likely costing you rankings and visitors.</li>
+        <li><strong>50–89</strong> — Needs improvement. There are meaningful issues that should be addressed.</li>
+        <li><strong>90–100</strong> — Good. Your website is performing well against Google's standards.</li>
+      </ul>
+      <p>At Dhoop, we target 100 across the board — on both mobile and desktop. That's not marketing. It's the standard we hold every build to, and it's achievable when a website is built properly from the start.</p>
+
+      <div class="article-callout">
+        <p>The difference between a score of 45 and a score of 98 isn't about having a better design. It's about how the website was built. Clean code, no page builders, and the right technical decisions from day one.</p>
+      </div>
+
+      <h2 id="how-to-fix-it">How to actually fix it</h2>
+      <p>If your score is low, the fix depends entirely on what's causing the problem. Some issues can be resolved without rebuilding — image optimisation, caching headers, script deferral. But if the root cause is a bloated page builder or an inefficient theme, patching around it only gets you so far.</p>
+      <p>The most reliable way to get a genuinely high score is to build the site properly from the ground up — hand-coded, with performance considered at every stage, not bolted on at the end.</p>
+      <p>If you're not sure where your site stands, the first step is to check. Go to <strong>pagespeed.web.dev</strong>, enter your URL, and run the test on mobile. Whatever number comes back, that's the honest picture of how Google sees your website.</p>
+      <p>And if you want someone to look at it properly and tell you exactly what's holding it back — that's what our health check is for.</p>
+
+      <div class="article-end">
+        <a href="insights.html" class="back-link">← Back to Insights</a>
+        <a href="contact.html" class="btn btn-primary">Get a Free Health Check</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="cta">
+  <div class="two-col">
+    <div class="reveal">
+      <span class="section-label">Free Audit</span>
+      <h2>Want to know your PageSpeed score?</h2>
+      <p class="cta-note">No jargon. Just clear, honest findings.</p>
+    </div>
+    <div class="reveal">
+      <p>We'll run a full technical audit of your website and tell you exactly what's holding it back — with a prioritised list of what to fix first.</p>
+      <div class="btn-group">
+        <a href="contact.html" class="btn btn-primary">Get a Health Check</a>
+        <a href="insights.html" class="btn btn-outline">More Insights</a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <h2>Dhoop — Bournemouth web design agency</h2>
+      <p>We design and build fast, clean-coded websites optimised for performance, SEO, and long-term scalability.</p>
+      <a href="mailto:hello@madebydhoop.co.uk" class="email-link">hello@madebydhoop.co.uk</a>
+    </div>
+    <div class="footer-nav">
+      <p class="footer-nav-label">Services</p>
+      <ul>
+        <li><a href="new-builds.html">Web Design</a></li>
+        <li><a href="rebuilds.html">Website Rebuilds</a></li>
+        <li><a href="health-check.html">Health Check</a></li>
+        <li><a href="contact.html">Performance Audit</a></li>
+      </ul>
+    </div>
+    <div class="footer-nav">
+      <p class="footer-nav-label">Company</p>
+      <ul>
+        <li><a href="about.html">About</a></li>
+        <li><a href="work.html">Work</a></li>
+        <li><a href="insights.html">Insights</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="privacy.html">Privacy Policy</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Dhoop Ltd &nbsp;·&nbsp; Co. Reg. No. 12345678 &nbsp;·&nbsp; Registered in England &amp; Wales</p>
+    <a href="index.html" class="footer-logo">Dhoop<span>.</span></a>
+  </div>
+</footer>
+
+<script src="main.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Page Builders vs Hand-Coded Websites — Dhoop</title>
+<meta name="description" content="Wix, Squarespace, Elementor — they all make it easy to build a website. But easy and good aren't the same thing. Here's what you're actually giving up.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.madebydhoop.co.uk/post-page-builders.html">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="stylesheet" href="styles.css">
+
+<style>
+  #hero {
+    min-height: 60svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-top: 9rem;
+    padding-bottom: clamp(3rem, 6vw, 5rem);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg { position: absolute; inset: 0; z-index: 0; }
+  .hero-bg img { width: 100%; height: 100%; object-fit: cover; opacity: 0.15; display: block; }
+  .hero-bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, var(--black) 40%, transparent 100%); }
+  #hero > *:not(.hero-bg) { position: relative; z-index: 1; }
+
+  .hero-eyebrow { font-size: 0.82rem; letter-spacing: 0.06em; color: var(--accent); font-weight: 400; margin-bottom: 1.8rem; display: block; }
+
+  .post-meta-hero { display: flex; align-items: center; gap: 1.5rem; margin-top: 2rem; flex-wrap: wrap; }
+  .post-meta-hero span { font-size: 0.8rem; color: var(--mid); letter-spacing: 0.04em; }
+  .post-meta-hero .tag { color: var(--accent); font-weight: 500; letter-spacing: 0.08em; }
+
+  #article { padding-top: var(--gap); padding-bottom: var(--gap); border-top: 1px solid rgba(255,255,255,0.06); }
+
+  .article-layout {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    gap: 4rem clamp(3rem, 6vw, 7rem);
+    align-items: start;
+  }
+
+  .article-sidebar { position: sticky; top: 8rem; display: flex; flex-direction: column; gap: 2rem; }
+  .sidebar-label { font-size: 0.72rem; letter-spacing: 0.08em; color: var(--accent); font-weight: 500; display: block; margin-bottom: 0.8rem; }
+  .sidebar-toc ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+  .sidebar-toc a { font-size: 0.82rem; color: var(--mid); text-decoration: none; line-height: 1.5; transition: color 0.2s; }
+  .sidebar-toc a:hover { color: var(--white); }
+
+  .sidebar-cta { padding: 1.5rem; border: 1px solid rgba(0,245,160,0.2); border-radius: 2px; }
+  .sidebar-cta p { font-size: 0.82rem; margin-bottom: 1rem; max-width: none; color: rgba(245,244,240,0.55); }
+  .sidebar-cta .btn { width: 100%; text-align: center; font-size: 0.78rem; padding: 0.7rem 1rem; }
+
+  .article-body { max-width: 68ch; }
+
+  .article-body h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(1.6rem, 2.5vw, 2.4rem); color: var(--white); font-weight: 400; letter-spacing: 0.02em; margin-top: 3rem; margin-bottom: 1.2rem; line-height: 1; padding-top: 3rem; border-top: 1px solid rgba(255,255,255,0.06); }
+  .article-body h2:first-child { margin-top: 0; padding-top: 0; border-top: none; }
+
+  .article-body p { font-size: 1rem; color: rgba(245,244,240,0.72); line-height: 1.9; max-width: none; margin-bottom: 1.4rem; }
+  .article-body p:last-child { margin-bottom: 0; }
+  .article-body strong { color: var(--white); font-weight: 500; }
+
+  .article-body ul, .article-body ol { margin: 1.2rem 0 1.4rem 0; display: flex; flex-direction: column; gap: 0.6rem; }
+  .article-body ul li, .article-body ol li { font-size: 1rem; color: rgba(245,244,240,0.72); line-height: 1.75; padding-left: 1.5rem; position: relative; }
+  .article-body ul li::before { content: '—'; position: absolute; left: 0; color: var(--accent); font-size: 0.85rem; }
+  .article-body ol { counter-reset: ol-counter; }
+  .article-body ol li { counter-increment: ol-counter; }
+  .article-body ol li::before { content: counter(ol-counter) '.'; position: absolute; left: 0; color: var(--accent); font-size: 0.85rem; font-family: 'Bebas Neue', sans-serif; letter-spacing: 0.04em; }
+
+  .article-callout { border-left: 2px solid var(--accent); padding: 1.2rem 1.5rem; margin: 2rem 0; background: rgba(0,245,160,0.04); }
+  .article-callout p { font-size: 0.95rem; color: rgba(245,244,240,0.8); margin: 0; font-style: italic; }
+
+  /* Comparison table */
+  .compare-table { width: 100%; margin: 2rem 0; border-collapse: collapse; }
+  .compare-table th { font-family: 'Bebas Neue', sans-serif; font-size: 1rem; letter-spacing: 0.04em; font-weight: 400; padding: 0.8rem 1rem; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.1); }
+  .compare-table th:first-child { color: var(--mid); }
+  .compare-table th:nth-child(2) { color: rgba(255,100,100,0.8); }
+  .compare-table th:nth-child(3) { color: var(--accent); }
+  .compare-table td { padding: 0.8rem 1rem; font-size: 0.88rem; color: rgba(245,244,240,0.65); border-bottom: 1px solid rgba(255,255,255,0.04); line-height: 1.5; }
+  .compare-table td:first-child { color: var(--mid); font-size: 0.8rem; letter-spacing: 0.04em; }
+  .compare-table tr:last-child td { border-bottom: none; }
+  .bad { color: rgba(255,120,120,0.8) !important; }
+  .good { color: var(--accent) !important; }
+
+  .article-end { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.06); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+  .back-link { font-size: 0.82rem; color: var(--mid); text-decoration: none; letter-spacing: 0.04em; transition: color 0.2s; }
+  .back-link:hover { color: var(--white); }
+  .cta-note { font-size: 0.85rem; font-weight: 300; font-style: italic; color: rgba(0,0,0,0.38); margin-top: 1rem; max-width: none; }
+
+  @media (max-width: 900px) {
+    .article-layout { grid-template-columns: 1fr; }
+    .article-sidebar { display: none; }
+    .compare-table { font-size: 0.8rem; }
+    .compare-table td, .compare-table th { padding: 0.6rem 0.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">Dhoop<span>.</span></a>
+  <ul>
+    <li><a href="new-builds.html">Web Design</a></li>
+    <li><a href="rebuilds.html">Rebuilds</a></li>
+    <li><a href="health-check.html">Health Check</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="work.html">Work</a></li>
+  </ul>
+  <a href="contact.html" class="nav-cta">Get Performance Audit</a>
+  <button class="hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-overlay" id="mobileOverlay">
+  <ul class="mobile-nav-links">
+    <li><a href="new-builds.html">Web Design</a></li>
+    <li><a href="rebuilds.html">Rebuilds</a></li>
+    <li><a href="health-check.html">Health Check</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="work.html">Work</a></li>
+    <li><a href="insights.html">Insights</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="contact.html" class="mobile-cta">Get Performance Audit</a>
+  <a href="mailto:hello@madebydhoop.co.uk" class="mobile-email">hello@madebydhoop.co.uk</a>
+</div>
+
+<main>
+<section id="hero">
+  <div class="hero-bg">
+    <img src="https://images.unsplash.com/photo-1432888622747-4eb9a8efeb07?w=1400&q=80&auto=format&fit=crop" alt="">
+  </div>
+  <div class="breadcrumb">
+    <a href="index.html">Home</a>
+    <span class="breadcrumb-sep">/</span>
+    <a href="insights.html">Insights</a>
+    <span class="breadcrumb-sep">/</span>
+    <span>Page Builders</span>
+  </div>
+  <span class="hero-eyebrow">Web Design</span>
+  <h1>Page Builders vs<br>Hand-Coded Websites<br>— The Real Difference</h1>
+  <div class="post-meta-hero">
+    <span class="tag">Web Design</span>
+    <span>April 2025</span>
+    <span>7 min read</span>
+  </div>
+</section>
+
+<section id="article">
+  <div class="article-layout">
+
+    <aside class="article-sidebar">
+      <div class="sidebar-toc">
+        <span class="sidebar-label">In This Article</span>
+        <ul>
+          <li><a href="#what-is-a-page-builder">What is a page builder?</a></li>
+          <li><a href="#the-performance-problem">The performance problem</a></li>
+          <li><a href="#the-seo-problem">The SEO problem</a></li>
+          <li><a href="#the-flexibility-problem">The flexibility problem</a></li>
+          <li><a href="#comparison">Side by side comparison</a></li>
+          <li><a href="#when-page-builders-are-fine">When page builders are fine</a></li>
+          <li><a href="#the-bottom-line">The bottom line</a></li>
+        </ul>
+      </div>
+      <div class="sidebar-cta">
+        <span class="sidebar-label">Thinking of switching?</span>
+        <p>We rebuild underperforming page builder sites from scratch — and the results speak for themselves.</p>
+        <a href="rebuilds.html" class="btn btn-primary">Learn About Rebuilds</a>
+      </div>
+    </aside>
+
+    <div class="article-body">
+
+      <h2 id="what-is-a-page-builder">What is a page builder?</h2>
+      <p>A page builder is a tool that lets you create a website by dragging and dropping elements — text blocks, images, buttons, forms — without writing any code. Wix, Squarespace, Webflow, and WordPress plugins like Elementor and Divi all fall into this category.</p>
+      <p>They're popular for a reason. You can go from nothing to something that looks like a website in a few hours. For a lot of people, that's genuinely useful. But there's a significant difference between something that looks like a website and something that performs like one.</p>
+
+      <h2 id="the-performance-problem">The performance problem</h2>
+      <p>Page builders work by loading a large framework of JavaScript and CSS — essentially, all the tools you might use — and then applying only the parts relevant to your page. The rest still loads. It just doesn't do anything.</p>
+      <p>This is the fundamental problem. A hand-coded website only loads what it needs. A page builder loads everything it might need, just in case.</p>
+      <p>The practical result is significant. A typical Wix or Elementor site loads between 2–5MB of assets before it shows anything. A well-coded static site can load the same page in under 200KB. That's a difference that shows up directly in your PageSpeed score and your load time.</p>
+
+      <div class="article-callout">
+        <p>We've rebuilt sites from Wix and Squarespace that went from a PageSpeed score of 35 to 98 after the rebuild. The design stayed almost identical. The code changed completely.</p>
+      </div>
+
+      <h2 id="the-seo-problem">The SEO problem</h2>
+      <p>Google uses Core Web Vitals — which measure real-world performance — as a ranking factor. A slow website doesn't just frustrate visitors. It actively costs you search visibility.</p>
+      <p>But performance isn't the only SEO issue with page builders. They also tend to generate messy, inefficient HTML that's harder for search engines to parse. Heading structures get muddled. Semantic markup gets ignored. Schema data never gets added.</p>
+      <p>A hand-coded site gives you complete control over the HTML structure — which means you can build it in a way that search engines can actually read and understand.</p>
+
+      <h2 id="the-flexibility-problem">The flexibility problem</h2>
+      <p>Page builders are designed to make common things easy. But the moment you want to do something that falls outside their template, you hit walls. You're at the mercy of the platform's limitations, their update schedule, and their pricing decisions.</p>
+      <p>We've seen businesses locked into Wix because their entire site structure was dependent on Wix-specific features. Moving away meant rebuilding everything from scratch anyway — except now they'd wasted years building on the wrong foundation.</p>
+      <p>A hand-coded site has no platform dependency. You own the code. You can host it anywhere. You can change anything.</p>
+
+      <h2 id="comparison">Side by side</h2>
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Page Builder</th>
+            <th>Hand-Coded</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>PageSpeed Score</td>
+            <td class="bad">30–65 typical</td>
+            <td class="good">90–100 achievable</td>
+          </tr>
+          <tr>
+            <td>Load Time</td>
+            <td class="bad">3–8 seconds</td>
+            <td class="good">Under 1.5 seconds</td>
+          </tr>
+          <tr>
+            <td>SEO Control</td>
+            <td class="bad">Limited</td>
+            <td class="good">Complete</td>
+          </tr>
+          <tr>
+            <td>Code Quality</td>
+            <td class="bad">Bloated, auto-generated</td>
+            <td class="good">Clean, purposeful</td>
+          </tr>
+          <tr>
+            <td>Hosting Flexibility</td>
+            <td class="bad">Often platform-locked</td>
+            <td class="good">Host anywhere</td>
+          </tr>
+          <tr>
+            <td>Long-term Scalability</td>
+            <td class="bad">Limited by the platform</td>
+            <td class="good">Fully scalable</td>
+          </tr>
+          <tr>
+            <td>Monthly Cost</td>
+            <td class="bad">£15–£50/month ongoing</td>
+            <td class="good">Hosting only (~£5–10)</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2 id="when-page-builders-are-fine">When page builders are fine</h2>
+      <p>To be fair — page builders aren't always the wrong choice. If you're testing a business idea, building a personal project, or need something live quickly with no budget, they make sense. Done is better than perfect.</p>
+      <p>But if you're running a business where your website is a meaningful part of how you get customers — if you care about ranking on Google, if your bounce rate matters, if you want your website to actually convert visitors into enquiries — then a page builder is a constraint, not a tool.</p>
+
+      <h2 id="the-bottom-line">The bottom line</h2>
+      <p>Page builders make it easy to build a website. They make it hard to build a good one.</p>
+      <p>The websites that load fastest, rank highest, and convert best are almost always the ones built without them. Not because hand-coding is inherently magical — but because it removes the layer of unnecessary complexity that page builders introduce.</p>
+      <p>If your site is currently on a page builder and you're starting to notice the limitations — slow scores, poor rankings, or a design that no longer represents your business properly — a rebuild is usually the most effective solution.</p>
+
+      <div class="article-end">
+        <a href="insights.html" class="back-link">← Back to Insights</a>
+        <a href="rebuilds.html" class="btn btn-primary">Learn About Rebuilds</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="cta">
+  <div class="two-col">
+    <div class="reveal">
+      <span class="section-label">Stuck on a Page Builder?</span>
+      <h2>We can rebuild it properly.</h2>
+      <p class="cta-note">No jargon. Just an honest assessment of what's possible.</p>
+    </div>
+    <div class="reveal">
+      <p>We take underperforming page builder sites and rebuild them from scratch — improving speed, SEO, and conversion performance with clean, hand-written code.</p>
+      <div class="btn-group">
+        <a href="rebuilds.html" class="btn btn-primary">Learn About Rebuilds</a>
+        <a href="contact.html" class="btn btn-outline">Get a Free Health Check</a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <h2>Dhoop — Bournemouth web design agency</h2>
+      <p>We design and build fast, clean-coded websites optimised for performance, SEO, and long-term scalability.</p>
+      <a href="mailto:hello@madebydhoop.co.uk" class="email-link">hello@madebydhoop.co.uk</a>
+    </div>
+    <div class="footer-nav">
+      <p class="footer-nav-label">Services</p>
+      <ul>
+        <li><a href="new-builds.html">Web Design</a></li>
+        <li><a href="rebuilds.html">Website Rebuilds</a></li>
+        <li><a href="health-check.html">Health Check</a></li>
+        <li><a href="contact.html">Performance Audit</a></li>
+      </ul>
+    </div>
+    <div class="footer-nav">
+      <p class="footer-nav-label">Company</p>
+      <ul>
+        <li><a href="about.html">About</a></li>
+        <li><a href="work.html">Work</a></li>
+        <li><a href="insights.html">Insights</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="privacy.html">Privacy Policy</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Dhoop Ltd &nbsp;·&nbsp; Co. Reg. No. 12345678 &nbsp;·&nbsp; Registered in England &amp; Wales</p>
+    <a href="index.html" class="footer-logo">Dhoop<span>.</span></a>
+  </div>
+</footer>
+
+<script src="main.js" defer></script>
+</body>
+</html>

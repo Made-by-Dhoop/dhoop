@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Website Rebuilds — Dhoop Bournemouth Web Design Agency</title>
+<meta name="description" content="We take underperforming websites and rebuild them from scratch — improving speed, SEO, structure, and conversion performance with clean, hand-written code.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.madebydhoop.co.uk/rebuilds.html">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="stylesheet" href="styles.css">
+
+<style>
+  /* ── REBUILDS PAGE SPECIFIC ── */
+
+  #hero {
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-top: 9rem;
+    padding-bottom: clamp(4rem, 8vw, 7rem);
+    position: relative;
+  }
+
+  #hero::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 50vw; height: 50vw;
+    background: radial-gradient(circle, rgba(0,245,160,0.06) 0%, transparent 65%);
+    pointer-events: none;
+  }
+
+  .hero-eyebrow { font-size: 0.82rem; letter-spacing: 0.06em; color: var(--accent); font-weight: 400; margin-bottom: 1.8rem; display: block; }
+  .hero-sub { margin-top: 2.5rem; font-size: clamp(1rem, 1.4vw, 1.15rem); font-weight: 300; color: rgba(245,244,240,0.55); max-width: 60ch; line-height: 1.8; }
+  .hero-whisper { font-size: 0.8rem; font-style: italic; font-weight: 300; letter-spacing: 0.03em; color: rgba(245,244,240,0.28); margin-top: 0.8rem; }
+
+  /* Signs */
+  #signs { border-top: 1px solid rgba(255,255,255,0.06); padding-top: var(--gap); padding-bottom: var(--gap); }
+
+  .signs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1px;
+    background: rgba(255,255,255,0.05);
+    margin-top: 3.5rem;
+  }
+
+  .sign-card { background: var(--black); padding: clamp(2rem, 3.5vw, 3rem); transition: background 0.25s; }
+  .sign-card:hover { background: #111; }
+
+  .sign-marker { width: 28px; height: 2px; background: var(--accent); margin-bottom: 1.5rem; transition: width 0.3s ease; }
+  .sign-card:hover .sign-marker { width: 48px; }
+
+  .sign-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(1.3rem, 2vw, 1.8rem); color: var(--white); line-height: 1; margin-bottom: 1rem; letter-spacing: 0.02em; }
+  .sign-card p { font-size: 0.88rem; max-width: 36ch; }
+
+  /* What we do */
+  #whatwedo { padding-top: var(--gap); padding-bottom: var(--gap); }
+
+  .whatwedo-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem clamp(3rem, 6vw, 7rem);
+    align-items: end;
+    margin-bottom: 4rem;
+  }
+
+  .includes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1px;
+    background: rgba(255,255,255,0.05);
+  }
+
+  .include-item { background: var(--black); padding: clamp(2rem, 3.5vw, 3rem); transition: background 0.25s; }
+  .include-item:hover { background: #111; }
+
+  .include-num { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.5rem, 4vw, 3.5rem); color: rgba(0,245,160,0.12); line-height: 1; display: block; margin-bottom: 1rem; transition: color 0.25s; }
+  .include-item:hover .include-num { color: rgba(0,245,160,0.25); }
+  .include-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(1.3rem, 2vw, 1.8rem); color: var(--white); line-height: 1; margin-bottom: 1rem; letter-spacing: 0.02em; }
+  .include-item p { font-size: 0.88rem; max-width: 36ch; }
+
+  /* Process */
+  #process { border-top: 1px solid rgba(255,255,255,0.06); padding-top: var(--gap); padding-bottom: var(--gap); }
+  .process-steps { display: grid; grid-template-columns: 1fr; gap: 0; }
+
+  .step { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 3rem; padding: 2.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.06); transition: padding-left 0.3s ease; cursor: default; }
+  .step:first-child { border-top: 1px solid rgba(255,255,255,0.06); }
+  .step:hover { padding-left: 1.5rem; }
+
+  .step-num { font-family: 'Bebas Neue', sans-serif; font-size: 0.95rem; color: var(--accent); letter-spacing: 0.08em; min-width: 3rem; }
+
+  .step-content h3 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(1.3rem, 2.2vw, 2rem); color: var(--white); font-weight: 400; margin-top: 0; letter-spacing: 0.02em; line-height: 1; margin-bottom: 0.6rem; }
+  .step-content p { font-size: 0.88rem; max-width: 55ch; margin-top: 0.4rem; }
+  .step-tag { font-size: 0.72rem; letter-spacing: 0.06em; color: var(--mid); white-space: nowrap; font-weight: 400; align-self: start; padding-top: 0.3rem; }
+
+  /* Other services */
+  #other-services { border-top: 1px solid rgba(255,255,255,0.06); padding-top: var(--gap); padding-bottom: var(--gap); }
+
+  .cta-note { font-size: 0.85rem; font-weight: 300; font-style: italic; color: rgba(0,0,0,0.38); margin-top: 1rem; max-width: none; }
+
+  @media (max-width: 900px) {
+    .whatwedo-header { grid-template-columns: 1fr; }
+    .step { grid-template-columns: auto 1fr; }
+    .step-tag { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">Dhoop<span>.</span></a>
+  <ul>
+    <li><a href="new-builds.html">Web Design</a></li>
+    <li><a href="rebuilds.html">Rebuilds</a></li>
+    <li><a href="health-check.html">Health Check</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="work.html">Work</a></li>
+    <li><a href="insights.html">Insights</a></li>
+  </ul>
+  <a href="contact.html" class="nav-cta">Get Performance Audit</a>
+  <button class="hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-overlay" id="mobileOverlay">
+  <ul class="mobile-nav-links">
+    <li><a href="new-builds.html">Web Design</a></li>
+    <li><a href="rebuilds.html">Rebuilds</a></li>
+    <li><a href="health-check.html">Health Check</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="work.html">Work</a></li>
+    <li><a href="insights.html">Insights</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="contact.html" class="mobile-cta">Get Performance Audit</a>
+  <a href="mailto:hello@madebydhoop.co.uk" class="mobile-email">hello@madebydhoop.co.uk</a>
+</div>
+
+<main>
+<section id="hero">
+  <div class="breadcrumb">
+    <a href="index.html">Home</a>
+    <span class="breadcrumb-sep">/</span>
+    <span>Rebuilds</span>
+  </div>
+  <span class="hero-eyebrow">Website Rebuilds — Bournemouth</span>
+  <h1>Slow website.<br>New build.<br>Better results.</h1>
+  <p class="hero-sub">We take underperforming websites and rebuild them from scratch — improving speed, SEO, structure, and conversion performance with clean, hand-written code.</p>
+  <div class="btn-group">
+    <a href="contact.html" class="btn btn-primary">Rebuild My Website</a>
+    <a href="#signs" class="btn btn-outline">Signs You Need a Rebuild</a>
+  </div>
+  <p class="hero-whisper">No patches. No workarounds. A proper rebuild from the ground up.</p>
+</section>
+
+<section id="signs">
+  <div class="two-col">
+    <div class="reveal">
+      <span class="section-label">Sound Familiar?</span>
+      <h2>Signs your website needs a rebuild</h2>
+    </div>
+    <div class="reveal">
+      <p>Most businesses don't realise how much their website is holding them back. If any of these sound familiar, a rebuild isn't a nice-to-have — it's overdue.</p>
+    </div>
+  </div>
+  <div class="signs-grid">
+    <div class="sign-card reveal">
+      <div class="sign-marker"></div>
+      <div class="sign-title">It's Slow to Load</div>
+      <p>Pages take more than 3 seconds to load. You've lost the visitor before they've even seen what you offer.</p>
+    </div>
+    <div class="sign-card reveal">
+      <div class="sign-marker"></div>
+      <div class="sign-title">Google Scores Are Low</div>
+      <p>Your Lighthouse or PageSpeed score is below 70. Google is ranking your competitors above you because of it.</p>
+    </div>
+    <div class="sign-card reveal">
+      <div class="sign-marker"></div>
+      <div class="sign-title">It Was Built on a Page Builder</div>
+      <p>Wix, Squarespace, or a bloated WordPress theme. These tools prioritise convenience — not performance or SEO.</p>
+    </div>
+    <div class="sign-card reveal">
+      <div class="sign-marker"></div>
+      <div class="sign-title">It Looks Dated</div>
+      <p>Your website no longer reflects the quality of your business. First impressions matter — and your site isn't making a good one.</p>
+    </div>
+    <div class="sign-card reveal">
+      <div class="sign-marker"></div>
+      <div class="sign-title">High Bounce Rate</div>
+      <p>Visitors are landing and leaving immediately. Slow speed, poor UX, or a lack of clear messaging is pushing them away.</p>
+    </div>
+    <div class="sign-card reveal">
+      <div class="sign-marker"></div>
+      <div class="sign-title">It Doesn't Convert</div>
+      <p>Traffic exists but enquiries don't. Your site isn't structured to guide visitors toward taking action.</p>
+    </div>
+  </div>
+</section>
+
+<section id="whatwedo">
+  <div class="whatwedo-header">
+    <div class="reveal">
+      <span class="section-label">What's Included</span>
+      <h2>What a Dhoop rebuild delivers</h2>
+    </div>
+    <div class="reveal">
+      <p>A rebuild isn't just a redesign. We strip everything back and build it properly — so your new site performs better in every way that matters.</p>
+      <div class="stat-row">
+        <div class="stat"><span class="stat-num">100</span><p>Lighthouse Score Target</p></div>
+        <div class="stat"><span class="stat-num">&lt;2s</span><p>Target Load Time</p></div>
+        <div class="stat"><span class="stat-num">0</span><p>Page Builders Used</p></div>
+      </div>
+    </div>
+  </div>
+  <div class="includes-grid">
+    <div class="include-item reveal">
+      <span class="include-num">01</span>
+      <div class="include-title">Full Performance Audit First</div>
+      <p>Before we build anything, we audit your existing site — identifying every performance issue, SEO gap, and structural problem.</p>
+    </div>
+    <div class="include-item reveal">
+      <span class="include-num">02</span>
+      <div class="include-title">Clean Rebuild from Scratch</div>
+      <p>No patching. No theme swaps. Your new site is hand-coded from the ground up — lean, fast, and built to last.</p>
+    </div>
+    <div class="include-item reveal">
+      <span class="include-num">03</span>
+      <div class="include-title">Improved Site Structure & UX</div>
+      <p>We restructure your content and navigation to improve user journeys and guide visitors toward the actions that matter to your business.</p>
+    </div>
+    <div class="include-item reveal">
+      <span class="include-num">04</span>
+      <div class="include-title">SEO Migration & Preservation</div>
+      <p>301 redirects, meta data, and URL structure handled carefully — so you don't lose the search equity your existing site has built up.</p>
+    </div>
+    <div class="include-item reveal">
+      <span class="include-num">05</span>
+      <div class="include-title">Google Web Vitals Optimisation</div>
+      <p>Built to score well against Core Web Vitals — LCP, CLS, FID — from launch day. Not as an afterthought.</p>
+    </div>
+    <div class="include-item reveal">
+      <span class="include-num">06</span>
+      <div class="include-title">Before & After Lighthouse Report</div>
+      <p>We provide a full Lighthouse comparison at handover — so you can see exactly what's improved and by how much.</p>
+    </div>
+  </div>
+</section>
+
+<section id="process">
+  <div style="margin-bottom: 4rem;">
+    <span class="section-label reveal">How It Works</span>
+    <h2 class="reveal">Our rebuild process</h2>
+  </div>
+  <div class="process-steps">
+    <div class="step reveal">
+      <span class="step-num">01</span>
+      <div class="step-content">
+        <h3>Audit Your Existing Site</h3>
+        <p>We run a full technical audit of your current website — Lighthouse scores, Core Web Vitals, SEO, and site structure — so we know exactly what we're working with.</p>
+      </div>
+      <span class="step-tag">Week 1</span>
+    </div>
+    <div class="step reveal">
+      <span class="step-num">02</span>
+      <div class="step-content">
+        <h3>Rebuild Plan & Sign-Off</h3>
+        <p>We present a clear rebuild plan covering structure, design direction, and the technical approach. You approve before anything is built.</p>
+      </div>
+      <span class="step-tag">Week 1–2</span>
+    </div>
+    <div class="step reveal">
+      <span class="step-num">03</span>
+      <div class="step-content">
+        <h3>Design & Development</h3>
+        <p>Clean, hand-written code. A new design that reflects where your business is now — built for performance, not convenience.</p>
+      </div>
+      <span class="step-tag">Week 2–4</span>
+    </div>
+    <div class="step reveal">
+      <span class="step-num">04</span>
+      <div class="step-content">
+        <h3>Review & Refinement</h3>
+        <p>You review on a staging environment. We test across devices, run performance checks, and make refinements until everything is right.</p>
+      </div>
+      <span class="step-tag">Week 4</span>
+    </div>
+    <div class="step reveal">
+      <span class="step-num">05</span>
+      <div class="step-content">
+        <h3>Launch with SEO Handover</h3>
+        <p>We handle the migration carefully — redirects, DNS, and go-live — with a full before/after Lighthouse report so you can see the improvement.</p>
+      </div>
+      <span class="step-tag">Week 4–5</span>
+    </div>
+  </div>
+</section>
+
+<section id="other-services">
+  <span class="section-label reveal">Also Available</span>
+  <h2 class="reveal">Not sure a rebuild is the right move?</h2>
+  <div class="services-row">
+    <a href="new-builds.html" class="service-link-card reveal">
+      <div>
+        <span class="slc-tag">New Builds</span>
+        <div class="slc-title">New Website Builds</div>
+      </div>
+      <div class="slc-footer">
+        <p>Starting from scratch? We design and build custom websites from the ground up.</p>
+        <span class="arrow">↗</span>
+      </div>
+    </a>
+    <a href="health-check.html" class="service-link-card reveal">
+      <div>
+        <span class="slc-tag">Audits</span>
+        <div class="slc-title">Website Health Checks</div>
+      </div>
+      <div class="slc-footer">
+        <p>Not ready to commit? Start with a full technical audit of your current website.</p>
+        <span class="arrow">↗</span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<section id="cta">
+  <div class="two-col">
+    <div class="reveal">
+      <span class="section-label">Start Your Rebuild</span>
+      <h2>Ready to replace your underperforming website?</h2>
+      <p class="cta-note">No jargon. Just an honest assessment of what needs fixing.</p>
+    </div>
+    <div class="reveal">
+      <p>Tell us about your current website and what's not working. We'll come back with an honest breakdown and a clear quote — no obligation.</p>
+      <div class="btn-group">
+        <a href="contact.html" class="btn btn-primary">Start a Conversation</a>
+        <a href="health-check.html" class="btn btn-outline">Get a Health Check First</a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <h2>Dhoop — Bournemouth web design agency</h2>
+      <p>We design and build fast, clean-coded websites optimised for performance, SEO, and long-term scalability.</p>
+      <a href="mailto:hello@madebydhoop.co.uk" class="email-link">hello@madebydhoop.co.uk</a>
+    </div>
+    <div class="footer-nav">
+      <p class="footer-nav-label">Services</p>
+      <ul>
+        <li><a href="new-builds.html">Web Design</a></li>
+        <li><a href="rebuilds.html">Website Rebuilds</a></li>
+        <li><a href="health-check.html">Health Check</a></li>
+        <li><a href="contact.html">Performance Audit</a></li>
+      </ul>
+    </div>
+    <div class="footer-nav">
+      <p class="footer-nav-label">Company</p>
+      <ul>
+        <li><a href="about.html">About</a></li>
+        <li><a href="work.html">Work</a></li>
+        <li><a href="insights.html">Insights</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="privacy.html">Privacy Policy</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Dhoop Ltd &nbsp;·&nbsp; Co. Reg. No. 12345678 &nbsp;·&nbsp; Registered in England &amp; Wales</p>
+    <a href="index.html" class="footer-logo">Dhoop<span>.</span></a>
+  </div>
+</footer>
+
+<script src="main.js" defer></script>
+</body>
+</html>

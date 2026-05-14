@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dhoop — Bournemouth Web Design Agency</title>
+<meta name="description" content="Dhoop is a Bournemouth web design agency specialising in fast, clean-coded websites built for Google Web Vitals, SEO performance, and long-term scalability. No page builders.">
+<meta name="google-site-verification" content="0T8uh6fN_P4BUTjRl-s-Rc7-eNMfgV1Cp-Lm2rqPUtM">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.madebydhoop.co.uk/">
+<meta property="og:title" content="Dhoop — Bournemouth Web Design Agency">
+<meta property="og:description" content="Performance-first website design in Bournemouth — built for Google Web Vitals, not page builders.">
+<meta property="og:url" content="https://www.madebydhoop.co.uk/">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="stylesheet" href="styles.css">
+<style>
+  #hero {
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-top: 9rem;
+    padding-bottom: clamp(4rem, 8vw, 7rem);
+    position: relative;
+  }
+  #hero::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 50vw; height: 50vw;
+    background: radial-gradient(circle, rgba(0,245,160,0.06) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .hero-eyebrow { font-size: 0.82rem; letter-spacing: 0.06em; color: var(--accent); font-weight: 400; margin-bottom: 1.8rem; display: block; }
+  .hero-sub { margin-top: 2.5rem; font-size: clamp(1rem, 1.4vw, 1.15rem); font-weight: 300; color: rgba(245,244,240,0.55); max-width: 60ch; line-height: 1.8; }
+  .hero-whisper { font-size: 0.8rem; font-style: italic; font-weight: 300; letter-spacing: 0.03em; color: rgba(245,244,240,0.28); margin-top: 0.8rem; }
+  .cta-note { font-size: 0.85rem; font-weight: 300; font-style: italic; color: rgba(0,0,0,0.38); margin-top: 1rem; max-width: none; }
+  #hero h3 { font-size: 0.8rem; font-style: italic; font-weight: 300; letter-spacing: 0.03em; color: rgba(245,244,240,0.28); margin-top: 0.8rem; }
+  #problem h3 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(1.4rem, 2.2vw, 2rem); letter-spacing: 0.02em; color: rgba(245,244,240,0.18); font-weight: 400; margin-top: 2rem; line-height: 1.15; }
+  #positioning { padding-top: var(--gap); padding-bottom: var(--gap); }
+  .positioning-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 3rem; margin-bottom: 3.5rem; flex-wrap: wrap; }
+  .positioning-top .section-label { margin-bottom: 0; }
+  .positioning-statement { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3rem, 8.5vw, 9rem); line-height: 0.92; color: var(--white); font-weight: 400; letter-spacing: 0.01em; }
+  .positioning-body { padding-top: 3rem; margin-top: 3rem; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem clamp(3rem, 6vw, 7rem); align-items: center; }
+  #positioning h3 { font-size: 0.9rem; letter-spacing: 0.02em; font-weight: 500; color: var(--accent); margin-top: 0; border-left: 2px solid var(--accent); padding-left: 0.85rem; align-self: center; }
+  .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1px; background: rgba(255,255,255,0.05); margin-top: 4rem; }
+  .service-card { background: var(--black); padding: clamp(2rem, 3.5vw, 3rem); transition: background 0.25s; text-decoration: none; display: block; }
+  .service-card:hover { background: #111; }
+  .card-tag { font-size: 0.75rem; letter-spacing: 0.06em; color: var(--accent); display: block; margin-bottom: 1.2rem; font-weight: 400; }
+  .card-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(1.6rem, 2.5vw, 2.2rem); line-height: 1; color: var(--white); margin-bottom: 1.3rem; font-weight: 400; letter-spacing: 0.02em; }
+  .service-card p { font-size: 0.9rem; max-width: 38ch; }
+  #performance h3 { font-size: 0.88rem; font-weight: 300; font-style: italic; color: rgba(245,244,240,0.32); margin-top: 1.5rem; }
+  #outcome { text-align: center; padding-top: var(--gap); padding-bottom: var(--gap); }
+  #outcome .section-label { text-align: center; }
+  #outcome h2 { font-size: clamp(2.5rem, 6vw, 6rem); max-width: 16ch; margin: 0 auto; line-height: 0.95; }
+  #outcome > p { margin: 2rem auto 0; text-align: center; max-width: 48ch; }
+  .outcome-pills { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.6rem; margin-top: 3rem; }
+  .pill { display: inline-flex; align-items: center; gap: 0.5rem; border: 1px solid rgba(255,255,255,0.12); border-radius: 100px; padding: 0.55rem 1.3rem; font-size: 0.85rem; font-weight: 400; color: var(--mid); transition: border-color 0.2s, color 0.2s; }
+  .pill:hover { border-color: var(--accent); color: var(--white); }
+  .pill-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+  #outcome h3 { font-size: 0.85rem; font-weight: 400; color: var(--mid); letter-spacing: 0.02em; margin-top: 2.5rem; text-align: center; }
+  #outcome h3::before { content: '— '; color: var(--accent); }
+  @media (max-width: 900px) { .positioning-body { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">Dhoop<span>.</span></a>
+  <ul>
+    <li><a href="new-builds.html">Web Design</a></li>
+    <li><a href="rebuilds.html">Rebuilds</a></li>
+    <li><a href="health-check.html">Health Check</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="work.html">Work</a></li>
+    <li><a href="insights.html">Insights</a></li>
+  </ul>
+  <a href="contact.html" class="nav-cta">Get Performance Audit</a>
+  <button class="hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-overlay" id="mobileOverlay">
+  <ul class="mobile-nav-links">
+    <li><a href="new-builds.html">Web Design</a></li>
+    <li><a href="rebuilds.html">Rebuilds</a></li>
+    <li><a href="health-check.html">Health Check</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="work.html">Work</a></li>
+    <li><a href="insights.html">Insights</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="contact.html" class="mobile-cta">Get Performance Audit</a>
+  <a href="mailto:hello@madebydhoop.co.uk" class="mobile-email">hello@madebydhoop.co.uk</a>
+</div>
+
+<main>
+<section id="hero">
+  <span class="hero-eyebrow">Bournemouth Web Design Agency</span>
+  <h1>Clean Code.<br>Fast Websites.<br>Better Rankings.</h1>
+  <p class="hero-sub">Performance-first website design in Bournemouth — built for Google Web Vitals, not page builders.</p>
+  <div class="btn-group">
+    <a href="contact.html" class="btn btn-primary">Get a Performance Audit</a>
+    <a href="new-builds.html" class="btn btn-outline">Start a Web Design Project</a>
+  </div>
+  <p class="hero-whisper">Built in Bournemouth. Optimised for speed, search, and scale.</p>
+</section>
+
+<section id="problem">
+  <div class="two-col">
+    <div class="reveal">
+      <span class="section-label">The Problem</span>
+      <h2>Most websites are too slow to perform</h2>
+    </div>
+    <div class="reveal">
+      <p>Most modern websites are weighed down by unnecessary code, page builders, and inefficient design choices. The result is slower load times, weaker SEO performance, and poor user experience.</p>
+      <h3>Slow websites don't just look bad — they lose business</h3>
+    </div>
+  </div>
+</section>
+
+<section id="positioning">
+  <div class="positioning-top reveal">
+    <span class="section-label" style="margin-bottom:0">Our Approach</span>
+  </div>
+  <div class="positioning-statement reveal">We build websites properly — from the ground up</div>
+  <div class="positioning-body">
+    <div class="reveal">
+      <p>At Dhoop, every website is hand-built using clean, efficient code. We focus on structure, speed, and technical SEO from the very beginning — ensuring every build performs against Google Web Vitals standards.</p>
+    </div>
+    <div class="reveal">
+      <h3>No templates. No page builders. No unnecessary bloat.</h3>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <span class="section-label reveal">Services</span>
+  <h2 class="reveal">Website design services<br>in Bournemouth</h2>
+  <div class="services-grid">
+    <a href="new-builds.html" class="service-card reveal">
+      <span class="card-tag">New Builds</span>
+      <div class="card-title">New Website Builds</div>
+      <p>Custom website design and development for businesses that need a fast, scalable, and high-performing online presence.</p>
+    </a>
+    <a href="rebuilds.html" class="service-card reveal">
+      <span class="card-tag">Rebuilds</span>
+      <div class="card-title">Website Rebuilds</div>
+      <p>We take underperforming websites and rebuild them from scratch — improving speed, SEO, structure, and conversion performance.</p>
+    </a>
+    <a href="health-check.html" class="service-card reveal">
+      <span class="card-tag">Audits</span>
+      <div class="card-title">Website Health Checks</div>
+      <p>A full technical audit of your website against Google Web Vitals and Lighthouse metrics, identifying performance issues and SEO opportunities.</p>
+    </a>
+  </div>
+</section>
+
+<section id="performance">
+  <div class="two-col">
+    <div class="reveal">
+      <span class="section-label">Performance Authority</span>
+      <h2>Built for Google Web Vitals</h2>
+    </div>
+    <div class="reveal">
+      <p>Every website we build is measured against real performance standards — not guesswork. That means faster load times, stronger SEO signals, and better user experience across all devices.</p>
+      <h3>Performance is not optional — it's the foundation</h3>
+      <div class="stat-row">
+        <div class="stat"><span class="stat-num">100</span><p>Lighthouse Score Target</p></div>
+        <div class="stat"><span class="stat-num">&lt;2s</span><p>Target Load Time</p></div>
+        <div class="stat"><span class="stat-num">0</span><p>Page Builders Used</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="outcome">
+  <span class="section-label reveal">Business Outcome</span>
+  <h2 class="reveal">Faster websites perform better in every way</h2>
+  <p class="reveal">Speed directly impacts rankings, conversions, and user engagement. A faster website doesn't just feel better — it drives better business results.</p>
+  <div class="outcome-pills reveal">
+    <span class="pill"><span class="pill-dot"></span>Higher Search Rankings</span>
+    <span class="pill"><span class="pill-dot"></span>Faster Load Times</span>
+    <span class="pill"><span class="pill-dot"></span>Better Conversion Rates</span>
+    <span class="pill"><span class="pill-dot"></span>Stronger Core Web Vitals</span>
+    <span class="pill"><span class="pill-dot"></span>Improved User Experience</span>
+    <span class="pill"><span class="pill-dot"></span>Lower Bounce Rates</span>
+  </div>
+  <h3>Improve speed. Improve SEO. Improve conversions.</h3>
+</section>
+
+<section id="cta">
+  <div class="two-col">
+    <div class="reveal">
+      <span class="section-label">Free Audit</span>
+      <h2>Want to know how your website performs?</h2>
+      <p class="cta-note">No jargon. Just clear, actionable insights.</p>
+    </div>
+    <div class="reveal">
+      <p>Get a clear breakdown of your website's speed, SEO, and technical performance — and see exactly what's holding it back.</p>
+      <div class="btn-group">
+        <a href="contact.html" class="btn btn-primary">Get a Performance Audit</a>
+        <a href="rebuilds.html" class="btn btn-outline">Fix My Website</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <h2>Dhoop — Bournemouth web design agency</h2>
+      <p>We design and build fast, clean-coded websites optimised for performance, SEO, and long-term scalability.</p>
+      <a href="mailto:hello@madebydhoop.co.uk" class="email-link">hello@madebydhoop.co.uk</a>
+    </div>
+    <div class="footer-nav">
+      <p class="footer-nav-label">Services</p>
+      <ul>
+        <li><a href="new-builds.html">Web Design</a></li>
+        <li><a href="rebuilds.html">Website Rebuilds</a></li>
+        <li><a href="health-check.html">Health Check</a></li>
+        <li><a href="contact.html">Performance Audit</a></li>
+      </ul>
+    </div>
+    <div class="footer-nav">
+      <p class="footer-nav-label">Company</p>
+      <ul>
+        <li><a href="about.html">About</a></li>
+        <li><a href="work.html">Work</a></li>
+        <li><a href="insights.html">Insights</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="privacy.html">Privacy Policy</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Dhoop Ltd &nbsp;·&nbsp; Co. Reg. No. 12345678 &nbsp;·&nbsp; Registered in England &amp; Wales</p>
+    <a href="index.html" class="footer-logo">Dhoop<span>.</span></a>
+  </div>
+</footer>
+
+</main>
+<script src="main.js" defer></script>
+</body>
+</html>

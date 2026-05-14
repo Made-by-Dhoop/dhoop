@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Website Health Check — Dhoop Bournemouth Web Design Agency</title>
+<meta name="description" content="A full technical audit of your website against Google Web Vitals, Lighthouse, and Core Web Vitals — with clear, actionable recommendations. No jargon.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.madebydhoop.co.uk/health-check.html">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="stylesheet" href="styles.css">
+
+<style>
+  /* ── HEALTH CHECK PAGE SPECIFIC ── */
+
+  #hero {
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-top: 9rem;
+    padding-bottom: clamp(4rem, 8vw, 7rem);
+    position: relative;
+  }
+
+  #hero::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 50vw; height: 50vw;
+    background: radial-gradient(circle, rgba(0,245,160,0.06) 0%, transparent 65%);
+    pointer-events: none;
+  }
+
+  .hero-eyebrow { font-size: 0.82rem; letter-spacing: 0.06em; color: var(--accent); font-weight: 400; margin-bottom: 1.8rem; display: block; }
+  .hero-sub { margin-top: 2.5rem; font-size: clamp(1rem, 1.4vw, 1.15rem); font-weight: 300; color: rgba(245,244,240,0.55); max-width: 60ch; line-height: 1.8; }
+  .hero-whisper { font-size: 0.8rem; font-style: italic; font-weight: 300; letter-spacing: 0.03em; color: rgba(245,244,240,0.28); margin-top: 0.8rem; }
+
+  /* What's checked */
+  #whats-checked { border-top: 1px solid rgba(255,255,255,0.06); padding-top: var(--gap); padding-bottom: var(--gap); }
+
+  .checked-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem clamp(3rem, 6vw, 7rem);
+    align-items: end;
+    margin-bottom: 4rem;
+  }
+
+  .checks-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1px;
+    background: rgba(255,255,255,0.05);
+  }
+
+  .check-item { background: var(--black); padding: clamp(2rem, 3.5vw, 3rem); transition: background 0.25s; }
+  .check-item:hover { background: #111; }
+
+  .check-num { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.5rem, 4vw, 3.5rem); color: rgba(0,245,160,0.12); line-height: 1; display: block; margin-bottom: 1rem; transition: color 0.25s; }
+  .check-item:hover .check-num { color: rgba(0,245,160,0.25); }
+  .check-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(1.3rem, 2vw, 1.8rem); color: var(--white); line-height: 1; margin-bottom: 1rem; letter-spacing: 0.02em; }
+  .check-item p { font-size: 0.88rem; max-width: 36ch; }
+
+  /* Scores */
+  #scores { border-top: 1px solid rgba(255,255,255,0.06); padding-top: var(--gap); padding-bottom: var(--gap); }
+
+  .scores-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem clamp(3rem, 6vw, 7rem);
+    align-items: start;
+    margin-bottom: 4rem;
+  }
+
+  .score-row { display: grid; grid-template-columns: 1fr; gap: 0; }
+
+  .score-item { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 2rem; padding: 2rem 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .score-item:first-child { border-top: 1px solid rgba(255,255,255,0.06); }
+
+  .score-label { font-family: 'Bebas Neue', sans-serif; font-size: clamp(1.2rem, 2vw, 1.8rem); color: var(--white); letter-spacing: 0.02em; line-height: 1; }
+  .score-label p { font-family: 'DM Sans', sans-serif; font-size: 0.82rem; font-weight: 300; color: var(--mid); margin-top: 0.4rem; letter-spacing: 0; line-height: 1.5; }
+
+  .score-bar-wrap { width: 160px; display: flex; flex-direction: column; align-items: flex-end; gap: 0.4rem; flex-shrink: 0; }
+  .score-val { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; color: var(--accent); line-height: 1; }
+  .score-bar-bg { width: 100%; height: 3px; background: rgba(255,255,255,0.07); border-radius: 2px; overflow: hidden; }
+
+  .score-bar-fill { height: 100%; background: var(--accent); border-radius: 2px; transform-origin: left; transform: scaleX(0); transition: transform 1s ease; }
+  .score-bar-fill.animated { transform: scaleX(1); }
+
+  /* Deliverable */
+  #deliverable { border-top: 1px solid rgba(255,255,255,0.06); padding-top: var(--gap); padding-bottom: var(--gap); }
+
+  .deliverable-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1px;
+    background: rgba(255,255,255,0.05);
+    margin-top: 3.5rem;
+  }
+
+  .deliverable-card { background: var(--black); padding: clamp(2rem, 3.5vw, 3rem); transition: background 0.25s; display: flex; flex-direction: column; gap: 1.2rem; }
+  .deliverable-card:hover { background: #111; }
+
+  .del-icon { width: 36px; height: 36px; border: 1px solid rgba(0,245,160,0.25); border-radius: 2px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .del-icon svg { width: 16px; height: 16px; stroke: var(--accent); fill: none; stroke-width: 1.5; }
+  .del-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(1.2rem, 1.8vw, 1.6rem); color: var(--white); line-height: 1; letter-spacing: 0.02em; }
+  .deliverable-card p { font-size: 0.88rem; max-width: none; }
+
+  /* Other services */
+  #other-services { border-top: 1px solid rgba(255,255,255,0.06); padding-top: var(--gap); padding-bottom: var(--gap); }
+
+  .cta-note { font-size: 0.85rem; font-weight: 300; font-style: italic; color: rgba(0,0,0,0.38); margin-top: 1rem; max-width: none; }
+
+  @media (max-width: 900px) {
+    .checked-header, .scores-header { grid-template-columns: 1fr; }
+    .score-bar-wrap { width: 100px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">Dhoop<span>.</span></a>
+  <ul>
+    <li><a href="new-builds.html">Web Design</a></li>
+    <li><a href="rebuilds.html">Rebuilds</a></li>
+    <li><a href="health-check.html">Health Check</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="work.html">Work</a></li>
+    <li><a href="insights.html">Insights</a></li>
+  </ul>
+  <a href="contact.html" class="nav-cta">Get Performance Audit</a>
+  <button class="hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-overlay" id="mobileOverlay">
+  <ul class="mobile-nav-links">
+    <li><a href="new-builds.html">Web Design</a></li>
+    <li><a href="rebuilds.html">Rebuilds</a></li>
+    <li><a href="health-check.html">Health Check</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="work.html">Work</a></li>
+    <li><a href="insights.html">Insights</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="contact.html" class="mobile-cta">Get Performance Audit</a>
+  <a href="mailto:hello@madebydhoop.co.uk" class="mobile-email">hello@madebydhoop.co.uk</a>
+</div>
+
+<main>
+<section id="hero">
+  <div class="breadcrumb">
+    <a href="index.html">Home</a>
+    <span class="breadcrumb-sep">/</span>
+    <span>Health Check</span>
+  </div>
+  <span class="hero-eyebrow">Website Health Check — Bournemouth</span>
+  <h1>Find out what's<br>holding your<br>website back.</h1>
+  <p class="hero-sub">A full technical audit of your website against Google Web Vitals, Lighthouse, and Core Web Vitals — with clear, actionable recommendations. No jargon.</p>
+  <div class="btn-group">
+    <a href="contact.html" class="btn btn-primary">Get Your Health Check</a>
+    <a href="#whats-checked" class="btn btn-outline">See What We Check</a>
+  </div>
+  <p class="hero-whisper">Clear findings. Honest recommendations. No obligation to do anything more.</p>
+</section>
+
+<section id="whats-checked">
+  <div class="checked-header">
+    <div class="reveal">
+      <span class="section-label">What We Check</span>
+      <h2>A full technical audit — not a surface-level scan</h2>
+    </div>
+    <div class="reveal">
+      <p>Most free website checkers give you a score and nothing else. A Dhoop health check gives you a full breakdown of what's wrong, why it matters, and what needs to change.</p>
+    </div>
+  </div>
+  <div class="checks-grid">
+    <div class="check-item reveal">
+      <span class="check-num">01</span>
+      <div class="check-title">Google Lighthouse Audit</div>
+      <p>We run a full Lighthouse test across Performance, Accessibility, Best Practices, and SEO — and explain what every score actually means for your business.</p>
+    </div>
+    <div class="check-item reveal">
+      <span class="check-num">02</span>
+      <div class="check-title">Core Web Vitals</div>
+      <p>LCP, CLS, and FID — the three metrics Google uses as ranking signals. We check your real-world scores and identify exactly what's causing issues.</p>
+    </div>
+    <div class="check-item reveal">
+      <span class="check-num">03</span>
+      <div class="check-title">Page Speed & Load Time</div>
+      <p>We test your load time on both desktop and mobile, identify the heaviest assets, and flag anything that's slowing your site down unnecessarily.</p>
+    </div>
+    <div class="check-item reveal">
+      <span class="check-num">04</span>
+      <div class="check-title">On-Page SEO</div>
+      <p>Meta titles, descriptions, heading structure, canonical tags, image alt text — we check every on-page SEO element and flag anything that's missing or wrong.</p>
+    </div>
+    <div class="check-item reveal">
+      <span class="check-num">05</span>
+      <div class="check-title">Mobile Performance</div>
+      <p>Over half of all web traffic is mobile. We test your site on real mobile conditions — not just a resized browser window — and flag layout or speed issues.</p>
+    </div>
+    <div class="check-item reveal">
+      <span class="check-num">06</span>
+      <div class="check-title">Technical Structure</div>
+      <p>We review your site's HTML structure, use of semantic elements, schema markup, sitemap, and robots.txt to identify anything that could hurt your search visibility.</p>
+    </div>
+  </div>
+</section>
+
+<section id="scores">
+  <div class="scores-header">
+    <div class="reveal">
+      <span class="section-label">What Good Looks Like</span>
+      <h2>The metrics we measure you against</h2>
+    </div>
+    <div class="reveal">
+      <p>These are the performance benchmarks we use when auditing your website — the same standards Google uses to evaluate and rank sites. Most websites fall well short. Here's what we're aiming for.</p>
+    </div>
+  </div>
+  <div class="score-row">
+    <div class="score-item reveal">
+      <div class="score-label">
+        Lighthouse Performance Score
+        <p>Overall performance score — anything below 90 is costing you rankings and conversions.</p>
+      </div>
+      <div class="score-bar-wrap">
+        <span class="score-val">90+</span>
+        <div class="score-bar-bg"><div class="score-bar-fill" style="--w:0.9"></div></div>
+      </div>
+    </div>
+    <div class="score-item reveal">
+      <div class="score-label">
+        Largest Contentful Paint (LCP)
+        <p>How fast your main content loads. Google's threshold for "good" is under 2.5 seconds.</p>
+      </div>
+      <div class="score-bar-wrap">
+        <span class="score-val">&lt;2.5s</span>
+        <div class="score-bar-bg"><div class="score-bar-fill" style="--w:0.8"></div></div>
+      </div>
+    </div>
+    <div class="score-item reveal">
+      <div class="score-label">
+        Cumulative Layout Shift (CLS)
+        <p>How stable your page is as it loads. A high CLS means elements are jumping around — damaging UX and rankings.</p>
+      </div>
+      <div class="score-bar-wrap">
+        <span class="score-val">&lt;0.1</span>
+        <div class="score-bar-bg"><div class="score-bar-fill" style="--w:0.95"></div></div>
+      </div>
+    </div>
+    <div class="score-item reveal">
+      <div class="score-label">
+        First Input Delay (FID)
+        <p>How quickly your site responds to user interaction. Slow response times signal a poorly built site to Google.</p>
+      </div>
+      <div class="score-bar-wrap">
+        <span class="score-val">&lt;100ms</span>
+        <div class="score-bar-bg"><div class="score-bar-fill" style="--w:0.85"></div></div>
+      </div>
+    </div>
+    <div class="score-item reveal">
+      <div class="score-label">
+        Mobile Performance Score
+        <p>Your site's performance on mobile devices specifically — often significantly worse than desktop.</p>
+      </div>
+      <div class="score-bar-wrap">
+        <span class="score-val">85+</span>
+        <div class="score-bar-bg"><div class="score-bar-fill" style="--w:0.85"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="deliverable">
+  <div class="two-col">
+    <div class="reveal">
+      <span class="section-label">What You Get</span>
+      <h2>A clear report — not a confusing spreadsheet</h2>
+    </div>
+    <div class="reveal">
+      <p>Your health check is delivered as a clear, plain-English report. Every finding is explained, every recommendation is prioritised, and every issue is given context — so you know exactly what matters and what to do about it.</p>
+    </div>
+  </div>
+  <div class="deliverable-grid">
+    <div class="deliverable-card reveal">
+      <div class="del-icon">
+        <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+      </div>
+      <div class="del-title">Full Written Report</div>
+      <p>A plain-English breakdown of every issue found — what it is, why it matters, and what to do about it.</p>
+    </div>
+    <div class="deliverable-card reveal">
+      <div class="del-icon">
+        <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+      </div>
+      <div class="del-title">Scored Against Benchmarks</div>
+      <p>Every metric scored against Google's own thresholds — so you can see exactly where you stand.</p>
+    </div>
+    <div class="deliverable-card reveal">
+      <div class="del-icon">
+        <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
+      </div>
+      <div class="del-title">Prioritised Action List</div>
+      <p>Issues ranked by impact — so you know what to fix first, and what can wait.</p>
+    </div>
+    <div class="deliverable-card reveal">
+      <div class="del-icon">
+        <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+      </div>
+      <div class="del-title">Follow-Up Call</div>
+      <p>A short call to walk through the findings and answer any questions — no jargon, no upsell pressure.</p>
+    </div>
+  </div>
+</section>
+
+<section id="other-services">
+  <span class="section-label reveal">Next Steps</span>
+  <h2 class="reveal">Ready to fix what we find?</h2>
+  <div class="services-row">
+    <a href="rebuilds.html" class="service-link-card reveal">
+      <div>
+        <span class="slc-tag">Rebuilds</span>
+        <div class="slc-title">Website Rebuilds</div>
+      </div>
+      <div class="slc-footer">
+        <p>If the audit reveals deep structural issues, a rebuild is often the most effective solution.</p>
+        <span class="arrow">↗</span>
+      </div>
+    </a>
+    <a href="new-builds.html" class="service-link-card reveal">
+      <div>
+        <span class="slc-tag">New Builds</span>
+        <div class="slc-title">New Website Builds</div>
+      </div>
+      <div class="slc-footer">
+        <p>Starting from scratch? We design and build custom websites that perform from day one.</p>
+        <span class="arrow">↗</span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<section id="cta">
+  <div class="two-col">
+    <div class="reveal">
+      <span class="section-label">Get Your Health Check</span>
+      <h2>Find out exactly what your website needs.</h2>
+      <p class="cta-note">No obligation. Just clear, honest findings.</p>
+    </div>
+    <div class="reveal">
+      <p>Tell us your website URL and we'll come back with a full breakdown of your performance, SEO, and technical health — and exactly what needs to change.</p>
+      <div class="btn-group">
+        <a href="contact.html" class="btn btn-primary">Request a Health Check</a>
+        <a href="rebuilds.html" class="btn btn-outline">Learn About Rebuilds</a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <h2>Dhoop — Bournemouth web design agency</h2>
+      <p>We design and build fast, clean-coded websites optimised for performance, SEO, and long-term scalability.</p>
+      <a href="mailto:hello@madebydhoop.co.uk" class="email-link">hello@madebydhoop.co.uk</a>
+    </div>
+    <div class="footer-nav">
+      <p class="footer-nav-label">Services</p>
+      <ul>
+        <li><a href="new-builds.html">Web Design</a></li>
+        <li><a href="rebuilds.html">Website Rebuilds</a></li>
+        <li><a href="health-check.html">Health Check</a></li>
+        <li><a href="contact.html">Performance Audit</a></li>
+      </ul>
+    </div>
+    <div class="footer-nav">
+      <p class="footer-nav-label">Company</p>
+      <ul>
+        <li><a href="about.html">About</a></li>
+        <li><a href="work.html">Work</a></li>
+        <li><a href="insights.html">Insights</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="privacy.html">Privacy Policy</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Dhoop Ltd &nbsp;·&nbsp; Co. Reg. No. 12345678 &nbsp;·&nbsp; Registered in England &amp; Wales</p>
+    <a href="index.html" class="footer-logo">Dhoop<span>.</span></a>
+  </div>
+</footer>
+
+<script src="main.js" defer></script>
+<script>
+  const bars = document.querySelectorAll('.score-bar-fill');
+  const barObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('animated');
+        barObserver.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  bars.forEach(b => barObserver.observe(b));
+</script>
+</body>
+</html>

@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Work — Dhoop Web Design Agency Bournemouth</title>
+<meta name="description" content="Case studies from Dhoop — fast, hand-coded websites built for performance, SEO and results. See our work for local businesses across Bournemouth and beyond.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.madebydhoop.co.uk/work.html">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet"></noscript>
+<link rel="stylesheet" href="styles.css">
+
+<style>
+  #hero {
+    min-height: 55svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-top: 9rem;
+    padding-bottom: clamp(3rem, 6vw, 5rem);
+    position: relative;
+  }
+
+  #hero::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 50vw; height: 50vw;
+    background: radial-gradient(circle, rgba(0,245,160,0.06) 0%, transparent 65%);
+    pointer-events: none;
+  }
+
+  .hero-eyebrow { font-size: 0.82rem; letter-spacing: 0.06em; color: var(--accent); font-weight: 400; margin-bottom: 1.8rem; display: block; }
+  .hero-sub { margin-top: 2rem; font-size: clamp(1rem, 1.4vw, 1.15rem); font-weight: 300; color: rgba(245,244,240,0.55); max-width: 52ch; line-height: 1.8; }
+
+  /* ── FEATURED ── */
+  #featured { border-top: 1px solid rgba(255,255,255,0.06); padding-top: var(--gap); padding-bottom: var(--gap); }
+
+  .featured-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    background: #111;
+    overflow: hidden;
+  }
+
+  .featured-image { position: relative; overflow: hidden; min-height: 480px; }
+  .featured-image img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.6s ease; }
+  .featured-card:hover .featured-image img { transform: scale(1.03); }
+
+  .featured-content { padding: clamp(2.5rem, 5vw, 4rem); display: flex; flex-direction: column; justify-content: space-between; }
+
+  .case-tag { font-size: 0.72rem; letter-spacing: 0.08em; color: var(--accent); font-weight: 500; margin-bottom: 1.5rem; display: block; }
+
+  .case-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2rem, 4vw, 3.5rem); color: var(--white); line-height: 1; letter-spacing: 0.02em; margin-bottom: 1.5rem; }
+
+  .case-desc { font-size: 0.9rem; max-width: 45ch; margin-bottom: 2.5rem; }
+
+  .case-stats { display: flex; gap: 2rem; flex-wrap: wrap; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.08); }
+
+  .case-stat-num { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2rem, 3vw, 2.8rem); color: var(--accent); line-height: 1; display: block; }
+  .case-stat-label { font-size: 0.75rem; color: var(--mid); letter-spacing: 0.05em; margin-top: 0.3rem; display: block; }
+
+  .case-link { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.82rem; color: var(--accent); text-decoration: none; letter-spacing: 0.04em; font-weight: 500; margin-top: 2rem; transition: gap 0.2s; }
+  .case-link:hover { gap: 0.8rem; }
+
+  /* ── GRID ── */
+  #case-grid { padding-top: 0; padding-bottom: var(--gap); }
+
+  .grid-inner { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(255,255,255,0.05); }
+
+  .grid-card { background: var(--black); overflow: hidden; transition: background 0.25s; display: flex; flex-direction: column; }
+  .grid-card:hover { background: #0d0d0d; }
+
+  .grid-media { position: relative; overflow: hidden; aspect-ratio: 16/10; }
+  .grid-media img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.6s ease; }
+  .grid-card:hover .grid-media img { transform: scale(1.04); }
+
+  .grid-media video { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  .video-badge { position: absolute; bottom: 1rem; left: 1rem; background: rgba(0,0,0,0.6); border: 1px solid rgba(255,255,255,0.15); border-radius: 100px; padding: 0.35rem 0.9rem; font-size: 0.72rem; letter-spacing: 0.06em; color: var(--white); display: flex; align-items: center; gap: 0.4rem; backdrop-filter: blur(8px); }
+  .video-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+
+  .grid-content { padding: clamp(1.5rem, 2.5vw, 2rem); flex: 1; display: flex; flex-direction: column; }
+  .grid-tag { font-size: 0.7rem; letter-spacing: 0.08em; color: var(--accent); font-weight: 500; margin-bottom: 0.8rem; display: block; }
+  .grid-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(1.4rem, 2vw, 1.9rem); color: var(--white); line-height: 1; letter-spacing: 0.02em; margin-bottom: 0.8rem; }
+  .grid-card p { font-size: 0.85rem; max-width: none; flex: 1; }
+
+  .grid-stats { display: flex; gap: 1.5rem; margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.06); }
+  .grid-stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; color: var(--accent); line-height: 1; display: block; }
+  .grid-stat-label { font-size: 0.7rem; color: var(--mid); letter-spacing: 0.04em; margin-top: 0.2rem; display: block; }
+
+  .cta-note { font-size: 0.85rem; font-weight: 300; font-style: italic; color: rgba(0,0,0,0.38); margin-top: 1rem; max-width: none; }
+
+  @media (max-width: 1000px) { .grid-inner { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 700px) {
+    .featured-card { grid-template-columns: 1fr; }
+    .featured-image { min-height: 280px; }
+    .grid-inner { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">Dhoop<span>.</span></a>
+  <ul>
+    <li><a href="new-builds.html">Web Design</a></li>
+    <li><a href="rebuilds.html">Rebuilds</a></li>
+    <li><a href="health-check.html">Health Check</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="work.html">Work</a></li>
+    <li><a href="insights.html">Insights</a></li>
+  </ul>
+  <a href="contact.html" class="nav-cta">Get Performance Audit</a>
+  <button class="hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-overlay" id="mobileOverlay">
+  <ul class="mobile-nav-links">
+    <li><a href="new-builds.html">Web Design</a></li>
+    <li><a href="rebuilds.html">Rebuilds</a></li>
+    <li><a href="health-check.html">Health Check</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="work.html">Work</a></li>
+    <li><a href="insights.html">Insights</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="contact.html" class="mobile-cta">Get Performance Audit</a>
+  <a href="mailto:hello@madebydhoop.co.uk" class="mobile-email">hello@madebydhoop.co.uk</a>
+</div>
+
+<main>
+
+<section id="hero">
+  <div class="breadcrumb">
+    <a href="index.html">Home</a>
+    <span class="breadcrumb-sep">/</span>
+    <span>Work</span>
+  </div>
+  <span class="hero-eyebrow">Case Studies</span>
+  <h1>Websites that<br>perform.</h1>
+  <p class="hero-sub">Every project we take on is built the same way — clean code, no shortcuts, measured against real performance standards from day one.</p>
+</section>
+
+<!-- FEATURED — Bjorn & Strand -->
+<section id="featured">
+  <span class="section-label reveal">Featured Project</span>
+  <div class="featured-card reveal">
+    <div class="featured-image">
+      <img
+        src="https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=900&q=80&auto=format&fit=crop&fm=webp"
+        alt="Bjorn & Strand architecture website"
+        loading="lazy"
+      >
+    </div>
+    <div class="featured-content">
+      <div>
+        <span class="case-tag">New Build — Architecture Studio</span>
+        <div class="case-title">Bjorn & Strand</div>
+        <p class="case-desc">A premium architecture and interiors portfolio for a Scandinavian studio. Built with a fixed parallax hero, custom crosshair cursor, animated page transitions, and a full project gallery — all hand-coded to hit 100 across every Lighthouse metric.</p>
+        <a href="https://bjornstrand.com" target="_blank" rel="noopener" class="case-link">Visit site ↗</a>
+      </div>
+      <div class="case-stats">
+        <div>
+          <span class="case-stat-num">94%</span>
+          <span class="case-stat-label">Faster Page Load</span>
+        </div>
+        <div>
+          <span class="case-stat-num">100</span>
+          <span class="case-stat-label">SEO Score</span>
+        </div>
+        <div>
+          <span class="case-stat-num">3×</span>
+          <span class="case-stat-label">More Enquiries</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GRID — 5 more -->
+<section id="case-grid">
+  <div class="grid-inner">
+
+    <!-- RD Plumbing -->
+    <div class="grid-card reveal">
+      <div class="grid-media">
+        <img
+          src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=70&auto=format&fit=crop&fm=webp"
+          alt="RD Plumbing website"
+          loading="lazy"
+        >
+      </div>
+      <div class="grid-content">
+        <span class="grid-tag">New Build — Plumber</span>
+        <div class="grid-title">RD Plumbing</div>
+        <p>A fast, mobile-first website for a sole-trader plumber in Bournemouth. Phone number front and centre, emergency badge, FAQ accordion, and trust signals — built for conversions, not just looks.</p>
+        <div class="grid-stats">
+          <div>
+            <span class="grid-stat-num">89%</span>
+            <span class="grid-stat-label">Faster Load Time</span>
+          </div>
+          <div>
+            <span class="grid-stat-num">+62%</span>
+            <span class="grid-stat-label">SEO Improvement</span>
+          </div>
+          <div>
+            <span class="grid-stat-num">3×</span>
+            <span class="grid-stat-label">More Calls</span>
+          </div>
+        </div>
+        <a href="https://rd-plumbing.co.uk" target="_blank" rel="noopener" class="case-link">Visit site ↗</a>
+      </div>
+    </div>
+
+    <!-- Plot & Cotch -->
+    <div class="grid-card reveal">
+      <div class="grid-media">
+        <video autoplay muted loop playsinline aria-label="Plot & Cotch brand film">
+          <source src="bloc-video.mp4" type="video/mp4">
+          <track kind="captions" srclang="en" label="English" src="" default>
+        </video>
+        <span class="video-badge"><span class="video-dot"></span>Brand Film</span>
+      </div>
+      <div class="grid-content">
+        <span class="grid-tag">New Build — Retail</span>
+        <div class="grid-title">Plot & Cotch</div>
+        <p>A brand-led retail site built for a lifestyle and clothing brand. Strong visual identity, fast-loading product pages, and a mobile-first experience designed to convert browsers into buyers.</p>
+        <div class="grid-stats">
+          <div>
+            <span class="grid-stat-num">88%</span>
+            <span class="grid-stat-label">Faster Load Time</span>
+          </div>
+          <div>
+            <span class="grid-stat-num">+64%</span>
+            <span class="grid-stat-label">SEO Improvement</span>
+          </div>
+          <div>
+            <span class="grid-stat-num">4×</span>
+            <span class="grid-stat-label">More Conversions</span>
+          </div>
+        </div>
+        <a href="https://plotandcotch.co.uk" target="_blank" rel="noopener" class="case-link">Visit site ↗</a>
+      </div>
+    </div>
+
+    <!-- Digital Borders -->
+    <div class="grid-card reveal">
+      <div class="grid-media">
+        <img
+          src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&q=70&auto=format&fit=crop&fm=webp"
+          alt="Digital Borders IT consultancy website"
+          loading="lazy"
+        >
+      </div>
+      <div class="grid-content">
+        <span class="grid-tag">New Build — IT Consultancy</span>
+        <div class="grid-title">Digital Borders</div>
+        <p>A boutique software delivery consultancy operating at board level across finance, insurance, and programme delivery. Built to reflect the precision and credibility of the firm — clean, fast, and authoritative.</p>
+        <div class="grid-stats">
+          <div>
+            <span class="grid-stat-num">93%</span>
+            <span class="grid-stat-label">Faster Load Time</span>
+          </div>
+          <div>
+            <span class="grid-stat-num">+77%</span>
+            <span class="grid-stat-label">SEO Improvement</span>
+          </div>
+          <div>
+            <span class="grid-stat-num">2×</span>
+            <span class="grid-stat-label">More Enquiries</span>
+          </div>
+        </div>
+        <a href="https://digitalborders.co.uk" target="_blank" rel="noopener" class="case-link">Visit site ↗</a>
+      </div>
+    </div>
+
+
+  </div>
+</section>
+
+<section id="cta">
+  <div class="two-col">
+    <div class="reveal">
+      <span class="section-label">Start Your Project</span>
+      <h2>Want results like these?</h2>
+      <p class="cta-note">Every project starts with an honest conversation.</p>
+    </div>
+    <div class="reveal">
+      <p>Tell us about your business and what you need. We'll come back with a clear assessment and a quote — no obligation.</p>
+      <div class="btn-group">
+        <a href="contact.html" class="btn btn-primary">Start a Conversation</a>
+        <a href="health-check.html" class="btn btn-outline">Get a Health Check First</a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <h2>Dhoop — Bournemouth web design agency</h2>
+      <p>We design and build fast, clean-coded websites optimised for performance, SEO, and long-term scalability.</p>
+      <a href="mailto:hello@madebydhoop.co.uk" class="email-link">hello@madebydhoop.co.uk</a>
+    </div>
+    <div class="footer-nav">
+      <p class="footer-nav-label">Services</p>
+      <ul>
+        <li><a href="new-builds.html">Web Design</a></li>
+        <li><a href="rebuilds.html">Website Rebuilds</a></li>
+        <li><a href="health-check.html">Health Check</a></li>
+        <li><a href="contact.html">Performance Audit</a></li>
+      </ul>
+    </div>
+    <div class="footer-nav">
+      <p class="footer-nav-label">Company</p>
+      <ul>
+        <li><a href="about.html">About</a></li>
+        <li><a href="work.html">Work</a></li>
+        <li><a href="insights.html">Insights</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="privacy.html">Privacy Policy</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Dhoop Ltd &nbsp;·&nbsp; Registered in England &amp; Wales</p>
+    <a href="index.html" class="footer-logo">Dhoop<span>.</span></a>
+  </div>
+</footer>
+
+<script src="main.js" defer></script>
+</body>
+</html>

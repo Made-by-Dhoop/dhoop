@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Core Web Vitals Explained — Dhoop</title>
+<meta name="description" content="LCP, CLS, FID — Google uses these three metrics as ranking signals. Most websites fail at least one. Here's what they mean in plain English and how to fix them.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.madebydhoop.co.uk/post-core-web-vitals.html">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="stylesheet" href="styles.css">
+
+<style>
+  #hero {
+    min-height: 60svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-top: 9rem;
+    padding-bottom: clamp(3rem, 6vw, 5rem);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg { position: absolute; inset: 0; z-index: 0; }
+  .hero-bg img { width: 100%; height: 100%; object-fit: cover; opacity: 0.15; display: block; }
+  .hero-bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, var(--black) 40%, transparent 100%); }
+  #hero > *:not(.hero-bg) { position: relative; z-index: 1; }
+
+  .hero-eyebrow { font-size: 0.82rem; letter-spacing: 0.06em; color: var(--accent); font-weight: 400; margin-bottom: 1.8rem; display: block; }
+  .post-meta-hero { display: flex; align-items: center; gap: 1.5rem; margin-top: 2rem; flex-wrap: wrap; }
+  .post-meta-hero span { font-size: 0.8rem; color: var(--mid); letter-spacing: 0.04em; }
+  .post-meta-hero .tag { color: var(--accent); font-weight: 500; letter-spacing: 0.08em; }
+
+  #article { padding-top: var(--gap); padding-bottom: var(--gap); border-top: 1px solid rgba(255,255,255,0.06); }
+
+  .article-layout {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    gap: 4rem clamp(3rem, 6vw, 7rem);
+    align-items: start;
+  }
+
+  .article-sidebar { position: sticky; top: 8rem; display: flex; flex-direction: column; gap: 2rem; }
+  .sidebar-label { font-size: 0.72rem; letter-spacing: 0.08em; color: var(--accent); font-weight: 500; display: block; margin-bottom: 0.8rem; }
+  .sidebar-toc ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+  .sidebar-toc a { font-size: 0.82rem; color: var(--mid); text-decoration: none; line-height: 1.5; transition: color 0.2s; }
+  .sidebar-toc a:hover { color: var(--white); }
+  .sidebar-cta { padding: 1.5rem; border: 1px solid rgba(0,245,160,0.2); border-radius: 2px; }
+  .sidebar-cta p { font-size: 0.82rem; margin-bottom: 1rem; max-width: none; color: rgba(245,244,240,0.55); }
+  .sidebar-cta .btn { width: 100%; text-align: center; font-size: 0.78rem; padding: 0.7rem 1rem; }
+
+  .article-body { max-width: 68ch; }
+  .article-body h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(1.6rem, 2.5vw, 2.4rem); color: var(--white); font-weight: 400; letter-spacing: 0.02em; margin-top: 3rem; margin-bottom: 1.2rem; line-height: 1; padding-top: 3rem; border-top: 1px solid rgba(255,255,255,0.06); }
+  .article-body h2:first-child { margin-top: 0; padding-top: 0; border-top: none; }
+  .article-body p { font-size: 1rem; color: rgba(245,244,240,0.72); line-height: 1.9; max-width: none; margin-bottom: 1.4rem; }
+  .article-body p:last-child { margin-bottom: 0; }
+  .article-body strong { color: var(--white); font-weight: 500; }
+  .article-body ul { margin: 1.2rem 0 1.4rem 0; display: flex; flex-direction: column; gap: 0.6rem; }
+  .article-body ul li { font-size: 1rem; color: rgba(245,244,240,0.72); line-height: 1.75; padding-left: 1.5rem; position: relative; }
+  .article-body ul li::before { content: '—'; position: absolute; left: 0; color: var(--accent); font-size: 0.85rem; }
+
+  .article-callout { border-left: 2px solid var(--accent); padding: 1.2rem 1.5rem; margin: 2rem 0; background: rgba(0,245,160,0.04); }
+  .article-callout p { font-size: 0.95rem; color: rgba(245,244,240,0.8); margin: 0; font-style: italic; }
+
+  /* Metric cards */
+  .metric-cards {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1px;
+    background: rgba(255,255,255,0.05);
+    margin: 2rem 0;
+  }
+
+  .metric-card {
+    background: var(--black);
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 2rem;
+    align-items: start;
+    transition: background 0.25s;
+  }
+
+  .metric-card:hover { background: #111; }
+
+  .metric-abbr {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3rem;
+    color: var(--accent);
+    line-height: 1;
+    letter-spacing: 0.02em;
+    min-width: 5rem;
+  }
+
+  .metric-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.3rem;
+    color: var(--white);
+    line-height: 1;
+    letter-spacing: 0.02em;
+    margin-bottom: 0.5rem;
+  }
+
+  .metric-card p { font-size: 0.88rem; max-width: none; margin-bottom: 0.8rem; }
+
+  .metric-thresholds {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 0.8rem;
+  }
+
+  .threshold {
+    font-size: 0.72rem;
+    letter-spacing: 0.04em;
+    padding: 0.3rem 0.7rem;
+    border-radius: 100px;
+    font-weight: 500;
+  }
+
+  .threshold.good { background: rgba(0,245,160,0.1); color: var(--accent); }
+  .threshold.ok { background: rgba(255,180,0,0.1); color: rgba(255,180,0,0.9); }
+  .threshold.bad { background: rgba(255,80,80,0.1); color: rgba(255,100,100,0.9); }
+
+  .article-end { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.06); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+  .back-link { font-size: 0.82rem; color: var(--mid); text-decoration: none; letter-spacing: 0.04em; transition: color 0.2s; }
+  .back-link:hover { color: var(--white); }
+  .cta-note { font-size: 0.85rem; font-weight: 300; font-style: italic; color: rgba(0,0,0,0.38); margin-top: 1rem; max-width: none; }
+
+  @media (max-width: 900px) {
+    .article-layout { grid-template-columns: 1fr; }
+    .article-sidebar { display: none; }
+    .metric-card { grid-template-columns: 1fr; gap: 0.5rem; }
+    .metric-abbr { font-size: 2rem; min-width: auto; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">Dhoop<span>.</span></a>
+  <ul>
+    <li><a href="new-builds.html">Web Design</a></li>
+    <li><a href="rebuilds.html">Rebuilds</a></li>
+    <li><a href="health-check.html">Health Check</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="work.html">Work</a></li>
+  </ul>
+  <a href="contact.html" class="nav-cta">Get Performance Audit</a>
+  <button class="hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-overlay" id="mobileOverlay">
+  <ul class="mobile-nav-links">
+    <li><a href="new-builds.html">Web Design</a></li>
+    <li><a href="rebuilds.html">Rebuilds</a></li>
+    <li><a href="health-check.html">Health Check</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="work.html">Work</a></li>
+    <li><a href="insights.html">Insights</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="contact.html" class="mobile-cta">Get Performance Audit</a>
+  <a href="mailto:hello@madebydhoop.co.uk" class="mobile-email">hello@madebydhoop.co.uk</a>
+</div>
+
+<main>
+<section id="hero">
+  <div class="hero-bg">
+    <img src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=1400&q=80&auto=format&fit=crop" alt="">
+  </div>
+  <div class="breadcrumb">
+    <a href="index.html">Home</a>
+    <span class="breadcrumb-sep">/</span>
+    <a href="insights.html">Insights</a>
+    <span class="breadcrumb-sep">/</span>
+    <span>Core Web Vitals</span>
+  </div>
+  <span class="hero-eyebrow">SEO</span>
+  <h1>Core Web Vitals<br>Explained — What They<br>Are and Why Google Cares</h1>
+  <div class="post-meta-hero">
+    <span class="tag">SEO</span>
+    <span>March 2025</span>
+    <span>8 min read</span>
+  </div>
+</section>
+
+<section id="article">
+  <div class="article-layout">
+
+    <aside class="article-sidebar">
+      <div class="sidebar-toc">
+        <span class="sidebar-label">In This Article</span>
+        <ul>
+          <li><a href="#what-are-core-web-vitals">What are Core Web Vitals?</a></li>
+          <li><a href="#lcp">LCP — Largest Contentful Paint</a></li>
+          <li><a href="#cls">CLS — Cumulative Layout Shift</a></li>
+          <li><a href="#fid">FID — First Input Delay</a></li>
+          <li><a href="#why-google-uses-them">Why Google uses them</a></li>
+          <li><a href="#how-to-check-yours">How to check yours</a></li>
+          <li><a href="#how-to-improve">How to improve them</a></li>
+        </ul>
+      </div>
+      <div class="sidebar-cta">
+        <span class="sidebar-label">Free Health Check</span>
+        <p>We'll check your Core Web Vitals and tell you exactly what needs fixing.</p>
+        <a href="contact.html" class="btn btn-primary">Get a Health Check</a>
+      </div>
+    </aside>
+
+    <div class="article-body">
+
+      <h2 id="what-are-core-web-vitals">What are Core Web Vitals?</h2>
+      <p>Core Web Vitals are a set of three specific metrics that Google uses to measure the real-world experience of loading and interacting with a web page. They were introduced as a ranking factor in 2021, which means they directly affect where your website appears in search results.</p>
+      <p>The three metrics are <strong>LCP</strong> (Largest Contentful Paint), <strong>CLS</strong> (Cumulative Layout Shift), and <strong>FID</strong> (First Input Delay). Each one measures a different aspect of the user experience — how fast content appears, how stable the page is, and how responsive it is to interaction.</p>
+      <p>Most websites fail at least one of them. Many fail all three.</p>
+
+      <h2 id="lcp">LCP — Largest Contentful Paint</h2>
+      <p>LCP measures how long it takes for the largest visible element on your page to load. This is usually a hero image, a large heading, or a video thumbnail — whatever takes up the most space above the fold.</p>
+      <p>Think of it as the moment your page goes from feeling empty to feeling like something is actually there. The faster that happens, the better your LCP score.</p>
+
+      <div class="metric-cards">
+        <div class="metric-card">
+          <span class="metric-abbr">LCP</span>
+          <div>
+            <div class="metric-name">Largest Contentful Paint</div>
+            <p>Time for the largest visible element to load. Affected by server response time, render-blocking resources, and large unoptimised images.</p>
+            <div class="metric-thresholds">
+              <span class="threshold good">Good: under 2.5s</span>
+              <span class="threshold ok">Needs work: 2.5–4s</span>
+              <span class="threshold bad">Poor: over 4s</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p>The most common causes of a poor LCP score are slow server response times, render-blocking JavaScript and CSS that delays the page from painting, and large unoptimised images that take too long to download.</p>
+
+      <h2 id="cls">CLS — Cumulative Layout Shift</h2>
+      <p>CLS measures how much the page layout shifts unexpectedly as it loads. You've experienced this — you go to click a button, and just before you do, an image loads above it and pushes everything down. You end up clicking the wrong thing.</p>
+      <p>That's layout shift. It's frustrating for users and Google penalises it.</p>
+
+      <div class="metric-cards">
+        <div class="metric-card">
+          <span class="metric-abbr">CLS</span>
+          <div>
+            <div class="metric-name">Cumulative Layout Shift</div>
+            <p>Measures visual stability — how much elements move around as the page loads. A score of 0 is perfect. Any unexpected movement counts against you.</p>
+            <div class="metric-thresholds">
+              <span class="threshold good">Good: under 0.1</span>
+              <span class="threshold ok">Needs work: 0.1–0.25</span>
+              <span class="threshold bad">Poor: over 0.25</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p>CLS is most commonly caused by images without defined dimensions, ads or embeds that load dynamically and push content around, and web fonts that cause text to reflow when they load.</p>
+
+      <div class="article-callout">
+        <p>A CLS score of 0 is achievable — and it should be the target. Every element on a well-built page has a reserved space before it loads, so nothing ever moves unexpectedly.</p>
+      </div>
+
+      <h2 id="fid">FID — First Input Delay</h2>
+      <p>FID measures the time between a user first interacting with your page — clicking a link, tapping a button — and when the browser actually responds to that interaction.</p>
+      <p>A high FID means your page feels sluggish and unresponsive. The user clicked, and nothing seemed to happen. This is almost always caused by heavy JavaScript blocking the browser's main thread.</p>
+
+      <div class="metric-cards">
+        <div class="metric-card">
+          <span class="metric-abbr">FID</span>
+          <div>
+            <div class="metric-name">First Input Delay</div>
+            <p>Time between a user's first interaction and the browser's response. High FID usually means too much JavaScript is blocking the main thread.</p>
+            <div class="metric-thresholds">
+              <span class="threshold good">Good: under 100ms</span>
+              <span class="threshold ok">Needs work: 100–300ms</span>
+              <span class="threshold bad">Poor: over 300ms</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p>Note: Google is replacing FID with <strong>INP</strong> (Interaction to Next Paint) as a Core Web Vital, which measures responsiveness throughout the entire page lifecycle rather than just the first interaction. The principle is the same — keep JavaScript lean and the main thread clear.</p>
+
+      <h2 id="why-google-uses-them">Why Google uses them as ranking signals</h2>
+      <p>Google's goal is to send users to pages that provide a good experience. A page that loads slowly, shifts around, and feels unresponsive is a bad experience. Google has the data to know this — they can measure how users interact with pages in the real world.</p>
+      <p>Using Core Web Vitals as ranking signals is Google's way of incentivising website owners to care about performance. And it works. Since they became a ranking factor, average web performance has improved significantly.</p>
+      <p>But most small business websites still score poorly. Which means if your website scores well, you have a genuine competitive advantage over businesses that don't.</p>
+
+      <h2 id="how-to-check-yours">How to check your Core Web Vitals</h2>
+      <p>The easiest way is PageSpeed Insights — go to <strong>pagespeed.web.dev</strong>, enter your URL, and run the test. It shows your Core Web Vitals scores alongside your overall performance score, with specific details on what's causing issues.</p>
+      <p>You can also see field data (real-world scores from actual users) in Google Search Console under the Core Web Vitals report. This is based on Chrome user data and is what Google actually uses for ranking purposes.</p>
+
+      <h2 id="how-to-improve">How to improve them</h2>
+      <p>Improving Core Web Vitals comes down to how your website is built. The most impactful changes are:</p>
+      <ul>
+        <li><strong>For LCP</strong> — optimise and preload your hero image, reduce server response time, eliminate render-blocking resources</li>
+        <li><strong>For CLS</strong> — always define width and height on images, reserve space for dynamic content, use font-display: swap for web fonts</li>
+        <li><strong>For FID/INP</strong> — reduce JavaScript, defer non-critical scripts, avoid long tasks on the main thread</li>
+      </ul>
+      <p>The honest truth is that if your website is built on a page builder, these improvements have a ceiling. Page builders generate too much JavaScript and CSS by default for you to ever fully optimise them. You can improve the score, but you'll rarely reach the top band.</p>
+      <p>A hand-coded website, built with performance in mind from day one, can achieve top scores across all three metrics consistently. That's the foundation we build on for every project.</p>
+
+      <div class="article-end">
+        <a href="insights.html" class="back-link">← Back to Insights</a>
+        <a href="contact.html" class="btn btn-primary">Get a Free Health Check</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="cta">
+  <div class="two-col">
+    <div class="reveal">
+      <span class="section-label">Check Your Scores</span>
+      <h2>How do your Core Web Vitals stack up?</h2>
+      <p class="cta-note">No jargon. Just clear, actionable findings.</p>
+    </div>
+    <div class="reveal">
+      <p>We'll run a full audit of your website against all three Core Web Vitals — and tell you exactly what's failing, why it matters, and what to do about it.</p>
+      <div class="btn-group">
+        <a href="contact.html" class="btn btn-primary">Get a Health Check</a>
+        <a href="insights.html" class="btn btn-outline">More Insights</a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <h2>Dhoop — Bournemouth web design agency</h2>
+      <p>We design and build fast, clean-coded websites optimised for performance, SEO, and long-term scalability.</p>
+      <a href="mailto:hello@madebydhoop.co.uk" class="email-link">hello@madebydhoop.co.uk</a>
+    </div>
+    <div class="footer-nav">
+      <p class="footer-nav-label">Services</p>
+      <ul>
+        <li><a href="new-builds.html">Web Design</a></li>
+        <li><a href="rebuilds.html">Website Rebuilds</a></li>
+        <li><a href="health-check.html">Health Check</a></li>
+        <li><a href="contact.html">Performance Audit</a></li>
+      </ul>
+    </div>
+    <div class="footer-nav">
+      <p class="footer-nav-label">Company</p>
+      <ul>
+        <li><a href="about.html">About</a></li>
+        <li><a href="work.html">Work</a></li>
+        <li><a href="insights.html">Insights</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="privacy.html">Privacy Policy</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Dhoop Ltd &nbsp;·&nbsp; Co. Reg. No. 12345678 &nbsp;·&nbsp; Registered in England &amp; Wales</p>
+    <a href="index.html" class="footer-logo">Dhoop<span>.</span></a>
+  </div>
+</footer>
+
+<script src="main.js" defer></script>
+</body>
+</html>
