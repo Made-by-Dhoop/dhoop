@@ -25,6 +25,7 @@ body {
   font-weight: 300;
   line-height: 1.7;
   -webkit-font-smoothing: antialiased;
+  font-synthesis: none;
 }
 
 img { display: block; max-width: 100%; }
