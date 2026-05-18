@@ -56,15 +56,6 @@ em { font-style: italic; color: var(--gold); }
   padding-bottom: clamp(3rem, 6vw, 5rem);
 }
 
-/* ── HERO CONTAINER (inner pages) ── */
-.hero-container {
-  width: 100%;
-  max-width: var(--container);
-  margin: 0 auto;
-  padding-left: clamp(1.5rem, 5vw, 4rem);
-  padding-right: clamp(1.5rem, 5vw, 4rem);
-}
-
 /* ── BUTTONS ── */
 .btn {
   display: inline-flex;
