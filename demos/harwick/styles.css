@@ -50,6 +50,12 @@ em { font-style: italic; color: var(--gold); }
 
 .container { max-width: var(--container); margin: 0 auto; padding: 0 clamp(1.5rem, 5vw, 4rem); }
 
+/* ── INNER PAGE HEROES ── */
+.inner-hero {
+  padding-top: 9rem;
+  padding-bottom: clamp(3rem, 6vw, 5rem);
+}
+
 /* ── HERO CONTAINER (inner pages) ── */
 .hero-container {
   width: 100%;
@@ -773,6 +779,9 @@ footer {
 @media (max-width: 1024px) {
   .hero-inner { grid-template-columns: 1fr; }
   .hero-card { display: none; }
+}
+
+@media (max-width: 768px) {
   .intro-grid { grid-template-columns: 1fr; }
   .trust-inner { grid-template-columns: 1fr; }
   .faq-inner { grid-template-columns: 1fr; }
