@@ -13,60 +13,12 @@
 <noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"></noscript>
 <link rel="stylesheet" href="styles.css">
 <style>
-  #hero { min-height: 40svh; display: flex; flex-direction: column; justify-content: flex-end; background: var(--navy); }
-  #hero h1 { color: var(--white); }
-  .hero-eyebrow { display: block; font-size: 0.78rem; letter-spacing: 0.12em; color: var(--gold); text-transform: uppercase; margin-bottom: 1.2rem; }
+  .hero-bg { background-image: url('https://images.unsplash.com/photo-1521791136064-7986c2920216?w=1600&q=70&auto=format&fit=crop&fm=webp'); background-size: cover; background-position: center; background-attachment: fixed; }
+  .hero-inner { grid-template-columns: 1fr; }
   .breadcrumb { display: flex; gap: 0.5rem; align-items: center; font-size: 0.78rem; color: rgba(255,255,255,0.4); margin-bottom: 2rem; }
   .breadcrumb a { color: rgba(255,255,255,0.4); transition: color 0.2s; }
   .breadcrumb a:hover { color: var(--gold); }
   .breadcrumb-sep { opacity: 0.4; }
-
-  #contact-main { padding: var(--gap) 0; }
-  .contact-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: clamp(3rem, 6vw, 7rem); align-items: start; }
-
-  .contact-info h2 { margin-bottom: 1.2rem; }
-  .contact-info > p { margin-bottom: 2.5rem; max-width: none; }
-
-  .contact-detail { display: flex; flex-direction: column; gap: 1.5rem; margin-bottom: 3rem; }
-  .contact-item { display: flex; gap: 1.2rem; align-items: flex-start; }
-  .contact-icon { width: 44px; height: 44px; background: rgba(26,39,68,0.06); border-radius: 3px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-  .contact-icon svg { width: 20px; height: 20px; stroke: var(--navy); fill: none; stroke-width: 1.5; }
-  .contact-item-text { display: flex; flex-direction: column; gap: 0.2rem; }
-  .contact-item-label { font-size: 0.7rem; letter-spacing: 0.08em; color: var(--gold); text-transform: uppercase; font-weight: 500; }
-  .contact-item-value { font-size: 0.95rem; color: var(--navy); font-weight: 400; }
-  .contact-item-value a { color: var(--navy); transition: color 0.2s; }
-  .contact-item-value a:hover { color: var(--gold); }
-
-  .contact-hours { border-top: 1px solid rgba(26,39,68,0.08); padding-top: 1.5rem; }
-  .contact-hours-label { font-size: 0.7rem; letter-spacing: 0.08em; color: var(--gold); text-transform: uppercase; font-weight: 500; margin-bottom: 1rem; display: block; }
-  .hours-row { display: flex; justify-content: space-between; font-size: 0.88rem; color: var(--mid); padding: 0.4rem 0; border-bottom: 1px solid rgba(26,39,68,0.05); }
-
-  /* Form */
-  .contact-form-wrap { background: var(--cream-dark); padding: clamp(2rem, 4vw, 3.5rem); border-radius: 3px; }
-  .contact-form-wrap h3 { margin-bottom: 0.5rem; }
-  .contact-form-wrap > p { margin-bottom: 2rem; max-width: none; }
-
-  .form-group { margin-bottom: 1.2rem; }
-  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-  label { display: block; font-size: 0.78rem; letter-spacing: 0.06em; color: var(--navy); font-weight: 500; text-transform: uppercase; margin-bottom: 0.5rem; }
-  input, select, textarea {
-    width: 100%;
-    padding: 0.85rem 1rem;
-    background: var(--white);
-    border: 1px solid rgba(26,39,68,0.15);
-    border-radius: 3px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.9rem;
-    color: var(--navy);
-    transition: border-color 0.2s;
-    appearance: none;
-  }
-  input:focus, select:focus, textarea:focus { outline: none; border-color: var(--navy); }
-  textarea { resize: vertical; min-height: 120px; }
-  .form-submit { margin-top: 1.5rem; }
-  .form-note { font-size: 0.75rem; color: var(--mid); margin-top: 1rem; max-width: none; }
-
-  @media (max-width: 900px) { .contact-grid { grid-template-columns: 1fr; } .form-row { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
@@ -101,10 +53,16 @@
 <main>
 
 <section id="hero">
-  <div class="hero-inner">
-    <div class="breadcrumb"><a href="index.html">Home</a><span class="breadcrumb-sep">/</span><span>Contact</span></div>
-    <span class="hero-eyebrow">Get in touch</span>
-    <h1>Let's talk.</h1>
+  <div class="hero-bg">
+    <div class="hero-overlay"></div>
+  </div>
+  <div class="hero-inner container">
+    <div class="hero-content">
+      <div class="breadcrumb"><a href="index.html">Home</a><span class="breadcrumb-sep">/</span><span>Contact</span></div>
+      <span class="hero-eyebrow">Get in touch</span>
+      <h1>Let's talk.</h1>
+      <p class="hero-sub">Book a free 30-minute consultation and find out where you stand — no obligation, no jargon.</p>
+    </div>
   </div>
 </section>
 

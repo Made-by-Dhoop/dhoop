@@ -13,22 +13,12 @@
 <noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"></noscript>
 <link rel="stylesheet" href="styles.css">
 <style>
-  #hero { min-height: 35svh; display: flex; flex-direction: column; justify-content: flex-end; background: var(--navy); }
-  #hero h1 { color: var(--white); font-size: clamp(2rem, 4vw, 3rem); }
-  .hero-eyebrow { display: block; font-size: 0.78rem; letter-spacing: 0.12em; color: var(--gold); text-transform: uppercase; margin-bottom: 1.2rem; }
+  .hero-bg { background-image: url('https://images.unsplash.com/photo-1521791136064-7986c2920216?w=1600&q=70&auto=format&fit=crop&fm=webp'); background-size: cover; background-position: center; background-attachment: fixed; }
+  .hero-inner { grid-template-columns: 1fr; }
   .breadcrumb { display: flex; gap: 0.5rem; align-items: center; font-size: 0.78rem; color: rgba(255,255,255,0.4); margin-bottom: 2rem; }
-  .breadcrumb a { color: rgba(255,255,255,0.4); }
+  .breadcrumb a { color: rgba(255,255,255,0.4); transition: color 0.2s; }
+  .breadcrumb a:hover { color: var(--gold); }
   .breadcrumb-sep { opacity: 0.4; }
-
-  #legal-content { padding: var(--gap) 0; max-width: 75ch; }
-  .legal-date { font-size: 0.78rem; color: var(--mid); margin-bottom: 3rem; display: block; }
-  .legal-section { margin-bottom: 3rem; }
-  .legal-section h2 { font-size: clamp(1.2rem, 2vw, 1.5rem); margin-bottom: 1rem; }
-  .legal-section p { font-size: 0.9rem; margin-bottom: 0.8rem; max-width: none; }
-  .legal-section ul { list-style: none; padding: 0; margin-bottom: 1rem; display: flex; flex-direction: column; gap: 0.5rem; }
-  .legal-section ul li { font-size: 0.9rem; color: var(--mid); padding-left: 1.2rem; position: relative; }
-  .legal-section ul li::before { content: '—'; position: absolute; left: 0; color: var(--gold); }
-  .legal-section a { color: var(--navy); text-decoration: underline; }
 </style>
 </head>
 <body>
@@ -63,10 +53,15 @@
 <main>
 
 <section id="hero">
-  <div class="hero-inner">
-    <div class="breadcrumb"><a href="index.html">Home</a><span class="breadcrumb-sep">/</span><span>Legal & Privacy</span></div>
-    <span class="hero-eyebrow">Legal Information</span>
-    <h1>Legal & Privacy Policy</h1>
+  <div class="hero-bg">
+    <div class="hero-overlay"></div>
+  </div>
+  <div class="hero-inner container">
+    <div class="hero-content">
+      <div class="breadcrumb"><a href="index.html">Home</a><span class="breadcrumb-sep">/</span><span>Legal & Privacy</span></div>
+      <span class="hero-eyebrow">Legal Information</span>
+      <h1>Legal &amp; Privacy Policy</h1>
+    </div>
   </div>
 </section>
 

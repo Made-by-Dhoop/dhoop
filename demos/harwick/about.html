@@ -14,30 +14,8 @@
 <noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"></noscript>
 <link rel="stylesheet" href="styles.css">
 <style>
-  #hero {
-    min-height: 55svh;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    padding-top: 9rem;
-    padding-bottom: clamp(3rem, 6vw, 5rem);
-    background: var(--navy);
-    position: relative;
-    overflow: hidden;
-  }
-  #hero::before {
-    content: '';
-    position: absolute;
-    top: 0; right: 0;
-    width: 60vw; height: 100%;
-    background: url('https://images.unsplash.com/photo-1521791136064-7986c2920216?w=1200&q=70&auto=format&fit=crop&fm=webp') center/cover no-repeat;
-    opacity: 0.15;
-  }
-  .hero-content { position: relative; z-index: 1; }
-  .hero-eyebrow { display: block; font-size: 0.78rem; letter-spacing: 0.12em; color: var(--gold); text-transform: uppercase; margin-bottom: 1.2rem; }
-  .hero-sub { margin-top: 1.5rem; font-size: clamp(1rem, 1.3vw, 1.1rem); font-weight: 300; color: rgba(255,255,255,0.6); max-width: 52ch; line-height: 1.8; }
-  #hero h1 { color: var(--white); }
-
+  .hero-bg { background-image: url('https://images.unsplash.com/photo-1521791136064-7986c2920216?w=1600&q=70&auto=format&fit=crop&fm=webp'); background-size: cover; background-position: center; background-attachment: fixed; }
+  .hero-inner { grid-template-columns: 1fr; }
   .breadcrumb { display: flex; gap: 0.5rem; align-items: center; font-size: 0.78rem; color: rgba(255,255,255,0.4); margin-bottom: 2rem; }
   .breadcrumb a { color: rgba(255,255,255,0.4); transition: color 0.2s; }
   .breadcrumb a:hover { color: var(--gold); }
@@ -78,15 +56,16 @@
 <main>
 
 <section id="hero">
-  <div class="hero-inner">
-    <div class="breadcrumb">
-      <a href="index.html">Home</a>
-      <span class="breadcrumb-sep">/</span>
-      <span>About</span>
+  <div class="hero-bg">
+    <div class="hero-overlay"></div>
+  </div>
+  <div class="hero-inner container">
+    <div class="hero-content">
+      <div class="breadcrumb"><a href="index.html">Home</a><span class="breadcrumb-sep">/</span><span>About</span></div>
+      <span class="hero-eyebrow">About the firm</span>
+      <h1>35 years of getting<br>it done properly.</h1>
+      <p class="hero-sub">Harwick & Co has been a trusted name in Bournemouth law since 1987 — built on word of mouth, repeat clients, and a simple commitment to doing the job right.</p>
     </div>
-    <span class="hero-eyebrow">About the firm</span>
-    <h1>35 years of getting<br>it done properly.</h1>
-    <p class="hero-sub">Harwick & Co has been a trusted name in Bournemouth law since 1987 — built on word of mouth, repeat clients, and a simple commitment to doing the job right.</p>
   </div>
 </section>
 
