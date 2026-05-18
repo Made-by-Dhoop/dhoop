@@ -1,7 +1,14 @@
 // Nav scroll behaviour
 const nav = document.getElementById('nav');
+let ticking = false;
 window.addEventListener('scroll', () => {
-  nav.classList.toggle('scrolled', window.scrollY > 60);
+  if (!ticking) {
+    requestAnimationFrame(() => {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+      ticking = false;
+    });
+    ticking = true;
+  }
 });
 
 // Hero image Ken Burns
