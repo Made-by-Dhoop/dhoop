@@ -70,9 +70,9 @@
   /* ── GRID ── */
   #case-grid { padding-top: 0; padding-bottom: var(--gap); }
 
-  .grid-inner { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(255,255,255,0.05); }
+  .grid-inner { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; background: transparent; }
 
-  .grid-card { background: var(--black); overflow: hidden; transition: background 0.25s; display: flex; flex-direction: column; }
+  .grid-card { background: #111; overflow: hidden; transition: background 0.25s; display: flex; flex-direction: column; border: 1px solid rgba(255,255,255,0.06); }
   .grid-card:hover { background: #0d0d0d; }
 
   .grid-media { position: relative; overflow: hidden; aspect-ratio: 16/10; }
@@ -150,7 +150,7 @@
 
 <!-- FEATURED — Bjorn & Strand -->
 <section id="featured">
-  <span class="section-label reveal">Featured Project</span>
+  <span class="section-label reveal">Featured Projects</span>
   <div class="featured-card reveal">
     <div class="featured-image">
       <img
