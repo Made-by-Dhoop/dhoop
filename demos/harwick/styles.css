@@ -52,6 +52,7 @@ em { font-style: italic; color: var(--gold); }
 
 /* ── HERO CONTAINER (inner pages) ── */
 .hero-container {
+  width: 100%;
   max-width: var(--container);
   margin: 0 auto;
   padding-left: clamp(1.5rem, 5vw, 4rem);
@@ -131,6 +132,7 @@ em { font-style: italic; color: var(--gold); }
   align-items: center;
   justify-content: space-between;
   transition: padding 0.35s;
+  width: 100%;
 }
 
 #nav.scrolled .nav-inner {
