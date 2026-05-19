@@ -805,38 +805,16 @@ header { mix-blend-mode: normal; }
     mw.style.visibility = 'visible';
   }
 
-  // Mobile tap to reveal description + expand image
-  const mobileLayout = document.querySelector('.mobile-layout');
-  let activeItem = null;
-
+  // Mobile tap — expand clicked image, collapse previous. Scroll does nothing.
   document.querySelectorAll('.mobile-item').forEach(item => {
     item.addEventListener('click', () => {
-      if (item.classList.contains('active')) {
-        // Second tap — collapse
-        item.classList.remove('active');
-        activeItem = null;
-      } else {
-        // First tap — expand
-        document.querySelectorAll('.mobile-item').forEach(i => i.classList.remove('active'));
-        item.classList.add('active');
-        activeItem = item;
-        // Scroll item to top of viewport
-        setTimeout(() => {
-          item.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }, 50);
-      }
+      if (item.classList.contains('active')) return; // already open, do nothing
+      // Collapse any currently open item
+      document.querySelectorAll('.mobile-item.active').forEach(i => i.classList.remove('active'));
+      // Expand this one
+      item.classList.add('active');
     });
   });
-
-  // Scroll to collapse active item
-  if (mobileLayout) {
-    mobileLayout.addEventListener('scroll', () => {
-      if (activeItem) {
-        activeItem.classList.remove('active');
-        activeItem = null;
-      }
-    }, { passive: true });
-  }
 
     document.fonts.load('900 48px "Barlow Condensed"').then(() => {
     fitHero();
