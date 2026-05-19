@@ -250,10 +250,17 @@ header { mix-blend-mode: normal; }
   overflow: hidden;
   white-space: nowrap;
 }
-  .mobile-foot { display: flex; align-items: center; padding: 16px 20px 40px; background: #f0ede8; flex-shrink: 0; }
-  .mobile-foot-l { font-size: 11px; font-weight: 300; letter-spacing: .15em; color: #999; }
+  .mobile-foot { 
+    display: flex; flex-direction: column; gap: 16px;
+    padding: 20px 20px 48px; background: #f0ede8; flex-shrink: 0;
+    border-top: 1px solid #d0ccc5;
+  }
+  .mobile-foot-top { display: flex; justify-content: space-between; align-items: center; }
+  .mobile-foot-socials { display: flex; gap: 20px; }
+  .mobile-social { font-size: 11px; font-weight: 300; letter-spacing: .2em; text-transform: uppercase; color: #999; text-decoration: none; padding: 8px 0; }
+  .mobile-foot-l { font-size: 10px; font-weight: 300; letter-spacing: .1em; color: #999; }
   .mobile-foot-rule { flex: 1; height: 1px; background: #d0ccc5; margin: 0 16px; }
-  .mobile-foot-r { font-size: 11px; font-weight: 300; letter-spacing: .2em; text-transform: uppercase; color: #999; }
+  .mobile-foot-r { font-size: 10px; font-weight: 300; letter-spacing: .15em; text-transform: uppercase; color: #999; }
 
   .contact-panel { z-index: 500 !important; }
   .logo-img { filter: invert(1); }
@@ -626,11 +633,17 @@ header { mix-blend-mode: normal; }
       <div class="mobile-item-n">14</div>
     </div>
   </div>
-  <div class="mobile-hero"><div class="mobile-hero-word">THEORY</div></div>
+  
   <div class="mobile-foot">
-    <span class="mobile-foot-l">hello@theory.co.uk</span>
-    <div class="mobile-foot-rule"></div>
-    <span class="mobile-foot-r">2024 Collection</span>
+    <div class="mobile-foot-top">
+      <span class="mobile-foot-l">hello@theory.co.uk</span>
+      <span class="mobile-foot-r">2024 Collection</span>
+    </div>
+    <div class="mobile-foot-socials">
+      <a href="https://linkedin.com" target="_blank" class="mobile-social">LinkedIn</a>
+      <a href="https://facebook.com" target="_blank" class="mobile-social">Facebook</a>
+      <a href="https://x.com" target="_blank" class="mobile-social">X</a>
+    </div>
   </div>
 </div>
 
