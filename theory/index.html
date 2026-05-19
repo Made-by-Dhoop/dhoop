@@ -805,13 +805,22 @@ header { mix-blend-mode: normal; }
     mw.style.visibility = 'visible';
   }
 
+  // Mobile buy now — open contact, stop propagation so image doesn't toggle
+  document.querySelectorAll('.mobile-item-buy').forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.stopPropagation();
+      e.preventDefault();
+      contactOpen = true;
+      contactPanel.classList.add('visible');
+      scrollHint.classList.add('hidden');
+    });
+  });
+
   // Mobile tap — expand clicked image, collapse previous. Scroll does nothing.
   document.querySelectorAll('.mobile-item').forEach(item => {
     item.addEventListener('click', () => {
       if (item.classList.contains('active')) return; // already open, do nothing
-      // Collapse any currently open item
       document.querySelectorAll('.mobile-item.active').forEach(i => i.classList.remove('active'));
-      // Expand this one
       item.classList.add('active');
     });
   });
