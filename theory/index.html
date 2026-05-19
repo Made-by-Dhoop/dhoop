@@ -597,7 +597,7 @@ header { mix-blend-mode: normal; }
 </div>
 
 <header>
-  <a href="#" class="h-logo" onclick="window.scrollTo({top:0});closeAbout();closeContact();return false;">Theory</a>
+  <a href="#" class="h-logo" id="logoLink">Theory</a>
   <div class="h-menu-btn" id="menuBtn">Menu</div>
 </header>
 
@@ -663,6 +663,16 @@ header { mix-blend-mode: normal; }
 
   aboutClose.addEventListener('click', closeAbout);
   navAbout.addEventListener('click', e => { e.preventDefault(); openAbout(); });
+
+  // Logo — close all panels and return to top
+  document.getElementById('logoLink').addEventListener('click', e => {
+    e.preventDefault();
+    closeAbout();
+    closeContact();
+    closeMenu();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    document.querySelector('.mobile-layout') && (document.querySelector('.mobile-layout').scrollTop = 0);
+  });
   document.getElementById('navContact').addEventListener('click', e => { e.preventDefault(); openAbout(); openContact(); });
 
   // Mobile buy now — same as navContact
