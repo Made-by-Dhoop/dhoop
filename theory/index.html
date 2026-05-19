@@ -187,7 +187,7 @@ header { mix-blend-mode: normal; }
   .strip-ui, .hero-wrap, .scroll-hint { display: none; }
   .about-panel { padding: 40px 20px 32px; }
   .about-close { right: 20px; }
-  .mobile-layout { display: flex; flex-direction: column; height: 100vh; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+  .mobile-layout { display: flex; flex-direction: column; height: 100vh; overflow-y: auto; -webkit-overflow-scrolling: touch; position: relative; z-index: 1; }
   .mobile-strip-labels { display: flex; justify-content: space-between; padding: 80px 20px 10px; font-size: 11px; font-weight: 300; letter-spacing: .2em; text-transform: uppercase; color: #999; }
   .mobile-strip-labels span:last-child { color: #0e0e0e; }
   .mobile-items { display: flex; flex-direction: column; gap: 2px; }
@@ -235,6 +235,11 @@ header { mix-blend-mode: normal; }
   .mobile-foot-l { font-size: 8px; font-weight: 300; letter-spacing: .15em; color: #999; }
   .mobile-foot-rule { flex: 1; height: 1px; background: #d0ccc5; margin: 0 16px; }
   .mobile-foot-r { font-size: 8px; font-weight: 300; letter-spacing: .2em; text-transform: uppercase; color: #999; }
+
+  .contact-panel { z-index: 500 !important; }
+  .about-panel { z-index: 490 !important; }
+  .nav-overlay { z-index: 600 !important; }
+  header { z-index: 700 !important; }
   header {
     padding: 18px 20px;
     background: transparent;
@@ -347,6 +352,7 @@ header { mix-blend-mode: normal; }
   color: #0e0e0e; background: #f0ede8;
   padding: 5px 12px; text-decoration: none;
   border: none;
+  pointer-events: all;
 }
 </style>
 </head>
@@ -675,7 +681,7 @@ header { mix-blend-mode: normal; }
   contactClose.addEventListener('click', closeContact);
 
   // Buy Now — close image, open contact directly (skip about)
-  document.querySelectorAll('.item-buy, .mobile-item-buy').forEach(link => {
+  document.querySelectorAll('.item-buy').forEach(link => {
     link.addEventListener('click', e => {
       e.preventDefault();
       e.stopPropagation();
@@ -805,14 +811,15 @@ header { mix-blend-mode: normal; }
     mw.style.visibility = 'visible';
   }
 
-  // Mobile buy now — open contact, stop propagation so image doesn't toggle
+  // Mobile buy now — open contact panel directly
   document.querySelectorAll('.mobile-item-buy').forEach(btn => {
     btn.addEventListener('click', e => {
       e.stopPropagation();
       e.preventDefault();
-      contactOpen = true;
-      contactPanel.classList.add('visible');
-      scrollHint.classList.add('hidden');
+      const cp = document.getElementById('contactPanel');
+      const sh = document.getElementById('scrollHint');
+      if (cp) { cp.classList.add('visible'); contactOpen = true; }
+      if (sh) sh.classList.add('hidden');
     });
   });
 
