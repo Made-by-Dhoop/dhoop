@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Theory — 2024 Collection</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@900&family=DM+Sans:wght@200;300;400&display=swap" rel="stylesheet" />
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 100%; height: 100%; overflow: hidden; background: #f0ede8; font-family: 'DM Sans', sans-serif; cursor: none; }
+
+#cur { width: 8px; height: 8px; background: #ffffff; border-radius: 50%; position: fixed; pointer-events: none; transform: translate(-50%,-50%); z-index: 9999; mix-blend-mode: exclusion; transition: width .22s cubic-bezier(.16,1,.3,1), height .22s cubic-bezier(.16,1,.3,1); }
+#cur.big { width: 52px; height: 52px; }
+
+/* ── HEADER ── */
+header {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 900;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 22px 40px;
+}
+.h-logo { font-size: 12px; font-weight: 400; letter-spacing: .2em; text-transform: uppercase; color: #0e0e0e; transition: color .3s; }
+
+/* menu button — always visible, switches label */
+.h-menu-btn {
+  font-size: 12px; font-weight: 400; letter-spacing: .22em; text-transform: uppercase;
+  color: #0e0e0e; cursor: none; user-select: none; transition: color .3s;
+  position: relative; z-index: 850; /* above nav overlay */
+}
+body.menu-open .h-logo { color: #f0ede8; }
+body.menu-open .h-menu-btn { color: #f0ede8; }
+
+/* ── NAV OVERLAY ── */
+.nav-overlay {
+  position: fixed; inset: 0; background: #0e0e0e; z-index: 800;
+  display: flex; flex-direction: column; justify-content: center; align-items: flex-end;
+  padding: 0 40px; pointer-events: none;
+  clip-path: inset(0 0 100% 0);
+  transition: clip-path .7s cubic-bezier(.76,0,.24,1);
+}
+.nav-overlay.open { pointer-events: all; clip-path: inset(0 0 0% 0); }
+.nav-overlay nav { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
+.nav-overlay nav a {
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 900;
+  font-size: clamp(52px, 8vw, 110px); line-height: 1;
+  color: #f0ede8; text-decoration: none; text-transform: uppercase;
+  opacity: 0; transform: translateX(40px);
+  transition: opacity .4s, transform .4s, color .2s;
+}
+.nav-overlay.open nav a { opacity: 1; transform: translateX(0); }
+.nav-overlay.open nav a:nth-child(1) { transition-delay: .2s; }
+.nav-overlay.open nav a:nth-child(2) { transition-delay: .28s; }
+.nav-overlay.open nav a:nth-child(3) { transition-delay: .36s; }
+.nav-overlay nav a:hover { color: #999; }
+
+.nav-overlay.open 
+.nav-footer {
+  position: absolute; bottom: 28px; left: 40px; right: 40px;
+  display: flex; justify-content: space-between;
+  opacity: 0; transition: opacity .4s .4s;
+}
+.nav-overlay.open .nav-footer { opacity: 1; }
+.nav-footer span { font-size: 11px; font-weight: 300; letter-spacing: .2em; text-transform: uppercase; color: rgba(240,237,232,.4); }
+.nav-socials { display: flex; flex-direction: column; gap: 6px; }
+.nav-social-link { font-size: 12px; font-weight: 300; letter-spacing: .2em; text-transform: uppercase; color: rgba(240,237,232,.4); text-decoration: none; transition: color .2s; cursor: none; }
+.nav-social-link:hover { color: #f0ede8; }
+
+/* ── HERO z:1 ── */
+.hero-wrap { position: fixed; inset: 0; z-index: 1; display: flex; flex-direction: column; justify-content: flex-end; }
+.hero-word { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; line-height: .88; letter-spacing: -.01em; color: #0e0e0e; white-space: nowrap; display: block; width: 100%; padding: 0; visibility: hidden; overflow: hidden; transition: font-size 0.15s ease-out; }
+.hero-inner { display: inline-block; transform: translateY(105%); }
+.hero-inner.animate { animation: up 1s cubic-bezier(.16,1,.3,1) forwards; }
+@keyframes up { to { transform: translateY(0); } }
+.foot { display: flex; align-items: center; padding: 8px 40px 18px; background: transparent; }
+.foot-l { font-size: 11px; font-weight: 300; letter-spacing: .15em; color: #999; }
+.foot-rule { flex: 1; height: 1px; background: #d0ccc5; margin: 0 28px; }
+.foot-r { font-size: 11px; font-weight: 300; letter-spacing: .2em; text-transform: uppercase; color: #999; }
+
+/* ── STRIP z:600 ── */
+.strip-ui { position: fixed; top: 62px; left: 0; right: 0; z-index: 600; background: #f0ede8; }
+.strip-labels { display: flex; justify-content: space-between; padding: 10px 40px 6px; font-size: 11px; font-weight: 300; letter-spacing: .2em; text-transform: uppercase; color: #999; }
+.strip-labels span:last-child { color: #0e0e0e; opacity: .7; }
+
+.strip { display: flex; width: 100%; height: 130px; gap: 0; overflow: visible; position: relative; }
+.item { flex: 1; height: 130px; overflow: hidden; position: relative; cursor: none; transition: height .5s cubic-bezier(.16,1,.3,1), flex .5s cubic-bezier(.16,1,.3,1); z-index: 1; will-change: flex, height; box-shadow: inset -1px 0 0 rgba(240,237,232,0.3); }
+.item.hovered { height: calc(100vh - 97px); flex: 10; z-index: 10; overflow: hidden; }
+.strip.active .item:not(.hovered) { flex: 1; height: 130px; }
+
+.item img { width: 100%; height: 100%; object-fit: cover; display: block; object-position: center 20%; transform: scale(1.04); filter: grayscale(.15) brightness(.95); transition: transform .55s cubic-bezier(.16,1,.3,1), filter .4s; will-change: transform, filter; }
+.item.hovered img { transform: scale(1); filter: grayscale(0) brightness(1); }
+
+.item-shade { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,.55) 0%, rgba(0,0,0,.1) 40%, transparent 65%); opacity: 0; transition: opacity .3s; z-index: 1; }
+.item.hovered .item-shade { opacity: 1; }
+
+.item-n { position: absolute; top: 10px; left: 12px; font-size: 10px; font-weight: 300; letter-spacing: .08em; color: rgba(255,255,255,.6); z-index: 3; }
+.item-desc { position: absolute; bottom: 32px; left: 24px; right: 24px; z-index: 4; opacity: 0; transform: translateY(8px); transition: opacity .35s .15s, transform .35s .15s; pointer-events: none; }
+.item-buy { pointer-events: all; cursor: none; }
+.item.hovered .item-desc { opacity: 1; transform: translateY(0); }
+.item-desc-label { font-size: 10px; font-weight: 300; letter-spacing: .22em; text-transform: uppercase; color: rgba(255,255,255,.5); margin-bottom: 8px; display: block; }
+.item-desc-title { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 32px; line-height: 1; text-transform: uppercase; color: #fff; margin-bottom: 8px; }
+.item-desc-body { font-size: 13px; font-weight: 300; letter-spacing: .06em; color: rgba(255,255,255,.7); line-height: 1.5; max-width: 280px; }
+.item-tag { position: absolute; top: 12px; right: 12px; background: rgba(240,237,232,.92); color: #0e0e0e; font-size: 7px; font-weight: 400; letter-spacing: .14em; text-transform: uppercase; padding: 3px 8px; opacity: 0; transform: translateY(-6px); transition: opacity .25s .08s, transform .25s .08s; z-index: 5; }
+.item.hovered .item-tag { opacity: 1; transform: translateY(0); }
+
+.prog-wrap { display: none; }
+.prog { height: 1px; background: #0e0e0e; width: 0; position: absolute; left: 0; }
+
+/* ── ABOUT PANEL z:200 ── */
+/* sits above hero, below strip. slides up on scroll/swipe */
+.about-panel {
+  position: fixed;
+  top: 40%; left: 0; right: 0; bottom: 0;
+  z-index: 200;
+  background: #0e0e0e;
+  padding: 48px 40px 40px;
+  transform: translateY(100%);
+  transition: transform 0.6s cubic-bezier(0.34, 1.4, 0.64, 1);
+  will-change: transform;
+}
+.about-panel.visible { transform: translateY(0); }
+
+.about-panel-header {
+  font-size: 11px; font-weight: 300; letter-spacing: .25em; text-transform: uppercase;
+  color: rgba(240,237,232,.35); margin-bottom: 28px;
+}
+.about-panel-body {
+  font-family: 'DM Sans', sans-serif; font-weight: 300;
+  font-size: clamp(14px, 1.4vw, 22px);
+  line-height: 1.75;
+  letter-spacing: .01em;
+  color: rgba(240,237,232,.75);
+  max-width: 100%;
+}
+.about-panel-sub {
+  margin-top: 28px;
+  font-size: 11px; font-weight: 300; letter-spacing: .08em; line-height: 1.7;
+  color: rgba(240,237,232,.5);
+  max-width: 480px;
+}
+/* close handle at top of panel */
+.about-close {
+  position: absolute; top: 18px; right: 40px;
+  font-size: 9px; font-weight: 400; letter-spacing: .22em; text-transform: uppercase;
+  color: rgba(240,237,232,.4); cursor: none;
+  transition: color .2s;
+}
+.about-close:hover { color: #f0ede8; }
+
+/* scroll hint — small arrow at bottom of hero */
+.scroll-hint {
+  position: fixed;
+  left: 28px;
+  bottom: 50%;
+  transform: translateY(50%);
+  z-index: 150;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  opacity: 1; transition: opacity .4s;
+  pointer-events: none;
+}
+.scroll-hint.hidden { opacity: 0; }
+.scroll-hint-label {
+  font-size: 10px; font-weight: 300; letter-spacing: .2em; text-transform: uppercase; color: #999;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+}
+.scroll-hint-arrow {
+  width: 1px; height: 40px; background: #d0ccc5;
+  position: relative; overflow: hidden;
+}
+.scroll-hint-arrow::after {
+  content: ''; position: absolute; top: -100%; left: 0;
+  width: 1px; height: 100%; background: #888;
+  animation: drip 1.6s ease-in-out infinite;
+}
+@keyframes drip { 0%{top:-100%} 100%{top:200%} }
+
+/* ── MOBILE ── */
+.mobile-layout { display: none; }
+header { mix-blend-mode: normal; }
+@media (max-width: 768px) {
+  html, body { cursor: auto; overflow: hidden; }
+  #cur { display: none; }
+  .strip-ui, .hero-wrap, .scroll-hint { display: none; }
+  .about-panel { padding: 40px 20px 32px; }
+  .about-close { right: 20px; }
+  .mobile-layout { display: flex; flex-direction: column; height: 100vh; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+  .mobile-strip-labels { display: flex; justify-content: space-between; padding: 80px 20px 10px; font-size: 11px; font-weight: 300; letter-spacing: .2em; text-transform: uppercase; color: #999; }
+  .mobile-strip-labels span:last-child { color: #0e0e0e; }
+  .mobile-items { display: flex; flex-direction: column; gap: 2px; }
+  .mobile-item { width: 100%; height: 60vw; overflow: hidden; position: relative; cursor: pointer; }
+.mobile-item-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,.75) 0%, rgba(0,0,0,.1) 50%, transparent 100%);
+  opacity: 0;
+  transition: opacity .35s;
+  z-index: 1;
+}
+.mobile-item.active .mobile-item-overlay { opacity: 1; }
+.mobile-item-info {
+  position: absolute;
+  bottom: 14px; left: 14px; right: 14px;
+  z-index: 2;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity .3s .05s, transform .3s .05s;
+  pointer-events: none;
+}
+.mobile-item.active .mobile-item-info { opacity: 1; transform: translateY(0); }
+.mobile-item-info-label {
+  font-size: 9px; font-weight: 300; letter-spacing: .2em; text-transform: uppercase;
+  color: rgba(255,255,255,.55); margin-bottom: 3px;
+}
+.mobile-item-info-title {
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 900;
+  font-size: 22px; line-height: 1; text-transform: uppercase; color: #fff;
+  margin-bottom: 4px;
+}
+.mobile-item-info-body {
+  font-size: 11px; font-weight: 300; letter-spacing: .04em; line-height: 1.4;
+  color: rgba(255,255,255,.7);
+}
+  .mobile-item img { width: 100%; height: 100%; object-fit: cover; display: block; object-position: center 20%; }
+  .mobile-item-n { position: absolute; bottom: 8px; left: 10px; font-size: 8px; font-weight: 300; letter-spacing: .08em; color: rgba(255,255,255,.8); }
+  .mobile-hero { padding: 20px 20px 0; background: #f0ede8; }
+  .mobile-hero-word { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 22vw; line-height: .95; letter-spacing: -.01em; color: #0e0e0e; white-space: nowrap; display: block; visibility: hidden; padding-bottom: 4px; }
+  .mobile-foot { display: flex; align-items: center; padding: 10px 20px 24px; background: #f0ede8; }
+  .mobile-foot-l { font-size: 8px; font-weight: 300; letter-spacing: .15em; color: #999; }
+  .mobile-foot-rule { flex: 1; height: 1px; background: #d0ccc5; margin: 0 16px; }
+  .mobile-foot-r { font-size: 8px; font-weight: 300; letter-spacing: .2em; text-transform: uppercase; color: #999; }
+  header {
+    padding: 18px 20px;
+    background: transparent;
+  }
+  header, header .h-logo, header .h-menu-btn {
+    mix-blend-mode: difference;
+    color: #ffffff !important;
+  }
+}
+
+/* ── CONTACT PANEL z:190 (below about, slides up from about) ── */
+.contact-panel {
+  position: fixed;
+  top: 40%; left: 0; right: 0; bottom: 0;
+  z-index: 210;
+  background: #FF6868;
+  padding: 48px 40px 40px;
+  transform: translateY(100%);
+  transition: transform 0.6s cubic-bezier(0.34, 1.4, 0.64, 1);
+  will-change: transform;
+  overflow-y: auto;
+}
+.contact-panel.visible { transform: translateY(0); }
+
+.contact-panel-header {
+  font-size: 11px; font-weight: 300; letter-spacing: .25em; text-transform: uppercase;
+  color: rgba(0,0,0,.5); margin-bottom: 28px;
+}
+.contact-panel-title {
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 900;
+  font-size: clamp(32px, 5vw, 68px);
+  line-height: 1.0; letter-spacing: -.01em;
+  color: #000000; margin-bottom: 32px;
+  max-width: 700px;
+}
+.contact-close {
+  position: absolute; top: 18px; right: 40px;
+  font-size: 9px; font-weight: 400; letter-spacing: .22em; text-transform: uppercase;
+  color: rgba(0,0,0,.5); cursor: none; transition: color .2s;
+}
+.contact-close:hover { color: #000000; }
+
+/* footer inside contact */
+.contact-footer {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 28px 40px;
+  border-top: 1px solid rgba(0,0,0,.15);
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 24px;
+  align-items: start;
+}
+.contact-footer-col { display: flex; flex-direction: column; gap: 10px; }
+.contact-footer-col-title { font-size: 10px; font-weight: 300; letter-spacing: .22em; text-transform: uppercase; color: rgba(0,0,0,.4); margin-bottom: 4px; }
+.contact-footer-link { font-size: 12px; font-weight: 300; letter-spacing: .15em; text-transform: uppercase; color: rgba(0,0,0,.6); text-decoration: none; cursor: none; transition: color .2s; }
+.contact-footer-link:hover { color: #000000; }
+.contact-footer-copy { font-size: 8px; font-weight: 300; letter-spacing: .15em; color: rgba(0,0,0,.35); }
+
+.about-scroll-hint {
+  position: absolute;
+  right: 40px;
+  bottom: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  opacity: 0;
+  transition: opacity .5s .4s;
+  pointer-events: none;
+}
+.about-panel.visible .about-scroll-hint { opacity: 1; }
+.about-scroll-label {
+  font-size: 8px; font-weight: 300; letter-spacing: .2em; text-transform: uppercase;
+  color: rgba(240,237,232,.35);
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+}
+.about-scroll-arrow {
+  width: 1px; height: 36px; background: rgba(240,237,232,.15);
+  position: relative; overflow: hidden;
+}
+.about-scroll-arrow::after {
+  content: ''; position: absolute; top: -100%; left: 0;
+  width: 1px; height: 100%; background: rgba(240,237,232,.4);
+  animation: drip2 1.6s ease-in-out infinite;
+}
+@keyframes drip2 { 0%{top:-100%} 100%{top:200%} }
+
+.item-buy {
+  display: inline-block;
+  margin-top: 12px;
+  font-size: 9px; font-weight: 400; letter-spacing: .22em; text-transform: uppercase;
+  color: #0e0e0e;
+  background: #f0ede8;
+  padding: 6px 14px;
+  text-decoration: none;
+  cursor: none;
+  transition: background .2s, color .2s;
+  z-index: 5;
+  position: relative;
+}
+.item-buy:hover { background: #0e0e0e; color: #f0ede8; }
+
+/* mobile buy now */
+.mobile-item-buy {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 9px; font-weight: 400; letter-spacing: .2em; text-transform: uppercase;
+  color: #0e0e0e; background: #f0ede8;
+  padding: 5px 12px; text-decoration: none;
+  border: none;
+}
+</style>
+</head>
+<body>
+
+<div id="cur"></div>
+
+<!-- hero -->
+<div class="hero-wrap">
+  <span class="hero-word" id="heroWord"><span class="hero-inner" id="heroInner">THEORY</span></span>
+  <div class="foot">
+    <span class="foot-l">hello@theory.co.uk</span>
+    <div class="foot-rule"></div>
+    <span class="foot-r">2024 Collection</span>
+  </div>
+</div>
+
+<!-- strip -->
+<div class="strip-ui">
+  <div class="strip-labels"><span id="imageCount"></span></div>
+  <div class="strip" id="strip">
+    <div class="item"><img src="https://images.unsplash.com/photo-1549068106-b024baf5062d?q=80&w=687&auto=format&fit=crop" alt=""/><div class="item-shade"></div><div class="item-tag">THEORY</div><div class="item-n">01</div><div class="item-desc"><div class="item-desc-label">THEORY — Look 01</div><div class="item-desc-title">Street Energy</div><div class="item-desc-body">Bold colour, easy silhouette. The yellow set that owns the room.</div><a href="#" class="item-buy" id="buyLink">Buy Now</a></div><a href="#" class="item-buy">Buy Now</a></div>
+    <div class="item"><img src="https://images.unsplash.com/photo-1644264811408-68025d001fd6?q=80&w=735&auto=format&fit=crop" alt=""/><div class="item-shade"></div><div class="item-tag">THEORY</div><div class="item-n">02</div><div class="item-desc"><div class="item-desc-label">THEORY — Look 02</div><div class="item-desc-title">Red Noise</div><div class="item-desc-body">Graphic tee, oversized attitude. Urban edge, zero effort.</div><a href="#" class="item-buy">Buy Now</a></div></div>
+    <div class="item"><img src="https://images.unsplash.com/photo-1729375874763-45ddfc9feec1?q=80&w=688&auto=format&fit=crop" alt=""/><div class="item-shade"></div><div class="item-tag">THEORY</div><div class="item-n">03</div><div class="item-desc"><div class="item-desc-label">THEORY — Look 03</div><div class="item-desc-title">Aqua Edit</div><div class="item-desc-body">A chromatic moment. Vivid tones for those who refuse to blend in.</div><a href="#" class="item-buy">Buy Now</a></div></div>
+    <div class="item"><img src="https://images.unsplash.com/photo-1666414135022-ba42cf2aa17e?q=80&w=735&auto=format&fit=crop" alt=""/><div class="item-shade"></div><div class="item-tag">THEORY</div><div class="item-n">04</div><div class="item-desc"><div class="item-desc-label">THEORY — Look 04</div><div class="item-desc-title">Gold Hour</div><div class="item-desc-body">Sun-kissed and effortless. Statement jewellery, minimal everything else.</div><a href="#" class="item-buy">Buy Now</a></div></div>
+    <div class="item"><img src="https://images.unsplash.com/photo-1613984897875-8675e63809c7?q=80&w=700&auto=format&fit=crop" alt=""/><div class="item-shade"></div><div class="item-tag">THEORY</div><div class="item-n">05</div><div class="item-desc"><div class="item-desc-label">THEORY — Look 05</div><div class="item-desc-title">Dark Stripe</div><div class="item-desc-body">Wide-leg tailoring in monochrome. Sharp lines, softer mood.</div><a href="#" class="item-buy">Buy Now</a></div></div>
+    <div class="item"><img src="https://images.unsplash.com/photo-1630952326960-751f8df2fcc2?q=80&w=687&auto=format&fit=crop" alt=""/><div class="item-shade"></div><div class="item-tag">THEORY</div><div class="item-n">06</div><div class="item-desc"><div class="item-desc-label">THEORY — Look 06</div><div class="item-desc-title">Floral Study</div><div class="item-desc-body">Printed silk, open air. Romance done on your own terms.</div><a href="#" class="item-buy">Buy Now</a></div></div>
+    <div class="item"><img src="https://images.unsplash.com/photo-1557744685-8228ebbb5ad5?q=80&w=687&auto=format&fit=crop" alt=""/><div class="item-shade"></div><div class="item-tag">THEORY</div><div class="item-n">07</div><div class="item-desc"><div class="item-desc-label">THEORY — Look 07</div><div class="item-desc-title">City Rouge</div><div class="item-desc-body">Bordeaux coat, full stop. The piece that carries the whole season.</div><a href="#" class="item-buy">Buy Now</a></div></div>
+    <div class="item"><img src="https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?q=80&w=687&auto=format&fit=crop" alt=""/><div class="item-shade"></div><div class="item-tag">THEORY</div><div class="item-n">08</div><div class="item-desc"><div class="item-desc-label">THEORY — Look 08</div><div class="item-desc-title">Neutral Ground</div><div class="item-desc-body">Texture over colour. Tactile fabrics that speak quietly, confidently.</div><a href="#" class="item-buy">Buy Now</a></div></div>
+    <div class="item"><img src="https://images.unsplash.com/photo-1622445275463-afa2ab738c34?q=80&w=687&auto=format&fit=crop" alt=""/><div class="item-shade"></div><div class="item-tag">THEORY</div><div class="item-n">09</div><div class="item-desc"><div class="item-desc-label">THEORY — Look 09</div><div class="item-desc-title">The Rail</div><div class="item-desc-body">Wardrobe as architecture. Everything hung with intention.</div><a href="#" class="item-buy">Buy Now</a></div></div>
+    <div class="item"><img src="https://images.unsplash.com/photo-1571945153237-4929e783af4a?q=80&w=687&auto=format&fit=crop" alt=""/><div class="item-shade"></div><div class="item-tag">THEORY</div><div class="item-n">10</div><div class="item-desc"><div class="item-desc-label">THEORY — Look 10</div><div class="item-desc-title">Milan Grey</div><div class="item-desc-body">Cathedral light, powder blue coat. European cool, perfectly composed.</div><a href="#" class="item-buy">Buy Now</a></div></div>
+    <div class="item"><img src="https://images.unsplash.com/photo-1514989940723-e8e51635b782?q=80&w=1170&auto=format&fit=crop" alt=""/><div class="item-shade"></div><div class="item-tag">THEORY</div><div class="item-n">11</div><div class="item-desc"><div class="item-desc-label">THEORY — Look 11</div><div class="item-desc-title">Clean Sole</div><div class="item-desc-body">White trainers, dark denim. The foundation every outfit needs.</div><a href="#" class="item-buy">Buy Now</a></div></div>
+    <div class="item"><img src="https://images.unsplash.com/photo-1503341733017-1901578f9f1e?q=80&w=1170&auto=format&fit=crop" alt=""/><div class="item-shade"></div><div class="item-tag">THEORY</div><div class="item-n">12</div><div class="item-desc"><div class="item-desc-label">THEORY — Look 12</div><div class="item-desc-title">Woven Air</div><div class="item-desc-body">Open-knit poncho, natural fibre. Effortless structure, warm weight.</div><a href="#" class="item-buy">Buy Now</a></div></div>
+    <div class="item"><img src="https://images.unsplash.com/photo-1678872844677-d650b788709b?q=80&w=765&auto=format&fit=crop" alt=""/><div class="item-shade"></div><div class="item-tag">THEORY</div><div class="item-n">13</div><div class="item-desc"><div class="item-desc-label">THEORY — Look 13</div><div class="item-desc-title">Soft Pink</div><div class="item-desc-body">Ruffled romance for the unconvinced romantic. Delicate but deliberate.</div><a href="#" class="item-buy">Buy Now</a></div></div>
+    <div class="item"><img src="https://images.unsplash.com/photo-1600328759671-85927887458d?q=80&w=687&auto=format&fit=crop" alt=""/><div class="item-shade"></div><div class="item-tag">THEORY</div><div class="item-n">14</div><div class="item-desc"><div class="item-desc-label">THEORY — Look 14</div><div class="item-desc-title">The Sprint</div><div class="item-desc-body">Shorts, open road, no plan. Movement as a fashion statement.</div><a href="#" class="item-buy">Buy Now</a></div></div>
+  </div>
+  <div class="prog-wrap"><div class="prog" id="prog"></div></div>
+</div>
+
+<!-- about panel -->
+<div class="about-panel" id="aboutPanel">
+  <div class="about-close" id="aboutClose">Close ↓</div>
+  <div class="about-panel-header">About — Theory</div>
+  <div class="about-scroll-hint" id="aboutScrollHint">
+    <span class="about-scroll-label">Scroll for Contact</span>
+    <div class="about-scroll-arrow"></div>
+  </div>
+  <div class="about-panel-body">THEORY was built on the idea that good clothing already exists.<br><br>Hidden in the rhythm of London, THEORY is a curated second-hand store shaped by vintage culture, timeless design, and everyday individuality. We source pieces with character — worn leather, faded denim, oversized tailoring, old sportswear, heavyweight basics — clothing that carries history and still feels relevant now.<br><br>Every item is chosen for its quality, fit, texture, and story. No fast fashion. No throwaway trends. Just garments made to be worn again, styled differently, and kept longer.<br><br>THEORY is for people who value expression over labels and authenticity over excess. A space where vintage meets modern street culture, and where personal style comes before everything else.<br><br>London inspired. Vintage driven. Worn with intention.</div>
+  
+</div>
+
+<!-- scroll hint -->
+<div class="scroll-hint" id="scrollHint">
+  <span class="scroll-hint-label">Scroll</span>
+  <div class="scroll-hint-arrow"></div>
+</div>
+
+
+<!-- contact panel -->
+<div class="contact-panel" id="contactPanel">
+  <div class="contact-close" id="contactClose">Close ↓</div>
+  <div class="contact-panel-header">Contact — Theory</div>
+  <div class="contact-panel-title">Seen something you like? Get in touch.</div>
+  <div style="display:flex; flex-direction:column; gap:6px; margin-top: 8px;">
+    <a href="mailto:hello@theory.co.uk" style="font-size:11px;font-weight:300;letter-spacing:.08em;color:rgba(0,0,0,.75);text-decoration:none;">hello@theory.co.uk</a>
+    <span style="font-size:11px;font-weight:300;letter-spacing:.08em;color:rgba(0,0,0,.7);">London, United Kingdom</span>
+  </div>
+  <div class="contact-footer">
+    <div class="contact-footer-col">
+      <div class="contact-footer-col-title">Navigate</div>
+      <a href="#" class="contact-footer-link">Latest</a>
+      <a href="#" class="contact-footer-link" id="footAboutLink">About</a>
+      <a href="#" class="contact-footer-link" id="footContactLink">Contact</a>
+    </div>
+    <div class="contact-footer-col">
+      <div class="contact-footer-col-title">Follow</div>
+      <a href="https://linkedin.com" target="_blank" class="contact-footer-link">LinkedIn</a>
+      <a href="https://facebook.com" target="_blank" class="contact-footer-link">Facebook</a>
+      <a href="https://x.com" target="_blank" class="contact-footer-link">X / Twitter</a>
+    </div>
+    <div class="contact-footer-col">
+      <div class="contact-footer-col-title">Legal</div>
+      <a href="#" class="contact-footer-link">Privacy Policy</a>
+      <a href="#" class="contact-footer-link">Terms &amp; Conditions</a>
+      <div class="contact-footer-copy" style="margin-top:8px;color:rgba(0,0,0,.4);">© 2026 Theory.<br>All rights reserved.</div>
+    </div>
+  </div>
+</div>
+
+<!-- mobile -->
+<div class="mobile-layout">
+  
+  <div class="mobile-items" id="mobileItems">
+    <div class="mobile-item">
+      <img src="https://images.unsplash.com/photo-1549068106-b024baf5062d?q=80&w=687&auto=format&fit=crop" alt=""/>
+      <div class="mobile-item-overlay"></div>
+      <div class="mobile-item-info">
+        <div class="mobile-item-info-label">Look 01</div>
+        <div class="mobile-item-info-title">Street Energy</div>
+        <div class="mobile-item-info-body">Bold colour, easy silhouette. The yellow set that owns the room.</div><a href="#" class="mobile-item-buy">Buy Now</a>
+      </div>
+      <div class="mobile-item-n">01</div>
+    </div>
+    <div class="mobile-item">
+      <img src="https://images.unsplash.com/photo-1644264811408-68025d001fd6?q=80&w=735&auto=format&fit=crop" alt=""/>
+      <div class="mobile-item-overlay"></div>
+      <div class="mobile-item-info">
+        <div class="mobile-item-info-label">Look 02</div>
+        <div class="mobile-item-info-title">Red Noise</div>
+        <div class="mobile-item-info-body">Graphic tee, oversized attitude. Urban edge, zero effort.</div><a href="#" class="mobile-item-buy">Buy Now</a>
+      </div>
+      <div class="mobile-item-n">02</div>
+    </div>
+    <div class="mobile-item">
+      <img src="https://images.unsplash.com/photo-1729375874763-45ddfc9feec1?q=80&w=688&auto=format&fit=crop" alt=""/>
+      <div class="mobile-item-overlay"></div>
+      <div class="mobile-item-info">
+        <div class="mobile-item-info-label">Look 03</div>
+        <div class="mobile-item-info-title">Aqua Edit</div>
+        <div class="mobile-item-info-body">A chromatic moment. Vivid tones for those who refuse to blend in.</div><a href="#" class="mobile-item-buy">Buy Now</a>
+      </div>
+      <div class="mobile-item-n">03</div>
+    </div>
+    <div class="mobile-item">
+      <img src="https://images.unsplash.com/photo-1666414135022-ba42cf2aa17e?q=80&w=735&auto=format&fit=crop" alt=""/>
+      <div class="mobile-item-overlay"></div>
+      <div class="mobile-item-info">
+        <div class="mobile-item-info-label">Look 04</div>
+        <div class="mobile-item-info-title">Gold Hour</div>
+        <div class="mobile-item-info-body">Sun-kissed and effortless. Statement jewellery, minimal everything else.</div><a href="#" class="mobile-item-buy">Buy Now</a>
+      </div>
+      <div class="mobile-item-n">04</div>
+    </div>
+    <div class="mobile-item">
+      <img src="https://images.unsplash.com/photo-1613984897875-8675e63809c7?q=80&w=700&auto=format&fit=crop" alt=""/>
+      <div class="mobile-item-overlay"></div>
+      <div class="mobile-item-info">
+        <div class="mobile-item-info-label">Look 05</div>
+        <div class="mobile-item-info-title">Dark Stripe</div>
+        <div class="mobile-item-info-body">Wide-leg tailoring in monochrome. Sharp lines, softer mood.</div><a href="#" class="mobile-item-buy">Buy Now</a>
+      </div>
+      <div class="mobile-item-n">05</div>
+    </div>
+    <div class="mobile-item">
+      <img src="https://images.unsplash.com/photo-1630952326960-751f8df2fcc2?q=80&w=687&auto=format&fit=crop" alt=""/>
+      <div class="mobile-item-overlay"></div>
+      <div class="mobile-item-info">
+        <div class="mobile-item-info-label">Look 06</div>
+        <div class="mobile-item-info-title">Floral Study</div>
+        <div class="mobile-item-info-body">Printed silk, open air. Romance done on your own terms.</div><a href="#" class="mobile-item-buy">Buy Now</a>
+      </div>
+      <div class="mobile-item-n">06</div>
+    </div>
+    <div class="mobile-item">
+      <img src="https://images.unsplash.com/photo-1557744685-8228ebbb5ad5?q=80&w=687&auto=format&fit=crop" alt=""/>
+      <div class="mobile-item-overlay"></div>
+      <div class="mobile-item-info">
+        <div class="mobile-item-info-label">Look 07</div>
+        <div class="mobile-item-info-title">City Rouge</div>
+        <div class="mobile-item-info-body">Bordeaux coat, full stop. The piece that carries the whole season.</div><a href="#" class="mobile-item-buy">Buy Now</a>
+      </div>
+      <div class="mobile-item-n">07</div>
+    </div>
+    <div class="mobile-item">
+      <img src="https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?q=80&w=687&auto=format&fit=crop" alt=""/>
+      <div class="mobile-item-overlay"></div>
+      <div class="mobile-item-info">
+        <div class="mobile-item-info-label">Look 08</div>
+        <div class="mobile-item-info-title">Neutral Ground</div>
+        <div class="mobile-item-info-body">Texture over colour. Tactile fabrics that speak quietly.</div><a href="#" class="mobile-item-buy">Buy Now</a>
+      </div>
+      <div class="mobile-item-n">08</div>
+    </div>
+    <div class="mobile-item">
+      <img src="https://images.unsplash.com/photo-1622445275463-afa2ab738c34?q=80&w=687&auto=format&fit=crop" alt=""/>
+      <div class="mobile-item-overlay"></div>
+      <div class="mobile-item-info">
+        <div class="mobile-item-info-label">Look 09</div>
+        <div class="mobile-item-info-title">The Rail</div>
+        <div class="mobile-item-info-body">Wardrobe as architecture. Everything hung with intention.</div><a href="#" class="mobile-item-buy">Buy Now</a>
+      </div>
+      <div class="mobile-item-n">09</div>
+    </div>
+    <div class="mobile-item">
+      <img src="https://images.unsplash.com/photo-1571945153237-4929e783af4a?q=80&w=687&auto=format&fit=crop" alt=""/>
+      <div class="mobile-item-overlay"></div>
+      <div class="mobile-item-info">
+        <div class="mobile-item-info-label">Look 10</div>
+        <div class="mobile-item-info-title">Milan Grey</div>
+        <div class="mobile-item-info-body">Cathedral light, powder blue coat. European cool.</div><a href="#" class="mobile-item-buy">Buy Now</a>
+      </div>
+      <div class="mobile-item-n">10</div>
+    </div>
+    <div class="mobile-item">
+      <img src="https://images.unsplash.com/photo-1514989940723-e8e51635b782?q=80&w=1170&auto=format&fit=crop" alt=""/>
+      <div class="mobile-item-overlay"></div>
+      <div class="mobile-item-info">
+        <div class="mobile-item-info-label">Look 11</div>
+        <div class="mobile-item-info-title">Clean Sole</div>
+        <div class="mobile-item-info-body">White trainers, dark denim. The foundation every outfit needs.</div><a href="#" class="mobile-item-buy">Buy Now</a>
+      </div>
+      <div class="mobile-item-n">11</div>
+    </div>
+    <div class="mobile-item">
+      <img src="https://images.unsplash.com/photo-1503341733017-1901578f9f1e?q=80&w=1170&auto=format&fit=crop" alt=""/>
+      <div class="mobile-item-overlay"></div>
+      <div class="mobile-item-info">
+        <div class="mobile-item-info-label">Look 12</div>
+        <div class="mobile-item-info-title">Woven Air</div>
+        <div class="mobile-item-info-body">Open-knit poncho, natural fibre. Effortless structure.</div><a href="#" class="mobile-item-buy">Buy Now</a>
+      </div>
+      <div class="mobile-item-n">12</div>
+    </div>
+    <div class="mobile-item">
+      <img src="https://images.unsplash.com/photo-1678872844677-d650b788709b?q=80&w=765&auto=format&fit=crop" alt=""/>
+      <div class="mobile-item-overlay"></div>
+      <div class="mobile-item-info">
+        <div class="mobile-item-info-label">Look 13</div>
+        <div class="mobile-item-info-title">Soft Pink</div>
+        <div class="mobile-item-info-body">Ruffled romance for the unconvinced romantic.</div><a href="#" class="mobile-item-buy">Buy Now</a>
+      </div>
+      <div class="mobile-item-n">13</div>
+    </div>
+    <div class="mobile-item">
+      <img src="https://images.unsplash.com/photo-1600328759671-85927887458d?q=80&w=687&auto=format&fit=crop" alt=""/>
+      <div class="mobile-item-overlay"></div>
+      <div class="mobile-item-info">
+        <div class="mobile-item-info-label">Look 14</div>
+        <div class="mobile-item-info-title">The Sprint</div>
+        <div class="mobile-item-info-body">Shorts, open road, no plan. Movement as fashion.</div><a href="#" class="mobile-item-buy">Buy Now</a>
+      </div>
+      <div class="mobile-item-n">14</div>
+    </div>
+  </div>
+  <div class="mobile-hero"><span class="mobile-hero-word">THEORY</span></div>
+  <div class="mobile-foot">
+    <span class="mobile-foot-l">hello@theory.co.uk</span>
+    <div class="mobile-foot-rule"></div>
+    <span class="mobile-foot-r">2024 Collection</span>
+  </div>
+</div>
+
+<header>
+  <div class="h-logo">Theory</div>
+  <div class="h-menu-btn" id="menuBtn">Menu</div>
+</header>
+
+<div class="nav-overlay" id="navOverlay">
+  <nav>
+    <a href="#">Latest</a>
+    <a href="#" id="navAbout">About</a>
+    <a href="#" id="navContact">Contact</a>
+  </nav>
+  <div class="nav-footer">
+    <div class="nav-socials">
+      <a href="https://linkedin.com" target="_blank" class="nav-social-link">LinkedIn</a>
+      <a href="https://facebook.com" target="_blank" class="nav-social-link">Facebook</a>
+      <a href="https://x.com" target="_blank" class="nav-social-link">X</a>
+    </div>
+    <span>2024 Collection</span>
+  </div>
+</div>
+
+<script>
+  const cur = document.getElementById('cur');
+  const strip = document.getElementById('strip');
+  const items = strip.querySelectorAll('.item');
+  const menuBtn = document.getElementById('menuBtn');
+  const navOverlay = document.getElementById('navOverlay');
+  const aboutPanel = document.getElementById('aboutPanel');
+  const aboutClose = document.getElementById('aboutClose');
+  const scrollHint = document.getElementById('scrollHint');
+  const navAbout = document.getElementById('navAbout');
+
+  document.addEventListener('mousemove', e => { cur.style.left = e.clientX + 'px'; cur.style.top = e.clientY + 'px'; });
+
+  // ── menu toggle ──
+  let menuOpen = false;
+  function openMenu() {
+    menuOpen = true;
+    navOverlay.classList.add('open');
+    document.body.classList.add('menu-open');
+    menuBtn.textContent = 'Close';
+  }
+  function closeMenu() {
+    menuOpen = false;
+    navOverlay.classList.remove('open');
+    document.body.classList.remove('menu-open');
+    menuBtn.textContent = 'Menu';
+  }
+  menuBtn.addEventListener('click', () => { menuOpen ? closeMenu() : openMenu(); });
+
+  // ── about panel ──
+  let aboutOpen = false;
+  function openAbout() {
+    closeContact();           // always clear contact before showing about
+    aboutOpen = true;
+    aboutPanel.classList.add('visible');
+    scrollHint.classList.add('hidden');
+    closeMenu();
+  }
+  function closeAbout() {
+    aboutOpen = false;
+    aboutPanel.classList.remove('visible');
+    scrollHint.classList.remove('hidden');
+  }
+
+  aboutClose.addEventListener('click', closeAbout);
+  navAbout.addEventListener('click', e => { e.preventDefault(); openAbout(); });
+  document.getElementById('navContact').addEventListener('click', e => { e.preventDefault(); openAbout(); openContact(); });
+
+  // ── contact panel ──
+  const contactPanel = document.getElementById('contactPanel');
+  const contactClose = document.getElementById('contactClose');
+  let contactOpen = false;
+
+  function openContact() {
+    contactOpen = true;
+    contactPanel.classList.add('visible');
+  }
+  function closeContact() {
+    contactOpen = false;
+    contactPanel.classList.remove('visible');
+  }
+
+  contactClose.addEventListener('click', closeContact);
+
+  // Buy Now — close image, open contact directly (skip about)
+  document.querySelectorAll('.item-buy, .mobile-item-buy').forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      e.stopPropagation();
+      strip.classList.remove('active');
+      items.forEach(i => i.classList.remove('hovered'));
+      cur.classList.remove('big');
+      setTimeout(() => {
+        // Open contact directly without touching about
+        contactOpen = true;
+        contactPanel.classList.add('visible');
+        scrollHint.classList.add('hidden');
+        closeMenu();
+      }, 350);
+    });
+  });
+  document.getElementById('footAboutLink').addEventListener('click', e => { e.preventDefault(); closeContact(); });
+  document.getElementById('footContactLink').addEventListener('click', e => { e.preventDefault(); openContact(); });
+
+  // scroll down anywhere on page to reveal about, scroll from about reveals contact
+  let lastY = 0;
+  // Fire instantly on first scroll event, then lock for 1s so trackpad
+  // continuous scroll can't chain-trigger the next panel
+  let scrollFired = false;
+
+  document.addEventListener('wheel', e => {
+    if (scrollFired) return;
+    if (Math.abs(e.deltaY) < 8) return; // ignore tiny drift
+
+    scrollFired = true;
+    setTimeout(() => { scrollFired = false; }, 1000);
+
+    if (e.deltaY > 0 && !aboutOpen && !contactOpen) { openAbout(); }
+    else if (e.deltaY > 0 && aboutOpen && !contactOpen) { openContact(); }
+    else if (e.deltaY < 0 && contactOpen) { closeContact(); }
+    else if (e.deltaY < 0 && aboutOpen && !contactOpen) { closeAbout(); }
+  }, { passive: true });
+
+  // Touch swipe — desktop/tablet only, disabled on mobile phones
+  if (window.innerWidth > 768) {
+    document.addEventListener('touchstart', e => { lastY = e.touches[0].clientY; }, { passive: true });
+    document.addEventListener('touchend', e => {
+      const dy = lastY - e.changedTouches[0].clientY;
+      if (dy > 20 && !aboutOpen && !contactOpen) { openAbout(); return; }
+      if (dy > 20 && aboutOpen && !contactOpen) { openContact(); return; }
+      if (dy < -20 && contactOpen) { closeContact(); return; }
+      if (dy < -20 && aboutOpen) { closeAbout(); return; }
+    }, { passive: true });
+  }
+
+  // strip
+  items.forEach(item => {
+    item.addEventListener('mouseenter', () => {
+      cur.classList.add('big');
+      strip.classList.add('active');
+      // add new hovered FIRST, then remove others — prevents z-index flicker
+      item.classList.add('hovered');
+      items.forEach(i => { if (i !== item) i.classList.remove('hovered'); });
+    });
+  });
+  let leaveTimer = null;
+
+  strip.addEventListener('mouseleave', () => {
+    // Debounce: only reset if mouse hasn't re-entered within 80ms
+    // This prevents the flicker when moving right-to-left across the 2px gap between items
+    leaveTimer = setTimeout(() => {
+      cur.classList.remove('big');
+      strip.classList.remove('active');
+      items.forEach(i => i.classList.remove('hovered'));
+    }, 80);
+  });
+
+  strip.addEventListener('mouseenter', () => {
+    // Cancel any pending reset if mouse comes back in
+    if (leaveTimer) { clearTimeout(leaveTimer); leaveTimer = null; }
+  });
+
+  // fit THEORY
+  let heroFitted = false;
+  function fitHero() {
+    const word = document.getElementById('heroWord');
+    const inner = document.getElementById('heroInner');
+    if (!word || !inner) return;
+
+    // Disable transition during measurement to avoid flash
+    word.style.transition = 'none';
+
+    const seed = 200;
+    word.style.fontSize = '0px';
+    word.style.visibility = 'visible';
+    void word.offsetHeight;
+
+    word.style.fontSize = seed + 'px';
+    void word.offsetHeight;
+
+    const naturalW = inner.scrollWidth;
+    if (naturalW === 0) return;
+
+    const viewW = Math.round(window.innerWidth);
+    const finalSize = (viewW / naturalW) * seed;
+    word.style.fontSize = finalSize + 'px';
+    void word.offsetHeight;
+
+    // Re-enable smooth transition after first paint
+    requestAnimationFrame(() => {
+      word.style.transition = 'font-size 0.2s ease-out';
+    });
+
+    inner.classList.add('animate');
+    heroFitted = true;
+  }
+
+  // Set image count
+  const count = strip.querySelectorAll('.item').length;
+  document.getElementById('imageCount').textContent = '(' + count + ')';
+  function fitMobileHero() {
+    const mw = document.querySelector('.mobile-hero-word');
+    if (!mw) return;
+    const available = window.innerWidth - 40; // 20px padding each side
+    let lo = 10, hi = 400;
+    for (let i = 0; i < 24; i++) {
+      const mid = (lo + hi) / 2;
+      mw.style.fontSize = mid + 'px';
+      if (mw.scrollWidth > available) hi = mid;
+      else lo = mid;
+    }
+    mw.style.fontSize = lo + 'px';
+    mw.style.visibility = 'visible';
+  }
+
+  // Mobile tap to reveal description
+  document.querySelectorAll('.mobile-item').forEach(item => {
+    item.addEventListener('click', () => {
+      const isActive = item.classList.contains('active');
+      document.querySelectorAll('.mobile-item').forEach(i => i.classList.remove('active'));
+      if (!isActive) item.classList.add('active');
+    });
+  });
+
+    document.fonts.load('900 48px "Barlow Condensed"').then(() => {
+    fitHero();
+    fitMobileHero();
+    // Run again after full page load and once more after 300ms to catch late renders
+    window.addEventListener('load', () => {
+      fitHero(); fitMobileHero();
+      setTimeout(() => { fitHero(); fitMobileHero(); }, 300);
+    });
+  });
+  // Debounced resize/zoom handler
+  let resizeTimer = null;
+  function onResize() {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => { fitHero(); fitMobileHero(); }, 50);
+  }
+  const ro = new ResizeObserver(onResize);
+  ro.observe(document.documentElement);
+  window.addEventListener('resize', onResize);
+</script>
+</body>
+</html>
