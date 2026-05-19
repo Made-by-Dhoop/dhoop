@@ -187,7 +187,7 @@ body.menu-open .h-menu-btn { color: #f0ede8; }
 /* ── MOBILE ── */
 .mobile-layout { display: none; }
 header { mix-blend-mode: normal; }
-@media (max-width: 768px) {
+@media (max-width: 768px), (max-height: 500px) and (orientation: landscape) {
   html, body { cursor: auto; overflow: hidden; }
   #cur { display: none; }
   .strip-ui, .hero-wrap, .scroll-hint { display: none; }
@@ -240,7 +240,7 @@ header { mix-blend-mode: normal; }
   .mobile-hero-word { 
   font-family: "Barlow Condensed", Arial Narrow, sans-serif; 
   font-weight: 900; 
-  font-size: 21vw;
+  font-size: 22vw;
   line-height: 1; 
   letter-spacing: -.01em; 
   color: #0e0e0e; 
