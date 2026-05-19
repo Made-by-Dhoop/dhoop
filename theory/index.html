@@ -65,9 +65,9 @@ body.menu-open .h-menu-btn { color: #f0ede8; }
   opacity: 0; transition: opacity .4s .4s;
 }
 .nav-overlay.open .nav-footer { opacity: 1; }
-.nav-footer span { font-size: 11px; font-weight: 300; letter-spacing: .2em; text-transform: uppercase; color: rgba(240,237,232,.4); }
+.nav-footer span { font-size: 11px; font-weight: 400; letter-spacing: .2em; text-transform: uppercase; color: rgba(240,237,232,.85); }
 .nav-socials { display: flex; flex-direction: column; gap: 6px; }
-.nav-social-link { font-size: 12px; font-weight: 300; letter-spacing: .2em; text-transform: uppercase; color: rgba(240,237,232,.4); text-decoration: none; transition: color .2s; cursor: none; }
+.nav-social-link { font-size: 12px; font-weight: 400; letter-spacing: .2em; text-transform: uppercase; color: rgba(240,237,232,.85); text-decoration: none; transition: color .2s; cursor: none; display: inline-block; padding: 8px 0; min-height: 44px; line-height: 44px; }
 .nav-social-link:hover { color: #f0ede8; }
 
 /* ── HERO z:1 ── */
@@ -366,6 +366,7 @@ header { mix-blend-mode: normal; }
 <div id="cur"></div>
 
 <!-- hero -->
+<main>
 <div class="hero-wrap">
   <span class="hero-word" id="heroWord"><span class="hero-inner" id="heroInner">THEORY</span></span>
   <div class="foot">
@@ -376,12 +377,13 @@ header { mix-blend-mode: normal; }
 </div>
 
 <!-- strip -->
+</main>
 <div class="strip-ui">
   <div class="strip-labels"><span id="imageCount"></span></div>
   <div class="strip" id="strip">
     <div class="item"><img fetchpriority="high" loading="eager" src="https://images.unsplash.com/photo-1549068106-b024baf5062d?q=80&w=687&auto=format&fit=crop" alt="Theory Street Energy"/><div class="item-shade"></div><div class="item-tag">THEORY</div><div class="item-n">01</div><div class="item-desc"><div class="item-desc-label">THEORY — Look 01</div><div class="item-desc-title">Street Energy</div><div class="item-desc-body">Bold colour, easy silhouette. The yellow set that owns the room.</div><a href="#" class="item-buy" id="buyLink">Buy Now</a></div><a href="#" class="item-buy">Buy Now</a></div>
     <div class="item"><img src="https://images.unsplash.com/photo-1644264811408-68025d001fd6?q=80&w=735&auto=format&fit=crop" alt="Theory Red Noise"/><div class="item-shade"></div><div class="item-tag">THEORY</div><div class="item-n">02</div><div class="item-desc"><div class="item-desc-label">THEORY — Look 02</div><div class="item-desc-title">Red Noise</div><div class="item-desc-body">Graphic tee, oversized attitude. Urban edge, zero effort.</div><a href="#" class="item-buy">Buy Now</a></div></div>
-    <div class="item"><img loading="lazy" src="https://images.unsplash.com/photo-1729375874763-45ddfc9feec1?q=80&w=688&auto=format&fit=crop" alt="Theory Aqua Edit"/><div class="item-shade"></div><div class="item-tag">THEORY</div><div class="item-n">03</div><div class="item-desc"><div class="item-desc-label">THEORY — Look 03</div><div class="item-desc-title">Aqua Edit</div><div class="item-desc-body">A chromatic moment. Vivid tones for those who refuse to blend in.</div><a href="#" class="item-buy">Buy Now</a></div></div>
+    <div class="item"><img fetchpriority="high" loading="eager" src="https://images.unsplash.com/photo-1729375874763-45ddfc9feec1?q=80&w=688&auto=format&fit=crop" alt="Theory Aqua Edit"/><div class="item-shade"></div><div class="item-tag">THEORY</div><div class="item-n">03</div><div class="item-desc"><div class="item-desc-label">THEORY — Look 03</div><div class="item-desc-title">Aqua Edit</div><div class="item-desc-body">A chromatic moment. Vivid tones for those who refuse to blend in.</div><a href="#" class="item-buy">Buy Now</a></div></div>
     <div class="item"><img loading="lazy" src="https://images.unsplash.com/photo-1666414135022-ba42cf2aa17e?q=80&w=735&auto=format&fit=crop" alt="Theory Gold Hour"/><div class="item-shade"></div><div class="item-tag">THEORY</div><div class="item-n">04</div><div class="item-desc"><div class="item-desc-label">THEORY — Look 04</div><div class="item-desc-title">Gold Hour</div><div class="item-desc-body">Sun-kissed and effortless. Statement jewellery, minimal everything else.</div><a href="#" class="item-buy">Buy Now</a></div></div>
     <div class="item"><img loading="lazy" src="https://images.unsplash.com/photo-1613984897875-8675e63809c7?q=80&w=700&auto=format&fit=crop" alt="Theory Dark Stripe"/><div class="item-shade"></div><div class="item-tag">THEORY</div><div class="item-n">05</div><div class="item-desc"><div class="item-desc-label">THEORY — Look 05</div><div class="item-desc-title">Dark Stripe</div><div class="item-desc-body">Wide-leg tailoring in monochrome. Sharp lines, softer mood.</div><a href="#" class="item-buy">Buy Now</a></div></div>
     <div class="item"><img loading="lazy" src="https://images.unsplash.com/photo-1630952326960-751f8df2fcc2?q=80&w=687&auto=format&fit=crop" alt="Theory Floral Study"/><div class="item-shade"></div><div class="item-tag">THEORY</div><div class="item-n">06</div><div class="item-desc"><div class="item-desc-label">THEORY — Look 06</div><div class="item-desc-title">Floral Study</div><div class="item-desc-body">Printed silk, open air. Romance done on your own terms.</div><a href="#" class="item-buy">Buy Now</a></div></div>
@@ -452,7 +454,7 @@ header { mix-blend-mode: normal; }
   
   <div class="mobile-items" id="mobileItems">
     <div class="mobile-item">
-      <img fetchpriority="high" loading="eager" src="https://images.unsplash.com/photo-1549068106-b024baf5062d?w=412&q=75&auto=format&fit=crop" alt=""/>
+      <img fetchpriority="high" loading="eager" src="https://images.unsplash.com/photo-1549068106-b024baf5062d?w=412&q=60&auto=format&fit=crop" alt=""/>
       <div class="mobile-item-overlay"></div>
       <div class="mobile-item-info">
         <div class="mobile-item-info-label">Look 01</div>
@@ -462,7 +464,7 @@ header { mix-blend-mode: normal; }
       <div class="mobile-item-n">01</div>
     </div>
     <div class="mobile-item">
-      <img loading="lazy" src="https://images.unsplash.com/photo-1644264811408-68025d001fd6?w=412&q=75&auto=format&fit=crop" alt=""/>
+      <img loading="lazy" src="https://images.unsplash.com/photo-1644264811408-68025d001fd6?w=412&q=60&auto=format&fit=crop" alt=""/>
       <div class="mobile-item-overlay"></div>
       <div class="mobile-item-info">
         <div class="mobile-item-info-label">Look 02</div>
@@ -472,7 +474,7 @@ header { mix-blend-mode: normal; }
       <div class="mobile-item-n">02</div>
     </div>
     <div class="mobile-item">
-      <img loading="lazy" src="https://images.unsplash.com/photo-1729375874763-45ddfc9feec1?w=412&q=75&auto=format&fit=crop" alt=""/>
+      <img fetchpriority="high" loading="eager" src="https://images.unsplash.com/photo-1729375874763-45ddfc9feec1?w=412&q=60&auto=format&fit=crop" alt=""/>
       <div class="mobile-item-overlay"></div>
       <div class="mobile-item-info">
         <div class="mobile-item-info-label">Look 03</div>
@@ -482,7 +484,7 @@ header { mix-blend-mode: normal; }
       <div class="mobile-item-n">03</div>
     </div>
     <div class="mobile-item">
-      <img loading="lazy" src="https://images.unsplash.com/photo-1666414135022-ba42cf2aa17e?w=412&q=75&auto=format&fit=crop" alt=""/>
+      <img loading="lazy" src="https://images.unsplash.com/photo-1666414135022-ba42cf2aa17e?w=412&q=60&auto=format&fit=crop" alt=""/>
       <div class="mobile-item-overlay"></div>
       <div class="mobile-item-info">
         <div class="mobile-item-info-label">Look 04</div>
@@ -492,7 +494,7 @@ header { mix-blend-mode: normal; }
       <div class="mobile-item-n">04</div>
     </div>
     <div class="mobile-item">
-      <img loading="lazy" src="https://images.unsplash.com/photo-1613984897875-8675e63809c7?w=412&q=75&auto=format&fit=crop" alt=""/>
+      <img loading="lazy" src="https://images.unsplash.com/photo-1613984897875-8675e63809c7?w=412&q=60&auto=format&fit=crop" alt=""/>
       <div class="mobile-item-overlay"></div>
       <div class="mobile-item-info">
         <div class="mobile-item-info-label">Look 05</div>
@@ -502,7 +504,7 @@ header { mix-blend-mode: normal; }
       <div class="mobile-item-n">05</div>
     </div>
     <div class="mobile-item">
-      <img loading="lazy" src="https://images.unsplash.com/photo-1630952326960-751f8df2fcc2?w=412&q=75&auto=format&fit=crop" alt=""/>
+      <img loading="lazy" src="https://images.unsplash.com/photo-1630952326960-751f8df2fcc2?w=412&q=60&auto=format&fit=crop" alt=""/>
       <div class="mobile-item-overlay"></div>
       <div class="mobile-item-info">
         <div class="mobile-item-info-label">Look 06</div>
@@ -512,7 +514,7 @@ header { mix-blend-mode: normal; }
       <div class="mobile-item-n">06</div>
     </div>
     <div class="mobile-item">
-      <img loading="lazy" src="https://images.unsplash.com/photo-1557744685-8228ebbb5ad5?w=412&q=75&auto=format&fit=crop" alt=""/>
+      <img loading="lazy" src="https://images.unsplash.com/photo-1557744685-8228ebbb5ad5?w=412&q=60&auto=format&fit=crop" alt=""/>
       <div class="mobile-item-overlay"></div>
       <div class="mobile-item-info">
         <div class="mobile-item-info-label">Look 07</div>
@@ -522,7 +524,7 @@ header { mix-blend-mode: normal; }
       <div class="mobile-item-n">07</div>
     </div>
     <div class="mobile-item">
-      <img loading="lazy" src="https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=412&q=75&auto=format&fit=crop" alt=""/>
+      <img loading="lazy" src="https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=412&q=60&auto=format&fit=crop" alt=""/>
       <div class="mobile-item-overlay"></div>
       <div class="mobile-item-info">
         <div class="mobile-item-info-label">Look 08</div>
@@ -532,7 +534,7 @@ header { mix-blend-mode: normal; }
       <div class="mobile-item-n">08</div>
     </div>
     <div class="mobile-item">
-      <img loading="lazy" src="https://images.unsplash.com/photo-1622445275463-afa2ab738c34?w=412&q=75&auto=format&fit=crop" alt=""/>
+      <img loading="lazy" src="https://images.unsplash.com/photo-1622445275463-afa2ab738c34?w=412&q=60&auto=format&fit=crop" alt=""/>
       <div class="mobile-item-overlay"></div>
       <div class="mobile-item-info">
         <div class="mobile-item-info-label">Look 09</div>
@@ -542,7 +544,7 @@ header { mix-blend-mode: normal; }
       <div class="mobile-item-n">09</div>
     </div>
     <div class="mobile-item">
-      <img loading="lazy" src="https://images.unsplash.com/photo-1571945153237-4929e783af4a?w=412&q=75&auto=format&fit=crop" alt=""/>
+      <img loading="lazy" src="https://images.unsplash.com/photo-1571945153237-4929e783af4a?w=412&q=60&auto=format&fit=crop" alt=""/>
       <div class="mobile-item-overlay"></div>
       <div class="mobile-item-info">
         <div class="mobile-item-info-label">Look 10</div>
@@ -552,7 +554,7 @@ header { mix-blend-mode: normal; }
       <div class="mobile-item-n">10</div>
     </div>
     <div class="mobile-item">
-      <img loading="lazy" src="https://images.unsplash.com/photo-1514989940723-e8e51635b782?w=412&q=75&auto=format&fit=crop" alt=""/>
+      <img loading="lazy" src="https://images.unsplash.com/photo-1514989940723-e8e51635b782?w=412&q=60&auto=format&fit=crop" alt=""/>
       <div class="mobile-item-overlay"></div>
       <div class="mobile-item-info">
         <div class="mobile-item-info-label">Look 11</div>
@@ -562,7 +564,7 @@ header { mix-blend-mode: normal; }
       <div class="mobile-item-n">11</div>
     </div>
     <div class="mobile-item">
-      <img loading="lazy" src="https://images.unsplash.com/photo-1503341733017-1901578f9f1e?w=412&q=75&auto=format&fit=crop" alt=""/>
+      <img loading="lazy" src="https://images.unsplash.com/photo-1503341733017-1901578f9f1e?w=412&q=60&auto=format&fit=crop" alt=""/>
       <div class="mobile-item-overlay"></div>
       <div class="mobile-item-info">
         <div class="mobile-item-info-label">Look 12</div>
@@ -572,7 +574,7 @@ header { mix-blend-mode: normal; }
       <div class="mobile-item-n">12</div>
     </div>
     <div class="mobile-item">
-      <img loading="lazy" src="https://images.unsplash.com/photo-1678872844677-d650b788709b?w=412&q=75&auto=format&fit=crop" alt=""/>
+      <img loading="lazy" src="https://images.unsplash.com/photo-1678872844677-d650b788709b?w=412&q=60&auto=format&fit=crop" alt=""/>
       <div class="mobile-item-overlay"></div>
       <div class="mobile-item-info">
         <div class="mobile-item-info-label">Look 13</div>
@@ -582,7 +584,7 @@ header { mix-blend-mode: normal; }
       <div class="mobile-item-n">13</div>
     </div>
     <div class="mobile-item">
-      <img loading="lazy" src="https://images.unsplash.com/photo-1600328759671-85927887458d?w=412&q=75&auto=format&fit=crop" alt=""/>
+      <img loading="lazy" src="https://images.unsplash.com/photo-1600328759671-85927887458d?w=412&q=60&auto=format&fit=crop" alt=""/>
       <div class="mobile-item-overlay"></div>
       <div class="mobile-item-info">
         <div class="mobile-item-info-label">Look 14</div>
@@ -864,11 +866,13 @@ header { mix-blend-mode: normal; }
       setTimeout(() => { fitHero(); fitMobileHero(); }, 300);
     });
   });
-  // Debounced resize/zoom handler
+  // Debounced resize/zoom handler - 150ms debounce to avoid reflow thrash
   let resizeTimer = null;
   function onResize() {
     clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(() => { fitHero(); fitMobileHero(); }, 50);
+    resizeTimer = setTimeout(() => {
+      requestAnimationFrame(() => { fitHero(); fitMobileHero(); });
+    }, 150);
   }
   const ro = new ResizeObserver(onResize);
   ro.observe(document.documentElement);
