@@ -193,7 +193,7 @@ header { mix-blend-mode: normal; }
   .strip-ui, .hero-wrap, .scroll-hint { display: none; }
   .about-panel { padding: 40px 20px 32px; }
   .about-close { right: 20px; }
-  .mobile-layout { display: flex; flex-direction: column; height: 100vh; overflow-y: auto; -webkit-overflow-scrolling: touch; position: relative; z-index: 1; }
+  .mobile-layout { display: flex; flex-direction: column; height: 100vh; overflow-y: auto; overflow-x: hidden; -webkit-overflow-scrolling: touch; position: relative; z-index: 1; }
   .mobile-strip-labels { display: flex; justify-content: space-between; padding: 80px 20px 10px; font-size: 11px; font-weight: 300; letter-spacing: .2em; text-transform: uppercase; color: #999; }
   .mobile-strip-labels span:last-child { color: #0e0e0e; }
   .mobile-items { display: flex; flex-direction: column; gap: 2px; }
@@ -240,14 +240,15 @@ header { mix-blend-mode: normal; }
   .mobile-hero-word { 
   font-family: "Barlow Condensed", Arial Narrow, sans-serif; 
   font-weight: 900; 
-  font-size: 23vw; 
+  font-size: 21vw;
   line-height: 1; 
   letter-spacing: -.01em; 
   color: #0e0e0e; 
-  white-space: nowrap; 
   display: block; 
   padding: 0 0 4px 0;
   width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
 }
   .mobile-foot { display: flex; align-items: center; padding: 16px 20px 40px; background: #f0ede8; flex-shrink: 0; }
   .mobile-foot-l { font-size: 11px; font-weight: 300; letter-spacing: .15em; color: #999; }
