@@ -195,7 +195,7 @@ header { mix-blend-mode: normal; }
   width: 100%; height: 60vw; overflow: hidden; position: relative; cursor: pointer;
   transition: height 0.5s cubic-bezier(0.34, 1.2, 0.64, 1);
 }
-.mobile-item.active { height: 100vh; }
+.mobile-item.active { height: calc(100vh - 62px); }
 .mobile-item-overlay {
   position: absolute; inset: 0;
   background: linear-gradient(to top, rgba(0,0,0,.75) 0%, rgba(0,0,0,.1) 50%, transparent 100%);
@@ -213,6 +213,7 @@ header { mix-blend-mode: normal; }
   transition: opacity .3s .05s, transform .3s .05s;
   pointer-events: none;
 }
+.mobile-item.active .mobile-item-info { pointer-events: all; }
 .mobile-item.active .mobile-item-info { opacity: 1; transform: translateY(0); }
 .mobile-item-info-label {
   font-size: 9px; font-weight: 300; letter-spacing: .2em; text-transform: uppercase;
@@ -452,7 +453,7 @@ header { mix-blend-mode: normal; }
       <div class="mobile-item-info">
         <div class="mobile-item-info-label">Look 01</div>
         <div class="mobile-item-info-title">Street Energy</div>
-        <div class="mobile-item-info-body">Bold colour, easy silhouette. The yellow set that owns the room.</div><a href="#" class="mobile-item-buy">Buy Now</a>
+        <div class="mobile-item-info-body">Bold colour, easy silhouette. The yellow set that owns the room.</div><button class="mobile-item-buy" id-role="buyNow">Buy Now</button>
       </div>
       <div class="mobile-item-n">01</div>
     </div>
@@ -462,7 +463,7 @@ header { mix-blend-mode: normal; }
       <div class="mobile-item-info">
         <div class="mobile-item-info-label">Look 02</div>
         <div class="mobile-item-info-title">Red Noise</div>
-        <div class="mobile-item-info-body">Graphic tee, oversized attitude. Urban edge, zero effort.</div><a href="#" class="mobile-item-buy">Buy Now</a>
+        <div class="mobile-item-info-body">Graphic tee, oversized attitude. Urban edge, zero effort.</div><button class="mobile-item-buy" id-role="buyNow">Buy Now</button>
       </div>
       <div class="mobile-item-n">02</div>
     </div>
@@ -472,7 +473,7 @@ header { mix-blend-mode: normal; }
       <div class="mobile-item-info">
         <div class="mobile-item-info-label">Look 03</div>
         <div class="mobile-item-info-title">Aqua Edit</div>
-        <div class="mobile-item-info-body">A chromatic moment. Vivid tones for those who refuse to blend in.</div><a href="#" class="mobile-item-buy">Buy Now</a>
+        <div class="mobile-item-info-body">A chromatic moment. Vivid tones for those who refuse to blend in.</div><button class="mobile-item-buy" id-role="buyNow">Buy Now</button>
       </div>
       <div class="mobile-item-n">03</div>
     </div>
@@ -482,7 +483,7 @@ header { mix-blend-mode: normal; }
       <div class="mobile-item-info">
         <div class="mobile-item-info-label">Look 04</div>
         <div class="mobile-item-info-title">Gold Hour</div>
-        <div class="mobile-item-info-body">Sun-kissed and effortless. Statement jewellery, minimal everything else.</div><a href="#" class="mobile-item-buy">Buy Now</a>
+        <div class="mobile-item-info-body">Sun-kissed and effortless. Statement jewellery, minimal everything else.</div><button class="mobile-item-buy" id-role="buyNow">Buy Now</button>
       </div>
       <div class="mobile-item-n">04</div>
     </div>
@@ -492,7 +493,7 @@ header { mix-blend-mode: normal; }
       <div class="mobile-item-info">
         <div class="mobile-item-info-label">Look 05</div>
         <div class="mobile-item-info-title">Dark Stripe</div>
-        <div class="mobile-item-info-body">Wide-leg tailoring in monochrome. Sharp lines, softer mood.</div><a href="#" class="mobile-item-buy">Buy Now</a>
+        <div class="mobile-item-info-body">Wide-leg tailoring in monochrome. Sharp lines, softer mood.</div><button class="mobile-item-buy" id-role="buyNow">Buy Now</button>
       </div>
       <div class="mobile-item-n">05</div>
     </div>
@@ -502,7 +503,7 @@ header { mix-blend-mode: normal; }
       <div class="mobile-item-info">
         <div class="mobile-item-info-label">Look 06</div>
         <div class="mobile-item-info-title">Floral Study</div>
-        <div class="mobile-item-info-body">Printed silk, open air. Romance done on your own terms.</div><a href="#" class="mobile-item-buy">Buy Now</a>
+        <div class="mobile-item-info-body">Printed silk, open air. Romance done on your own terms.</div><button class="mobile-item-buy" id-role="buyNow">Buy Now</button>
       </div>
       <div class="mobile-item-n">06</div>
     </div>
@@ -512,7 +513,7 @@ header { mix-blend-mode: normal; }
       <div class="mobile-item-info">
         <div class="mobile-item-info-label">Look 07</div>
         <div class="mobile-item-info-title">City Rouge</div>
-        <div class="mobile-item-info-body">Bordeaux coat, full stop. The piece that carries the whole season.</div><a href="#" class="mobile-item-buy">Buy Now</a>
+        <div class="mobile-item-info-body">Bordeaux coat, full stop. The piece that carries the whole season.</div><button class="mobile-item-buy" id-role="buyNow">Buy Now</button>
       </div>
       <div class="mobile-item-n">07</div>
     </div>
@@ -522,7 +523,7 @@ header { mix-blend-mode: normal; }
       <div class="mobile-item-info">
         <div class="mobile-item-info-label">Look 08</div>
         <div class="mobile-item-info-title">Neutral Ground</div>
-        <div class="mobile-item-info-body">Texture over colour. Tactile fabrics that speak quietly.</div><a href="#" class="mobile-item-buy">Buy Now</a>
+        <div class="mobile-item-info-body">Texture over colour. Tactile fabrics that speak quietly.</div><button class="mobile-item-buy" id-role="buyNow">Buy Now</button>
       </div>
       <div class="mobile-item-n">08</div>
     </div>
@@ -532,7 +533,7 @@ header { mix-blend-mode: normal; }
       <div class="mobile-item-info">
         <div class="mobile-item-info-label">Look 09</div>
         <div class="mobile-item-info-title">The Rail</div>
-        <div class="mobile-item-info-body">Wardrobe as architecture. Everything hung with intention.</div><a href="#" class="mobile-item-buy">Buy Now</a>
+        <div class="mobile-item-info-body">Wardrobe as architecture. Everything hung with intention.</div><button class="mobile-item-buy" id-role="buyNow">Buy Now</button>
       </div>
       <div class="mobile-item-n">09</div>
     </div>
@@ -542,7 +543,7 @@ header { mix-blend-mode: normal; }
       <div class="mobile-item-info">
         <div class="mobile-item-info-label">Look 10</div>
         <div class="mobile-item-info-title">Milan Grey</div>
-        <div class="mobile-item-info-body">Cathedral light, powder blue coat. European cool.</div><a href="#" class="mobile-item-buy">Buy Now</a>
+        <div class="mobile-item-info-body">Cathedral light, powder blue coat. European cool.</div><button class="mobile-item-buy" id-role="buyNow">Buy Now</button>
       </div>
       <div class="mobile-item-n">10</div>
     </div>
@@ -552,7 +553,7 @@ header { mix-blend-mode: normal; }
       <div class="mobile-item-info">
         <div class="mobile-item-info-label">Look 11</div>
         <div class="mobile-item-info-title">Clean Sole</div>
-        <div class="mobile-item-info-body">White trainers, dark denim. The foundation every outfit needs.</div><a href="#" class="mobile-item-buy">Buy Now</a>
+        <div class="mobile-item-info-body">White trainers, dark denim. The foundation every outfit needs.</div><button class="mobile-item-buy" id-role="buyNow">Buy Now</button>
       </div>
       <div class="mobile-item-n">11</div>
     </div>
@@ -562,7 +563,7 @@ header { mix-blend-mode: normal; }
       <div class="mobile-item-info">
         <div class="mobile-item-info-label">Look 12</div>
         <div class="mobile-item-info-title">Woven Air</div>
-        <div class="mobile-item-info-body">Open-knit poncho, natural fibre. Effortless structure.</div><a href="#" class="mobile-item-buy">Buy Now</a>
+        <div class="mobile-item-info-body">Open-knit poncho, natural fibre. Effortless structure.</div><button class="mobile-item-buy" id-role="buyNow">Buy Now</button>
       </div>
       <div class="mobile-item-n">12</div>
     </div>
@@ -572,7 +573,7 @@ header { mix-blend-mode: normal; }
       <div class="mobile-item-info">
         <div class="mobile-item-info-label">Look 13</div>
         <div class="mobile-item-info-title">Soft Pink</div>
-        <div class="mobile-item-info-body">Ruffled romance for the unconvinced romantic.</div><a href="#" class="mobile-item-buy">Buy Now</a>
+        <div class="mobile-item-info-body">Ruffled romance for the unconvinced romantic.</div><button class="mobile-item-buy" id-role="buyNow">Buy Now</button>
       </div>
       <div class="mobile-item-n">13</div>
     </div>
@@ -582,7 +583,7 @@ header { mix-blend-mode: normal; }
       <div class="mobile-item-info">
         <div class="mobile-item-info-label">Look 14</div>
         <div class="mobile-item-info-title">The Sprint</div>
-        <div class="mobile-item-info-body">Shorts, open road, no plan. Movement as fashion.</div><a href="#" class="mobile-item-buy">Buy Now</a>
+        <div class="mobile-item-info-body">Shorts, open road, no plan. Movement as fashion.</div><button class="mobile-item-buy" id-role="buyNow">Buy Now</button>
       </div>
       <div class="mobile-item-n">14</div>
     </div>
@@ -663,6 +664,15 @@ header { mix-blend-mode: normal; }
   aboutClose.addEventListener('click', closeAbout);
   navAbout.addEventListener('click', e => { e.preventDefault(); openAbout(); });
   document.getElementById('navContact').addEventListener('click', e => { e.preventDefault(); openAbout(); openContact(); });
+
+  // Mobile buy now — same as navContact
+  document.querySelectorAll('[id-role="buyNow"]').forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.preventDefault();
+      e.stopPropagation();
+      openContact();
+    });
+  });
 
   // ── contact panel ──
   const contactPanel = document.getElementById('contactPanel');
