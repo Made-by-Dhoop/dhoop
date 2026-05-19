@@ -25,6 +25,8 @@ header {
   padding: 22px 40px;
 }
 .h-logo { font-size: 12px; font-weight: 400; letter-spacing: .2em; text-transform: uppercase; color: #0e0e0e; transition: color .3s; text-decoration: none; cursor: none; }
+.hero-logo-img { width: 100%; height: auto; display: block; padding: 0; }
+.hero-logo-svg { width: 100%; height: auto; display: block; }
 
 /* menu button — always visible, switches label */
 .h-menu-btn {
@@ -67,12 +69,12 @@ body.menu-open .h-menu-btn { color: #f0ede8; }
 .nav-overlay.open .nav-footer { opacity: 1; }
 .nav-footer span { font-size: 11px; font-weight: 400; letter-spacing: .2em; text-transform: uppercase; color: #ffffff; }
 .nav-socials { display: flex; flex-direction: column; gap: 6px; }
-.nav-social-link { font-size: 12px; font-weight: 400; letter-spacing: .2em; text-transform: uppercase; color: #ffffff; text-decoration: none; transition: color .2s; cursor: none; display: inline-block; padding: 8px 0; min-height: 44px; line-height: 44px; }
+.nav-social-link { font-size: 12px; font-weight: 400; letter-spacing: .2em; text-transform: uppercase; color: #ffffff; text-decoration: none; transition: color .2s; cursor: none; display: block; padding: 10px 0; }
 .nav-social-link:hover { color: #f0ede8; }
 
 /* ── HERO z:1 ── */
-.hero-wrap { position: fixed; inset: 0; z-index: 1; display: flex; flex-direction: column; justify-content: flex-end; }
-.hero-word { font-family: 'Barlow Condensed', Arial Narrow, sans-serif; font-weight: 900; line-height: .88; letter-spacing: -.01em; color: #0e0e0e; white-space: nowrap; display: block; width: 100%; padding: 0; visibility: hidden; overflow: hidden; transition: font-size 0.15s ease-out; }
+.hero-wrap { position: fixed; inset: 0; z-index: 1; display: flex; flex-direction: column; justify-content: flex-end; overflow: hidden; }
+.hero-word { font-family: 'Barlow Condensed', Arial Narrow, sans-serif; font-weight: 900; line-height: .88; letter-spacing: -.01em; color: #0e0e0e; white-space: nowrap; display: block; width: 100%; padding: 0; visibility: hidden; overflow: hidden; }
 .hero-inner { display: inline-block; transform: translateY(105%); }
 .hero-inner.animate { animation: up 1s cubic-bezier(.16,1,.3,1) forwards; }
 @keyframes up { to { transform: translateY(0); } }
@@ -234,17 +236,46 @@ header { mix-blend-mode: normal; }
 }
   .mobile-item img { width: 100%; height: 100%; object-fit: cover; display: block; object-position: center 20%; }
   .mobile-item-n { position: absolute; bottom: 8px; left: 10px; font-size: 8px; font-weight: 300; letter-spacing: .08em; color: rgba(255,255,255,.8); }
-  .mobile-hero { padding: 20px 20px 0; background: #f0ede8; }
-  .mobile-hero-word { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 22vw; line-height: .95; letter-spacing: -.01em; color: #0e0e0e; white-space: nowrap; display: block; visibility: hidden; padding-bottom: 4px; }
-  .mobile-foot { display: flex; align-items: center; padding: 10px 20px 24px; background: #f0ede8; }
-  .mobile-foot-l { font-size: 8px; font-weight: 300; letter-spacing: .15em; color: #999; }
+  .mobile-hero { padding: 16px 0 8px; background: #f0ede8; }
+  .mobile-hero-word { 
+  font-family: "Barlow Condensed", Arial Narrow, sans-serif; 
+  font-weight: 900; 
+  font-size: 23vw; 
+  line-height: 1; 
+  letter-spacing: -.01em; 
+  color: #0e0e0e; 
+  white-space: nowrap; 
+  display: block; 
+  padding: 0 0 4px 0;
+  width: 100%;
+}
+  .mobile-foot { display: flex; align-items: center; padding: 16px 20px 40px; background: #f0ede8; flex-shrink: 0; }
+  .mobile-foot-l { font-size: 11px; font-weight: 300; letter-spacing: .15em; color: #999; }
   .mobile-foot-rule { flex: 1; height: 1px; background: #d0ccc5; margin: 0 16px; }
-  .mobile-foot-r { font-size: 8px; font-weight: 300; letter-spacing: .2em; text-transform: uppercase; color: #999; }
+  .mobile-foot-r { font-size: 11px; font-weight: 300; letter-spacing: .2em; text-transform: uppercase; color: #999; }
 
   .contact-panel { z-index: 500 !important; }
+  .logo-img { filter: invert(1); }
+
+  .contact-panel-title {
+    font-size: clamp(32px, 11vw, 68px) !important;
+    line-height: 1.0;
+  }
+  .contact-panel { padding: 48px 20px 40px; }
+  .contact-close { right: 20px; }
+
   .about-panel { z-index: 490 !important; }
   .nav-overlay { z-index: 600 !important; }
   header { z-index: 700 !important; }
+
+  .nav-footer {
+    left: 20px; right: 20px; bottom: 20px;
+    flex-direction: column;
+    gap: 16px;
+    align-items: flex-end;
+  }
+  .nav-socials { flex-direction: row; gap: 20px; }
+  .nav-social-link { padding: 4px 0; min-height: 44px; display: flex; align-items: center; }
   header {
     padding: 18px 20px;
     background: transparent;
@@ -422,7 +453,7 @@ header { mix-blend-mode: normal; }
 <div class="contact-panel" id="contactPanel">
   <div class="contact-close" id="contactClose">Close ↓</div>
   <div class="contact-panel-header">Contact — Theory</div>
-  <div class="contact-panel-title">Seen something you like? Get in touch.</div>
+  <div class="contact-panel-title" style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(32px,7vw,90px);line-height:1;letter-spacing:-.01em;color:#000;">Seen something you like? Get in touch.</div>
   <div style="display:flex; flex-direction:column; gap:6px; margin-top: 8px;">
     <a href="tel:+441234567890" style="font-size:11px;font-weight:300;letter-spacing:.08em;color:rgba(0,0,0,.75);text-decoration:none;display:block;margin-bottom:4px;">+44 (0) 1234 567 890</a><a href="mailto:hello@theory.co.uk" style="font-size:11px;font-weight:300;letter-spacing:.08em;color:rgba(0,0,0,.75);text-decoration:none;">hello@theory.co.uk</a>
     <span style="font-size:11px;font-weight:300;letter-spacing:.08em;color:rgba(0,0,0,.7);">London, United Kingdom</span>
@@ -594,7 +625,7 @@ header { mix-blend-mode: normal; }
       <div class="mobile-item-n">14</div>
     </div>
   </div>
-  <div class="mobile-hero"><span class="mobile-hero-word">THEORY</span></div>
+  <div class="mobile-hero"><div class="mobile-hero-word">THEORY</div></div>
   <div class="mobile-foot">
     <span class="mobile-foot-l">hello@theory.co.uk</span>
     <div class="mobile-foot-rule"></div>
@@ -603,7 +634,7 @@ header { mix-blend-mode: normal; }
 </div>
 
 <header>
-  <a href="#" class="h-logo" id="logoLink">Theory</a>
+  <a href="#" class="h-logo" id="logoLink">THEORY</a>
   <div class="h-menu-btn" id="menuBtn">Menu</div>
 </header>
 
@@ -734,12 +765,22 @@ header { mix-blend-mode: normal; }
 
   document.addEventListener('wheel', e => {
     if (scrollFired) return;
-    if (Math.abs(e.deltaY) < 8) return; // ignore tiny drift
+    if (Math.abs(e.deltaY) < 8) return;
 
     scrollFired = true;
     setTimeout(() => { scrollFired = false; }, 1000);
 
-    if (e.deltaY > 0 && !aboutOpen && !contactOpen) { openAbout(); }
+    if (e.deltaY > 0 && !aboutOpen && !contactOpen) {
+      // Close any open image first, then open about
+      if (strip.classList.contains('active')) {
+        strip.classList.remove('active');
+        items.forEach(i => i.classList.remove('hovered'));
+        cur.classList.remove('big');
+        setTimeout(() => openAbout(), 400);
+      } else {
+        openAbout();
+      }
+    }
     else if (e.deltaY > 0 && aboutOpen && !contactOpen) { openContact(); }
     else if (e.deltaY < 0 && contactOpen) { closeContact(); }
     else if (e.deltaY < 0 && aboutOpen && !contactOpen) { closeAbout(); }
@@ -825,15 +866,19 @@ header { mix-blend-mode: normal; }
   function fitMobileHero() {
     const mw = document.querySelector('.mobile-hero-word');
     if (!mw) return;
-    const seed = 100;
+    const seed = 200;
     mw.style.fontSize = seed + 'px';
+    mw.style.position = 'fixed';
+    mw.style.top = '-9999px';
     mw.style.visibility = 'visible';
-    requestAnimationFrame(() => {
-      const naturalW = mw.scrollWidth;
-      if (naturalW === 0) return;
-      const available = window.innerWidth - 40;
-      mw.style.fontSize = ((available / naturalW) * seed) + 'px';
-    });
+    void mw.offsetWidth;
+    const naturalW = mw.offsetWidth;
+    mw.style.position = '';
+    mw.style.top = '';
+    if (naturalW === 0) return;
+    const finalSize = (window.innerWidth / naturalW) * seed * 0.97;
+    mw.style.fontSize = finalSize + 'px';
+    mw.style.visibility = 'visible';
   }
 
   // Mobile buy now — open contact panel directly
@@ -857,14 +902,18 @@ header { mix-blend-mode: normal; }
     });
   });
 
-    document.fonts.load('900 48px "Barlow Condensed"').then(() => {
+  document.fonts.ready.then(() => {
     fitHero();
     fitMobileHero();
-    // Run again after full page load and once more after 300ms to catch late renders
-    window.addEventListener('load', () => {
-      fitHero(); fitMobileHero();
-      setTimeout(() => { fitHero(); fitMobileHero(); }, 300);
-    });
+    // Retry at increasing intervals to catch any late layout
+    setTimeout(() => fitMobileHero(), 100);
+    setTimeout(() => fitMobileHero(), 400);
+    setTimeout(() => fitMobileHero(), 900);
+  });
+  window.addEventListener('load', () => {
+    fitHero();
+    fitMobileHero();
+    setTimeout(() => fitMobileHero(), 200);
   });
   // Debounced resize/zoom handler - 150ms debounce to avoid reflow thrash
   let resizeTimer = null;
