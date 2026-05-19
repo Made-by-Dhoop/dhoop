@@ -250,9 +250,37 @@ header { mix-blend-mode: normal; }
   overflow: hidden;
   white-space: nowrap;
 }
+
+  .mobile-about {
+    background: #0e0e0e;
+    padding: 36px 20px 40px;
+  }
+  .mobile-contact {
+    background: #FF6868;
+    padding: 36px 20px 40px;
+  }
+  .mobile-section-label {
+    font-size: 9px; font-weight: 300; letter-spacing: .25em; text-transform: uppercase;
+    color: rgba(255,255,255,.45); margin-bottom: 20px;
+  }
+  .mobile-contact .mobile-section-label { color: rgba(0,0,0,.4); }
+  .mobile-section-body {
+    font-size: 13px; font-weight: 300; letter-spacing: .02em; line-height: 1.7;
+    color: rgba(255,255,255,.75);
+  }
+  .mobile-contact-title {
+    font-family: "Barlow Condensed", sans-serif; font-weight: 900;
+    font-size: 9vw; line-height: 1.05; letter-spacing: -.01em;
+    color: #000; margin-bottom: 24px;
+  }
+  .mobile-contact-detail {
+    display: block; font-size: 12px; font-weight: 300;
+    letter-spacing: .08em; color: rgba(0,0,0,.7);
+    text-decoration: none; margin-bottom: 6px;
+  }
   .mobile-foot { 
-    display: flex; flex-direction: column; gap: 16px;
-    padding: 20px 20px 48px; background: #f0ede8; flex-shrink: 0;
+    display: flex; flex-direction: column; gap: 20px;
+    padding: 28px 20px 80px; background: #f0ede8; flex-shrink: 0;
     border-top: 1px solid #d0ccc5;
   }
   .mobile-foot-top { display: flex; justify-content: space-between; align-items: center; }
@@ -634,6 +662,21 @@ header { mix-blend-mode: normal; }
     </div>
   </div>
   
+  <!-- Mobile About Section -->
+  <div class="mobile-about">
+    <div class="mobile-section-label">About — Theory</div>
+    <div class="mobile-section-body">THEORY was built on the idea that good clothing already exists.<br><br>Hidden in the rhythm of London, THEORY is a curated second-hand store shaped by vintage culture, timeless design, and everyday individuality. We source pieces with character — worn leather, faded denim, oversized tailoring, old sportswear, heavyweight basics — clothing that carries history and still feels relevant now.<br><br>Every item is chosen for its quality, fit, texture, and story. No fast fashion. No throwaway trends. Just garments made to be worn again, styled differently, and kept longer.<br><br>THEORY is for people who value expression over labels and authenticity over excess. A space where vintage meets modern street culture, and where personal style comes before everything else.<br><br>London inspired. Vintage driven. Worn with intention.</div>
+  </div>
+
+  <!-- Mobile Contact Section -->
+  <div class="mobile-contact">
+    <div class="mobile-section-label">Contact — Theory</div>
+    <div class="mobile-contact-title">Seen something you like? Get in touch.</div>
+    <a href="tel:+441234567890" class="mobile-contact-detail">+44 (0) 1234 567 890</a>
+    <a href="mailto:hello@theory.co.uk" class="mobile-contact-detail">hello@theory.co.uk</a>
+    <span class="mobile-contact-detail">London, United Kingdom</span>
+  </div>
+
   <div class="mobile-foot">
     <div class="mobile-foot-top">
       <span class="mobile-foot-l">hello@theory.co.uk</span>
