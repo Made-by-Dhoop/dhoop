@@ -136,27 +136,31 @@ nav ul a:hover { color: var(--white); }
 
 .dropdown {
   position: absolute;
-  top: calc(100% + 1rem);
+  top: 100%;
   left: 50%;
   transform: translateX(-50%);
-  background: #111;
-  border: 1px solid rgba(255,255,255,0.07);
-  border-radius: 2px;
+  padding-top: 1rem;
+  background: transparent;
   min-width: 200px;
   display: flex;
   flex-direction: column;
   gap: 0;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.2s ease, transform 0.2s ease;
-  transform: translateX(-50%) translateY(-6px);
+  transition: opacity 0.2s ease;
   z-index: 300;
+}
+
+.dropdown-inner {
+  background: #111;
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 2px;
+  overflow: hidden;
 }
 
 .has-dropdown:hover .dropdown {
   opacity: 1;
   pointer-events: all;
-  transform: translateX(-50%) translateY(0);
 }
 
 .dropdown li { display: block; }
