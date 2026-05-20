@@ -4,7 +4,7 @@
   src: url('fonts/BebasNeue-Regular.woff2') format('woff2');
   font-weight: 400;
   font-style: normal;
-  font-display: swap;
+  font-display: optional;
 }
 
 @font-face {
@@ -12,7 +12,7 @@
   src: url('fonts/dm-sans-v17-latin-300.woff2') format('woff2');
   font-weight: 300;
   font-style: normal;
-  font-display: swap;
+  font-display: optional;
 }
 
 @font-face {
@@ -20,7 +20,7 @@
   src: url('fonts/dm-sans-v17-latin-300italic.woff2') format('woff2');
   font-weight: 300;
   font-style: italic;
-  font-display: swap;
+  font-display: optional;
 }
 
 @font-face {
@@ -28,7 +28,7 @@
   src: url('fonts/dm-sans-v17-latin-regular.woff2') format('woff2');
   font-weight: 400;
   font-style: normal;
-  font-display: swap;
+  font-display: optional;
 }
 
 @font-face {
@@ -36,7 +36,7 @@
   src: url('fonts/dm-sans-v17-latin-500.woff2') format('woff2');
   font-weight: 500;
   font-style: normal;
-  font-display: swap;
+  font-display: optional;
 }
 
 /* ── VARIABLES ── */
@@ -151,11 +151,15 @@ nav ul a:hover { color: var(--white); }
   z-index: 300;
 }
 
-.dropdown-inner {
+/* Inner visual box — applied via ::before to keep ul valid */
+.dropdown::before {
+  content: '';
+  position: absolute;
+  top: 1rem; left: 0; right: 0; bottom: 0;
   background: #111;
   border: 1px solid rgba(255,255,255,0.07);
   border-radius: 2px;
-  overflow: hidden;
+  z-index: -1;
 }
 
 .has-dropdown:hover .dropdown {
