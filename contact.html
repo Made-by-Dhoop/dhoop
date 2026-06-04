@@ -40,10 +40,11 @@
 
   /* ── FORM SECTION ── */
   #contact-form {
+    background: #f5f4f0;
     padding-top: var(--gap);
     padding-bottom: var(--gap);
-    border-top: 1px solid rgba(255,255,255,0.06);
   }
+  #contact-form * { color: var(--black) !important; }
 
   .form-layout {
     display: grid;
@@ -88,7 +89,7 @@
   .what-happens {
     margin-top: 3rem;
     padding: 2rem;
-    border: 1px solid rgba(255,255,255,0.06);
+    border: 1px solid rgba(0,0,0,0.1);
     border-radius: 2px;
   }
 
@@ -139,11 +140,11 @@
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-    border-bottom: 1px solid rgba(255,255,255,0.06);
+    border-bottom: 1px solid rgba(0,0,0,0.12);
     padding: 1.8rem 0;
   }
 
-  .form-group:first-child { border-top: 1px solid rgba(255,255,255,0.06); }
+  .form-group:first-child { border-top: 1px solid rgba(0,0,0,0.12); }
 
   .form-group label {
     font-size: 0.72rem;
@@ -189,7 +190,7 @@
     pointer-events: none;
   }
 
-  .form-group select option { background: var(--black); color: var(--black); }
+  .form-group select option { background: #f5f4f0; color: var(--black); }
 
   /* Submit */
   .form-submit {
