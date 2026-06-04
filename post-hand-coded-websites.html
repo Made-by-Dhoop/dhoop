@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Why Hand-Coded Websites Outperform WordPress — Dhoop Bournemouth Web Design</title>
+<meta name="description" content="Bournemouth web design agencies mostly build on WordPress. Here's why hand-coded websites consistently outperform them on speed, SEO, and Google Web Vitals — and what that means for your business.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.madebydhoop.co.uk/post-hand-coded-websites.html">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="stylesheet" href="styles.css">
+
+<style>
+  #hero h1, #hero h2, #hero p, #hero h3 { color: var(--black); }
+  #hero {
+    background: var(--accent);
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-top: 9rem;
+    padding-bottom: clamp(4rem, 8vw, 7rem);
+    position: relative;
+  }
+  .breadcrumb, .breadcrumb a, .breadcrumb span, .breadcrumb-sep { color: #000000 !important; opacity: 1 !important; }
+  .breadcrumb a:hover { text-decoration: underline; }
+  .hero-eyebrow { color: #000000 !important; }
+  .hero-sub { color: var(--black) !important; }
+
+  .hero-bg { position: absolute; inset: 0; z-index: 0; }
+  .hero-bg img { width: 100%; height: 100%; object-fit: cover; opacity: 0.15; display: block; }
+  .hero-bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, var(--black) 40%, transparent 100%); }
+  #hero > *:not(.hero-bg) { position: relative; z-index: 1; }
+  .post-meta-hero { display: flex; align-items: center; gap: 1.5rem; margin-top: 2rem; flex-wrap: wrap; }
+  .post-meta-hero span { font-size: 0.8rem; color: var(--black); letter-spacing: 0.04em; }
+  .post-meta-hero .tag { color: var(--black); font-weight: 500; letter-spacing: 0.08em; }
+
+  #article { padding-top: var(--gap); padding-bottom: var(--gap); border-top: 1px solid rgba(255,255,255,0.06); }
+
+  .article-layout {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    gap: 4rem clamp(3rem, 6vw, 7rem);
+    align-items: start;
+  }
+
+  .article-sidebar { position: sticky; top: 8rem; display: flex; flex-direction: column; gap: 2rem; }
+  .sidebar-label { font-size: 0.72rem; letter-spacing: 0.08em; color: var(--black); font-weight: 500; display: block; margin-bottom: 0.8rem; }
+  .sidebar-toc ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+  .sidebar-toc a { font-size: 0.82rem; color: var(--black); text-decoration: none; line-height: 1.5; transition: color 0.2s; }
+  .sidebar-toc a:hover { color: var(--black); }
+  .sidebar-cta { padding: 1.5rem; border: 1px solid rgba(0,245,160,0.2); border-radius: 2px; }
+  .sidebar-cta p { font-size: 0.82rem; margin-bottom: 1rem; max-width: none; color: var(--black); }
+  .sidebar-cta .btn { width: 100%; text-align: center; font-size: 0.78rem; padding: 0.7rem 1rem; }
+
+  .article-body { max-width: 68ch; }
+  .article-body h2 { font-family: 'DM Sans', sans-serif; font-size: clamp(1.6rem, 2.5vw, 2.4rem); color: var(--black); font-weight: 400; letter-spacing: 0.02em; margin-top: 3rem; margin-bottom: 1.2rem; line-height: 1; padding-top: 3rem; border-top: 1px solid rgba(255,255,255,0.06); }
+  .article-body h2:first-child { margin-top: 0; padding-top: 0; border-top: none; }
+  .article-body p { font-size: 1rem; color: var(--black); line-height: 1.9; max-width: none; margin-bottom: 1.4rem; }
+  .article-body p:last-child { margin-bottom: 0; }
+  .article-body strong { color: var(--black); font-weight: 500; }
+  .article-body ul { margin: 1.2rem 0 1.4rem 0; display: flex; flex-direction: column; gap: 0.6rem; }
+  .article-body ul li { font-size: 1rem; color: var(--black); line-height: 1.75; padding-left: 1.5rem; position: relative; }
+  .article-body ul li::before { content: '—'; position: absolute; left: 0; color: var(--black); font-size: 0.85rem; }
+
+  .article-callout { border-left: 2px solid var(--accent); padding: 1.2rem 1.5rem; margin: 2rem 0; background: rgba(0,245,160,0.04); }
+  .article-callout p { font-size: 0.95rem; color: var(--black); margin: 0; font-style: italic; }
+
+  .comparison-table { width: 100%; border-collapse: collapse; margin: 2rem 0; font-size: 0.88rem; }
+  .comparison-table th { text-align: left; font-size: 0.72rem; letter-spacing: 0.08em; font-weight: 500; color: var(--black); padding: 0.8rem 1rem; border-bottom: 1px solid rgba(255,255,255,0.08); }
+  .comparison-table td { padding: 1rem; border-bottom: 1px solid rgba(255,255,255,0.05); color: var(--black); line-height: 1.6; vertical-align: top; }
+  .comparison-table tr:last-child td { border-bottom: none; }
+  .comparison-table .col-hand { color: rgba(0,245,160,0.9); }
+  .comparison-table .col-wp { color: rgba(255,255,255,0.45); }
+
+  .article-end { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.06); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+  .back-link { font-size: 0.82rem; color: var(--black); text-decoration: none; letter-spacing: 0.04em; transition: color 0.2s; }
+  .back-link:hover { color: var(--black); }
+  .cta-note { font-size: 0.85rem; font-weight: 300; font-style: italic; color: var(--black); margin-top: 1rem; max-width: none; }
+
+  @media (max-width: 900px) {
+    .article-layout { grid-template-columns: 1fr; }
+    .article-sidebar { display: none; }
+    .comparison-table { display: block; overflow-x: auto; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">Dhoop<span>.</span></a>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li class="has-dropdown">
+      <span class="dropdown-toggle">Services <span class="dropdown-arrow">&#9660;</span></span>
+      <ul class="dropdown">
+        <li><a href="web-design.html">Website Design</a></li>
+        <li><a href="rebuilds.html">Website Rebuild</a></li>
+        <li><a href="health-check.html">Website Health Check</a></li>
+      </ul>
+    </li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="work.html">Work</a></li>
+    <li><a href="insights.html">Insights</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="contact.html" class="nav-cta">Get Performance Audit</a>
+  <button class="hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-overlay" id="mobileOverlay">
+  <ul class="mobile-nav-links">
+    <li class="mobile-has-dropdown">
+      <button class="mobile-dropdown-toggle">Services <span class="mobile-dropdown-arrow">&#9660;</span></button>
+      <ul class="mobile-dropdown">
+        <li><a href="web-design.html">Website Design</a></li>
+        <li><a href="rebuilds.html">Website Rebuild</a></li>
+        <li><a href="health-check.html">Website Health Check</a></li>
+      </ul>
+    </li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="work.html">Work</a></li>
+    <li><a href="insights.html">Insights</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="contact.html" class="mobile-cta">Get Performance Audit</a>
+  <a href="mailto:hello@madebydhoop.co.uk" class="mobile-email">hello@madebydhoop.co.uk</a>
+</div>
+
+<main>
+<section id="hero">
+  <div class="hero-bg">
+    <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=1400&q=80&auto=format&fit=crop" alt="">
+  </div>
+  <div class="breadcrumb">
+    <a href="index.html">Home</a>
+    <span class="breadcrumb-sep">/</span>
+    <a href="insights.html">Insights</a>
+    <span class="breadcrumb-sep">/</span>
+    <span>Hand-Coded vs WordPress</span>
+  </div>
+  <span class="hero-eyebrow">Web Design</span>
+  <h1>Why Hand-Coded Websites<br>Outperform WordPress —<br>Every Time</h1>
+  <div class="post-meta-hero">
+    <span class="tag">Web Design</span>
+    <span>June 2026</span>
+    <span>7 min read</span>
+  </div>
+</section>
+
+<section id="article">
+  <div class="article-layout">
+
+    <aside class="article-sidebar">
+      <div class="sidebar-toc">
+        <span class="sidebar-label">In This Article</span>
+        <ul>
+          <li><a href="#the-problem">The problem with WordPress</a></li>
+          <li><a href="#what-hand-coded-means">What hand-coded actually means</a></li>
+          <li><a href="#performance">The performance difference</a></li>
+          <li><a href="#seo">What it means for SEO</a></li>
+          <li><a href="#bournemouth">The Bournemouth context</a></li>
+          <li><a href="#who-needs-it">Who actually needs this</a></li>
+          <li><a href="#bottom-line">The bottom line</a></li>
+        </ul>
+      </div>
+      <div class="sidebar-cta">
+        <span class="sidebar-label">See the Difference</span>
+        <p>We'll audit your current site and show you exactly what you're losing on speed and SEO.</p>
+        <a href="contact.html" class="btn btn-primary">Get a Free Audit</a>
+      </div>
+    </aside>
+
+    <div class="article-body">
+
+      <h2 id="the-problem">The problem with WordPress</h2>
+      <p>Most web design agencies in Bournemouth — and across the UK — build websites on WordPress. It's fast to set up, clients can edit content themselves, and there are thousands of themes and plugins to choose from. On the surface, it makes sense.</p>
+      <p>But there's a cost to all that convenience. WordPress loads a significant amount of code that has nothing to do with your specific website. Every plugin adds more. Every page builder — Elementor, Divi, WPBakery — adds layers of CSS and JavaScript on top of that. By the time your site is live, the browser is downloading and processing hundreds of kilobytes of code before it can show a user anything at all.</p>
+      <p>The result? Slow websites. Poor Google Web Vitals scores. Lower search rankings. Fewer enquiries.</p>
+
+      <div class="article-callout">
+        <p>The average WordPress site scores between 40–65 on Google PageSpeed Insights. A hand-coded site built properly should score 95–100. That gap has real consequences for how Google ranks your site.</p>
+      </div>
+
+      <h2 id="what-hand-coded-means">What hand-coded actually means</h2>
+      <p>Hand-coded doesn't mean primitive. It means every line of HTML, CSS, and JavaScript in your website was written deliberately, for a specific purpose. There's no bloated framework underneath. No plugin loading scripts you don't need. No theme generating markup you never asked for.</p>
+      <p>The browser receives exactly what it needs to display your website — nothing more. That's why hand-coded sites load faster, score higher, and rank better.</p>
+      <p>At Dhoop, this is how we build every website. It takes more skill and more time than installing a WordPress theme, but the results are measurably better — and that's what your business actually needs.</p>
+
+      <h2 id="performance">The performance difference</h2>
+      <p>Performance isn't abstract. It has a direct impact on how many people stay on your website, how many enquire, and how Google ranks you relative to your competitors.</p>
+      <p>Here's how hand-coded websites compare to typical WordPress builds across the metrics that matter:</p>
+
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>Metric</th>
+            <th class="col-hand">Hand-Coded</th>
+            <th class="col-wp">Typical WordPress</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>PageSpeed Score</td>
+            <td class="col-hand">95–100</td>
+            <td class="col-wp">40–65</td>
+          </tr>
+          <tr>
+            <td>Page Load Time</td>
+            <td class="col-hand">Under 1 second</td>
+            <td class="col-wp">2–5 seconds</td>
+          </tr>
+          <tr>
+            <td>Page Weight</td>
+            <td class="col-hand">50–200KB</td>
+            <td class="col-wp">1–5MB+</td>
+          </tr>
+          <tr>
+            <td>Core Web Vitals</td>
+            <td class="col-hand">Pass all three</td>
+            <td class="col-wp">Fail one or more</td>
+          </tr>
+          <tr>
+            <td>Security vulnerabilities</td>
+            <td class="col-hand">Minimal attack surface</td>
+            <td class="col-wp">Plugin updates required constantly</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>These aren't theoretical numbers. They're the difference between a website that performs and one that doesn't — and they're measurable with free tools like Google PageSpeed Insights and Search Console.</p>
+
+      <h2 id="seo">What it means for SEO</h2>
+      <p>Since 2021, Google has used Core Web Vitals as a direct ranking signal. That means page speed, visual stability, and interactivity all feed into where your website appears in search results. A slower site with worse scores will rank below a faster, cleaner competitor — all else being equal.</p>
+      <p>For a local business in Bournemouth competing for searches like "web design Bournemouth" or "plumber Bournemouth", this matters enormously. The difference between position three and position eight on Google is the difference between getting enquiries and not.</p>
+      <p>A hand-coded website doesn't just load faster for users — it sends better signals to Google, consistently, every time a page is crawled.</p>
+
+      <div class="article-callout">
+        <p>Google has said explicitly that page experience is a ranking factor. Businesses with faster, better-coded websites have a built-in SEO advantage over those running on bloated platforms.</p>
+      </div>
+
+      <h2 id="bournemouth">The Bournemouth context</h2>
+      <p>Bournemouth has a healthy mix of local businesses — trades, professional services, hospitality, retail, creative studios. Most of them have websites. Most of those websites were built on WordPress, Wix, or Squarespace, and most of them perform poorly by modern standards.</p>
+      <p>That's an opportunity. If your competitor's website scores 52 on PageSpeed and yours scores 98, Google notices. Users notice too — even if they can't articulate why, a website that loads in under a second just feels more professional than one that takes four.</p>
+      <p>For Bournemouth businesses, fast web design isn't a luxury. It's the baseline for competing effectively in local search.</p>
+
+      <h2 id="who-needs-it">Who actually needs a hand-coded website</h2>
+      <p>Not every business needs a hand-coded website. If you're a large e-commerce operation with thousands of products and a team managing content daily, a CMS like WordPress might genuinely make sense despite the performance trade-offs.</p>
+      <p>But for the majority of Bournemouth businesses — service companies, trades, professional services, restaurants, studios — a hand-coded website is the right choice. Your site typically has a handful of pages, updated occasionally. You don't need a CMS. You need a fast, well-ranked, professional website that brings in enquiries.</p>
+      <ul>
+        <li>Trades and home services — plumbers, electricians, builders</li>
+        <li>Professional services — solicitors, accountants, consultants</li>
+        <li>Creative studios and agencies</li>
+        <li>Hospitality — restaurants, hotels, venues</li>
+        <li>Small and medium businesses with 5–15 page websites</li>
+      </ul>
+      <p>If that's you, the case for hand-coded web design is clear.</p>
+
+      <h2 id="bottom-line">The bottom line</h2>
+      <p>WordPress is popular because it's accessible. Hand-coded websites are better because they're built properly. For a Bournemouth business that wants to rank well on Google and convert visitors into enquiries, the choice matters.</p>
+      <p>At Dhoop, we've built every client website by hand — no page builders, no themes, no unnecessary code. The results speak for themselves: 100 scores across Google Web Vitals, sub-second load times, and websites that outperform competitors built on bloated platforms.</p>
+      <p>If you want to see what that looks like for your business, we're happy to run a free audit of your current site and show you exactly where you stand.</p>
+
+      <div class="article-end">
+        <a href="insights.html" class="back-link">← Back to Insights</a>
+        <a href="contact.html" class="btn btn-primary">Get a Free Audit</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="cta">
+  <div class="two-col">
+    <div class="reveal">
+      <span class="section-label">Ready to Switch?</span>
+      <h2>See what a hand-coded website could do for your Bournemouth business.</h2>
+      <p class="cta-note">No obligation. Just an honest conversation.</p>
+    </div>
+    <div class="reveal">
+      <p>We'll audit your current website against Google Web Vitals and PageSpeed benchmarks — and show you what's holding it back. Then it's up to you.</p>
+      <div class="btn-group">
+        <a href="contact.html" class="btn btn-primary">Get a Free Audit</a>
+        <a href="work.html" class="btn btn-outline">See Our Work</a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="index.html" class="footer-logo-top">Dhoop<span>.</span></a>
+      <p>Fast, clean-coded websites built for performance, SEO, and long-term scalability.</p>
+      <a href="mailto:hello@madebydhoop.co.uk" class="email-link">hello@madebydhoop.co.uk</a>
+    </div>
+    <div class="footer-nav">
+      <p class="footer-nav-label">Services</p>
+      <ul>
+        <li><a href="web-design.html">Website Design</a></li>
+        <li><a href="rebuilds.html">Website Rebuild</a></li>
+        <li><a href="health-check.html">Health Check</a></li>
+        <li><a href="contact.html">Performance Audit</a></li>
+      </ul>
+    </div>
+    <div class="footer-nav">
+      <p class="footer-nav-label">Company</p>
+      <ul>
+        <li><a href="about.html">About</a></li>
+        <li><a href="work.html">Work</a></li>
+        <li><a href="insights.html">Insights</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="privacy.html">Privacy Policy</a></li>
+      </ul>
+    </div>
+    <div class="footer-nav">
+      <p class="footer-nav-label">Follow</p>
+      <ul>
+        <li><a href="https://www.linkedin.com/company/dhoop-agency" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a></li>
+        <li><a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">Instagram ↗</a></li>
+        <li><a href="https://x.com/made_by_dhoop" target="_blank" rel="noopener noreferrer">X ↗</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Dhoop Ltd &nbsp;·&nbsp; Bournemouth, Dorset &nbsp;·&nbsp; Registered in England &amp; Wales</p>
+    <a href="index.html" class="footer-logo">Dhoop<span>.</span></a>
+  </div>
+</footer>
+
+<script src="main.js" defer></script>
+</body>
+</html>
