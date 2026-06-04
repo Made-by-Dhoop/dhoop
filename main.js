@@ -1,24 +1,5 @@
-// ── LOAD HEADER & FOOTER ──
-async function loadIncludes() {
-  const headerEl = document.getElementById('site-header');
-  const footerEl = document.getElementById('site-footer');
+document.addEventListener('DOMContentLoaded', () => {
 
-  if (headerEl) {
-    const res = await fetch('header.html');
-    const html = await res.text();
-    headerEl.innerHTML = html;
-  }
-
-  if (footerEl) {
-    const res = await fetch('footer.html');
-    const html = await res.text();
-    footerEl.innerHTML = html;
-  }
-
-  initNav();
-}
-
-function initNav() {
   // ── MOBILE MENU ──
   const hamburger = document.getElementById('hamburger');
   const overlay = document.getElementById('mobileOverlay');
@@ -39,7 +20,7 @@ function initNav() {
     });
   }
 
-  // ── MOBILE DROPDOWN ──
+  // ── MOBILE SERVICES DROPDOWN ──
   const mobileToggle = document.querySelector('.mobile-dropdown-toggle');
   const mobileDropdownParent = document.querySelector('.mobile-has-dropdown');
 
@@ -49,13 +30,19 @@ function initNav() {
     });
   }
 
-  // ── DESKTOP DROPDOWN: close on outside click ──
-  document.addEventListener('click', (e) => {
-    const dropdown = document.querySelector('.has-dropdown');
-    if (dropdown && !dropdown.contains(e.target)) {
-      dropdown.querySelector('.dropdown').style.pointerEvents = '';
+  // ── HIDE NAV ON SCROLL DOWN, SHOW ON SCROLL UP ──
+  const nav = document.querySelector('nav');
+  let lastScroll = 0;
+
+  window.addEventListener('scroll', () => {
+    const current = window.scrollY;
+    if (current > lastScroll && current > 80) {
+      nav.classList.add('nav-hidden');
+    } else {
+      nav.classList.remove('nav-hidden');
     }
-  });
+    lastScroll = current;
+  }, { passive: true });
 
   // ── SCROLL REVEAL ──
   const reveals = document.querySelectorAll('.reveal');
@@ -68,6 +55,5 @@ function initNav() {
     });
   }, { threshold: 0.12 });
   reveals.forEach(el => io.observe(el));
-}
 
-document.addEventListener('DOMContentLoaded', loadIncludes);
+});

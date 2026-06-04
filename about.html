@@ -4,15 +4,19 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>About — Dhoop Bournemouth Web Design Agency</title>
+<meta name="description" content="Dhoop was founded by Chris, a senior project manager with years of experience delivering websites and software for some of the world's biggest brands. Built differently, on purpose.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.madebydhoop.co.uk/about.html">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 <link rel="stylesheet" href="styles.css">
 
 <style>
-  /* ── ABOUT PAGE SPECIFIC ── */
-
+  /* ── HERO ── */
+  #hero h1, #hero h2, #hero p, #hero h3 { color: var(--black) !important; }
   #hero {
+    background: var(--accent);
     min-height: 100svh;
     display: flex;
     flex-direction: column;
@@ -21,149 +25,170 @@
     padding-bottom: clamp(4rem, 8vw, 7rem);
     position: relative;
   }
+  .breadcrumb, .breadcrumb a, .breadcrumb span, .breadcrumb-sep { color: #000 !important; opacity: 1 !important; }
+  .breadcrumb a:hover { text-decoration: underline; }
+  .hero-eyebrow { color: #000 !important; font-size: 0.82rem; letter-spacing: 0.08em; font-weight: 500; margin-bottom: 1.8rem; display: block; }
+  .hero-sub { color: var(--black) !important; }
 
-  #hero::before {
-    content: '';
-    position: absolute;
-    top: 0; right: 0;
-    width: 50vw; height: 50vw;
-    background: radial-gradient(circle, rgba(0,245,160,0.06) 0%, transparent 65%);
-    pointer-events: none;
+  /* ── FOUNDER — light ── */
+  #founder {
+    background: #f5f4f0;
+    padding: var(--gap) var(--edge);
   }
+  #founder * { color: var(--black) !important; }
+  #founder .section-label { color: var(--black) !important; opacity: 1; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.08em; display: block; margin-bottom: 2rem; }
 
-  .hero-eyebrow {
-    font-size: 0.82rem;
-    letter-spacing: 0.06em;
-    color: var(--accent);
-    font-weight: 400;
-    margin-bottom: 1.8rem;
-    display: block;
-  }
-
-  .hero-sub {
-    margin-top: 2.5rem;
-    font-size: clamp(1rem, 1.4vw, 1.15rem);
-    font-weight: 300;
-    color: rgba(245,244,240,0.55);
-    max-width: 60ch;
-    line-height: 1.8;
-  }
-
-  #hero h3 {
-    font-size: 0.8rem;
-    font-style: italic;
-    font-weight: 300;
-    letter-spacing: 0.03em;
-    color: rgba(245,244,240,0.28);
-    margin-top: 0.8rem;
-  }
-
-  /* Why */
-  #why {
-    border-top: 1px solid rgba(255,255,255,0.06);
-    padding-top: var(--gap);
-    padding-bottom: var(--gap);
-  }
-
-  #why .large-text {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(3rem, 8.5vw, 9rem);
-    line-height: 0.92;
-    color: var(--white);
-    font-weight: 400;
-    letter-spacing: 0.01em;
-    margin-top: 3rem;
-    margin-bottom: 3rem;
-  }
-
-  #why .large-text em { font-style: normal; color: var(--accent); }
-
-  /* How we work */
-  #howwework {
-    border-top: 1px solid rgba(255,255,255,0.06);
-    padding-top: var(--gap);
-    padding-bottom: var(--gap);
-  }
-
-  .team-grid {
+  .founder-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1.6fr;
     gap: 4rem clamp(3rem, 6vw, 7rem);
-    margin-top: 3.5rem;
     align-items: start;
   }
 
-  .team-block p + p { margin-top: 1.2rem; }
-
-  /* Beliefs */
-  #beliefs {
-    border-top: 1px solid rgba(255,255,255,0.06);
-    padding-top: var(--gap);
-    padding-bottom: var(--gap);
+  .founder-photo {
+    aspect-ratio: 3/4;
+    overflow: hidden;
+    border-radius: 2px;
+    background: #ddd;
   }
 
-  .beliefs-list { margin-top: 3.5rem; display: grid; grid-template-columns: 1fr; gap: 0; }
+  .founder-photo img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
+    filter: grayscale(20%);
+  }
 
-  .belief {
+  .founder-name {
+    font-family: 'DM Sans', sans-serif;
+    font-size: clamp(2.5rem, 4vw, 4rem);
+    color: var(--black) !important;
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.3rem;
+  }
+
+  .founder-title {
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    color: var(--black) !important;
+    opacity: 1;
+    font-weight: 500;
+    display: block;
+    margin-bottom: 2rem;
+  }
+
+  .founder-body p + p { margin-top: 1.3rem; }
+
+  /* ── TAGLINE — dark ── */
+  #tagline {
+    background: var(--black);
+    padding: var(--gap) var(--edge);
+  }
+
+  .tagline-text {
+    font-family: 'DM Sans', sans-serif;
+    font-size: clamp(3rem, 8vw, 9rem);
+    line-height: 0.93;
+    color: var(--accent);
+    letter-spacing: -0.02em;
+    font-weight: 500;
+    margin-bottom: 3.5rem;
+  }
+
+  #tagline .section-label { color: var(--accent) !important; opacity: 0.6; }
+  #tagline h2 { color: var(--white) !important; }
+  #tagline p { color: var(--white) !important; }
+
+  /* ── PRINCIPLES — light ── */
+  #principles {
+    background: #f5f4f0;
+    padding: var(--gap) var(--edge);
+  }
+
+  #principles .section-label { color: var(--black) !important; opacity: 0.45; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.08em; display: block; margin-bottom: 2rem; }
+  #principles h2 { color: var(--black) !important; }
+  #principles p { color: var(--black) !important; }
+
+  .principles-list { margin-top: 3.5rem; }
+
+  .principle {
     display: grid;
     grid-template-columns: auto 1fr;
     gap: 3rem;
     padding: 2.5rem 0;
-    border-bottom: 1px solid rgba(255,255,255,0.06);
     align-items: center;
     transition: padding-left 0.3s ease;
     cursor: default;
   }
 
-  .belief:first-child { border-top: 1px solid rgba(255,255,255,0.06); }
-  .belief:hover { padding-left: 1.5rem; }
+  .principle:hover { padding-left: 1.5rem; }
+  .principle-num { font-size: 0.95rem; color: var(--black) !important; letter-spacing: 0.08em; min-width: 3rem; font-family: 'DM Sans', sans-serif; }
 
-  .belief-num {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 0.95rem;
-    color: var(--accent);
-    letter-spacing: 0.08em;
-    min-width: 3rem;
-  }
-
-  .belief-content h3 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(1.5rem, 2.5vw, 2.2rem);
-    color: var(--white);
-    font-weight: 400;
+  .principle-content h3 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: clamp(1.3rem, 2vw, 1.9rem);
+    color: var(--black) !important;
+    font-weight: 500;
     margin-top: 0;
-    letter-spacing: 0.02em;
-    line-height: 1;
-    margin-bottom: 0.6rem;
+    letter-spacing: -0.01em;
+    line-height: 1.1;
+    margin-bottom: 0.5rem;
   }
 
-  .belief-content p { font-size: 0.88rem; max-width: 60ch; margin-top: 0.4rem; }
-
-  /* Location */
-  #location {
-    border-top: 1px solid rgba(255,255,255,0.06);
-    padding-top: var(--gap);
-    padding-bottom: var(--gap);
-  }
-
-  #location h3 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(1.4rem, 2.2vw, 2rem);
-    color: rgba(245,244,240,0.18);
-    font-weight: 400;
-    margin-top: 2rem;
-    line-height: 1.15;
-    letter-spacing: 0.02em;
-  }
+  .principle-content p { font-size: 0.88rem; max-width: 60ch; margin-top: 0.3rem; color: var(--black) !important; }
 
   @media (max-width: 900px) {
-    .team-grid { grid-template-columns: 1fr; }
+    .founder-grid { grid-template-columns: 1fr; }
+    .founder-photo { aspect-ratio: 1/1; max-width: 320px; }
   }
 </style>
 </head>
 <body>
 
-<div id="site-header"></div>
+<nav>
+  <a href="index.html" class="logo">Dhoop<span>.</span></a>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li class="has-dropdown">
+      <span class="dropdown-toggle">Services <span class="dropdown-arrow">&#9660;</span></span>
+      <ul class="dropdown">
+        <li><a href="web-design.html">Website Design</a></li>
+        <li><a href="rebuilds.html">Website Rebuild</a></li>
+        <li><a href="health-check.html">Website Health Check</a></li>
+      </ul>
+    </li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="work.html">Work</a></li>
+    <li><a href="insights.html">Insights</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="contact.html" class="nav-cta">Get Performance Audit</a>
+  <button class="hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-overlay" id="mobileOverlay">
+  <ul class="mobile-nav-links">
+    <li class="mobile-has-dropdown">
+      <button class="mobile-dropdown-toggle">Services <span class="mobile-dropdown-arrow">&#9660;</span></button>
+      <ul class="mobile-dropdown">
+        <li><a href="web-design.html">Website Design</a></li>
+        <li><a href="rebuilds.html">Website Rebuild</a></li>
+        <li><a href="health-check.html">Website Health Check</a></li>
+      </ul>
+    </li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="work.html">Work</a></li>
+    <li><a href="insights.html">Insights</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="contact.html" class="mobile-cta">Get Performance Audit</a>
+  <a href="mailto:hello@madebydhoop.co.uk" class="mobile-email">hello@madebydhoop.co.uk</a>
+</div>
 
 <section id="hero">
   <div class="breadcrumb">
@@ -172,93 +197,85 @@
     <span>About</span>
   </div>
   <span class="hero-eyebrow">About Dhoop</span>
-  <h1>We build<br>websites<br>the right way.</h1>
-  <p class="hero-sub">Dhoop is a small team of designers and developers based in Bournemouth. We exist because too many businesses are being let down by slow, bloated, poorly-built websites.</p>
-  <h3>No shortcuts. No page builders. No excuses.</h3>
+  <h1>Built from<br>the inside<br>out.</h1>
+  <p class="hero-sub">Founded in 2026 by someone who spent years inside London agencies and the Square Mile — delivering websites, applications, and software for some of the world's biggest brands.</p>
 </section>
 
-<section id="why">
+<!-- TAGLINE -->
+<section id="tagline">
+  <div class="tagline-text reveal">
+    Less overhead.<br>Faster output.<br>Better results.
+  </div>
   <div class="two-col">
     <div class="reveal">
-      <span class="section-label">Why We Exist</span>
-      <h2>The web is full of websites that don't work properly</h2>
+      <span class="section-label">Why Dhoop Exists</span>
+      <h2>Doing more with less — on purpose</h2>
     </div>
     <div class="reveal">
-      <p>Most websites are built for convenience — not performance. Page builders, bloated themes, and cut-and-paste templates have made it easy to put something online. But easy isn't the same as good.</p>
-      <p style="margin-top:1.2rem">Slow load times, weak SEO signals, poor structure — these aren't minor issues. They cost businesses real money in lost rankings, lost visitors, and lost conversions. Dhoop exists to fix that.</p>
-    </div>
-  </div>
-  <div class="large-text reveal">
-    The web deserves<br>to be built <em>better</em>
-  </div>
-</section>
-
-<section id="howwework">
-  <div class="two-col">
-    <div class="reveal">
-      <span class="section-label">How We Work</span>
-      <h2>A small team. A clear process. No compromises.</h2>
-    </div>
-    <div class="reveal">
-      <p>Dhoop is a small, focused team of designers and developers. There are no account managers between you and the people building your website. No handoffs, no Chinese whispers, no corners cut to hit a budget.</p>
-    </div>
-  </div>
-  <div class="team-grid">
-    <div class="team-block reveal">
-      <p>Every project starts with a proper brief. We take time to understand your business, your goals, and what success actually looks like for you — before we design a single screen or write a single line of code.</p>
-      <p>Design and development happen together. Our designers and developers work side by side, which means performance is considered from the very first decision — not bolted on at the end.</p>
-    </div>
-    <div class="team-block reveal">
-      <p>We measure everything against real standards. Every build is tested against Google Web Vitals, Lighthouse, and Core Web Vitals before it goes anywhere near a live server.</p>
-      <p>And we're honest. If your brief isn't achievable in your budget, we'll tell you. If your existing site can be improved rather than rebuilt, we'll tell you that too. We'd rather give you the right answer than win the job.</p>
+      <p>Dhoop launched in May 2026 with a simple premise: take everything learned from years of delivery experience, strip away the waste, and use modern tools and technology to do more with less.</p>
+      <p style="margin-top:1.3rem">Smaller team. Leaner process. No account managers sitting between you and the people building your website. Just fast, clean, hand-coded websites — built properly, tested against real performance standards, and delivered without the agency markup.</p>
+      <p style="margin-top:1.3rem">In 2026, the tools exist to do this well. AI-assisted workflows, automated testing, and intelligent processes mean a small, focused team can deliver work that competes with agencies ten times the size. That's the Dhoop model — and it's not going away.</p>
     </div>
   </div>
 </section>
 
-<section id="beliefs">
-  <span class="section-label reveal">What We Believe</span>
-  <h2 class="reveal">The things we won't compromise on</h2>
-  <div class="beliefs-list">
-    <div class="belief reveal">
-      <span class="belief-num">01</span>
-      <div class="belief-content">
-        <h3>Performance is not optional</h3>
-        <p>Speed is not a feature you add at the end — it's a design decision you make at the beginning. Every choice we make, from structure to imagery to code, is made with performance in mind.</p>
+<!-- FOUNDER -->
+<section id="founder">
+  <div class="founder-grid">
+    <div class="reveal">
+      <div class="founder-photo">
+        <img
+          src="images/chris-dhoop1.jpeg"
+          alt="Chris — Founder of Dhoop"
+          loading="eager"
+        >
       </div>
     </div>
-    <div class="belief reveal">
-      <span class="belief-num">02</span>
-      <div class="belief-content">
-        <h3>We don't use page builders</h3>
-        <p>Wix, Squarespace, Elementor, Divi — these tools make building websites easy. They also make them slow, bloated, and hard to optimise. We hand-code everything, because the results are better.</p>
+    <div class="reveal">
+      <span class="section-label">The Founder</span>
+      <div class="founder-name">Chris</div>
+      <span class="founder-title">Founder — Dhoop</span>
+      <div class="founder-body">
+        <p>Before Dhoop, Chris spent years as a Senior Project Manager at London digital agencies and IT consultancies — including time in the Square Mile delivering complex software and technology programmes for major corporate banks and financial institutions. He also spends an unreasonable amount of time thinking about record crates, but that's a different story.</p>
+        <p>His career spans creative agencies, enterprise IT delivery, and everything in between. He knows what good looks like technically and commercially — and he's seen how projects go wrong, where budgets disappear, and what shortcuts look like dressed up as solutions.</p>
+        <p>Dhoop is built on all of that. Doing it properly, without the waste.</p>
       </div>
     </div>
-    <div class="belief reveal">
-      <span class="belief-num">03</span>
-      <div class="belief-content">
-        <h3>Clean code is good design</h3>
-        <p>A well-built website isn't just visually strong — it's structurally sound. Semantic HTML, efficient CSS, and lean JavaScript aren't just good engineering. They're what makes a website fast, accessible, and easy for Google to understand.</p>
+  </div>
+</section>
+
+<!-- PRINCIPLES -->
+<section id="principles">
+  <span class="section-label reveal">What We Won't Compromise On</span>
+  <h2 class="reveal">The standards we hold ourselves to</h2>
+  <div class="principles-list">
+    <div class="principle reveal">
+      <span class="principle-num">01</span>
+      <div class="principle-content">
+        <h3>Performance is non-negotiable</h3>
+        <p>Speed isn't a feature you add at the end — it's a decision you make from the start. Every build is measured against Google Web Vitals before it goes anywhere near a live server.</p>
       </div>
     </div>
-    <div class="belief reveal">
-      <span class="belief-num">04</span>
-      <div class="belief-content">
+    <div class="principle reveal">
+      <span class="principle-num">02</span>
+      <div class="principle-content">
+        <h3>No page builders. Ever.</h3>
+        <p>Elementor, Wix, Divi — easy to launch, hard to perform. Everything we build is hand-coded, because the results are measurably better.</p>
+      </div>
+    </div>
+    <div class="principle reveal">
+      <span class="principle-num">03</span>
+      <div class="principle-content">
+        <h3>Technology reduces cost — not justifies it</h3>
+        <p>We use AI-assisted workflows and automated testing to deliver faster and smarter. The benefit goes to you, not our margins.</p>
+      </div>
+    </div>
+    <div class="principle reveal">
+      <span class="principle-num">04</span>
+      <div class="principle-content">
         <h3>Honesty over salesmanship</h3>
-        <p>We won't oversell you a solution you don't need. We'll tell you what your website actually needs, what it will cost, and what results you can realistically expect. That's the only way to build a relationship worth having.</p>
+        <p>We'll tell you what you need, what it costs, and what results to expect. No inflated quotes, no overselling, no surprises.</p>
       </div>
-    </div>
-  </div>
-</section>
-
-<section id="location">
-  <div class="two-col">
-    <div class="reveal">
-      <span class="section-label">Based In Bournemouth</span>
-      <h2>Local agency. National standard.</h2>
-    </div>
-    <div class="reveal">
-      <p>We're based in Bournemouth and work with businesses across the south coast and beyond. Whether you're a local business looking to improve your search visibility, or a growing brand that needs a website built to scale — we work the same way regardless of where you are.</p>
-      <h3>Built in Bournemouth. Optimised for speed, search, and scale.</h3>
     </div>
   </div>
 </section>
@@ -267,11 +284,10 @@
   <div class="two-col">
     <div class="reveal">
       <span class="section-label">Work With Us</span>
-      <h2>Want to work with a team that does this properly?</h2>
-      <h3>No jargon. Just honest conversations about what you need.</h3>
+      <h2>Ready to work with someone who's done this at every level?</h2>
     </div>
     <div class="reveal">
-      <p>Tell us about your business and what you're trying to achieve. We'll come back with an honest assessment and a clear next step — no obligation.</p>
+      <p>Tell us about your project. We'll come back with a straight answer — no jargon, no obligation.</p>
       <div class="btn-group">
         <a href="contact.html" class="btn btn-primary">Start a Conversation</a>
         <a href="contact.html" class="btn btn-outline">Get a Performance Audit</a>
@@ -280,7 +296,46 @@
   </div>
 </section>
 
-<div id="site-footer"></div>
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="index.html" class="footer-logo-top">Dhoop<span>.</span></a>
+      <p>Fast, clean-coded websites built for performance, SEO, and long-term scalability.</p>
+      <a href="mailto:hello@madebydhoop.co.uk" class="email-link">hello@madebydhoop.co.uk</a>
+    </div>
+    <div class="footer-nav">
+      <p class="footer-nav-label">Services</p>
+      <ul>
+        <li><a href="web-design.html">Website Design</a></li>
+        <li><a href="rebuilds.html">Website Rebuild</a></li>
+        <li><a href="health-check.html">Health Check</a></li>
+        <li><a href="contact.html">Performance Audit</a></li>
+      </ul>
+    </div>
+    <div class="footer-nav">
+      <p class="footer-nav-label">Company</p>
+      <ul>
+        <li><a href="about.html">About</a></li>
+        <li><a href="work.html">Work</a></li>
+        <li><a href="insights.html">Insights</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="privacy.html">Privacy Policy</a></li>
+      </ul>
+    </div>
+    <div class="footer-nav">
+      <p class="footer-nav-label">Follow</p>
+      <ul>
+        <li><a href="https://www.linkedin.com/company/dhoop-agency" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a></li>
+        <li><a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">Instagram ↗</a></li>
+        <li><a href="https://x.com/made_by_dhoop" target="_blank" rel="noopener noreferrer">X ↗</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Dhoop Ltd &nbsp;·&nbsp; Bournemouth, Dorset &nbsp;·&nbsp; Registered in England &amp; Wales</p>
+    <a href="index.html" class="footer-logo">Dhoop<span>.</span></a>
+  </div>
+</footer>
 <script src="main.js" defer></script>
 </body>
 </html>

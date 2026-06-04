@@ -10,29 +10,33 @@
 <link rel="stylesheet" href="styles.css">
 
 <style>
-  /* ── CONTACT PAGE SPECIFIC ── */
-
+  #hero h1, #hero h2, #hero p, #hero h3 { color: var(--black); }
   #hero {
-    min-height: 60svh;
+    background: var(--accent);
+    min-height: 100svh;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     padding-top: 9rem;
-    padding-bottom: clamp(3rem, 6vw, 5rem);
+    padding-bottom: clamp(4rem, 8vw, 7rem);
     position: relative;
   }
+  .breadcrumb, .breadcrumb a, .breadcrumb span, .breadcrumb-sep { color: #000000 !important; opacity: 1 !important; }
+  .breadcrumb a:hover { text-decoration: underline; }
+  .hero-eyebrow { color: #000000 !important; }
+  .hero-sub { color: var(--black) !important; }
+  /* ── CONTACT PAGE SPECIFIC ── */
 
-  #hero::before {
-    content: '';
-    position: absolute;
-    top: 0; right: 0;
-    width: 50vw; height: 50vw;
-    background: radial-gradient(circle, rgba(0,245,160,0.06) 0%, transparent 65%);
-    pointer-events: none;
+  #hero {
+    background: var(--accent);
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-top: 9rem;
+    padding-bottom: clamp(4rem, 8vw, 7rem);
+    position: relative;
   }
-
-  .hero-eyebrow { font-size: 0.82rem; letter-spacing: 0.06em; color: var(--accent); font-weight: 400; margin-bottom: 1.8rem; display: block; }
-  .hero-sub { margin-top: 2rem; font-size: clamp(1rem, 1.4vw, 1.15rem); font-weight: 300; color: rgba(245,244,240,0.55); max-width: 52ch; line-height: 1.8; }
 
   /* ── FORM SECTION ── */
   #contact-form {
@@ -68,18 +72,18 @@
   .contact-detail-label {
     font-size: 0.72rem;
     letter-spacing: 0.08em;
-    color: var(--accent);
+    color: var(--black);
     font-weight: 500;
   }
 
   .contact-detail-value {
     font-size: 0.9rem;
-    color: rgba(245,244,240,0.62);
+    color: var(--black);
     text-decoration: none;
     transition: color 0.2s;
   }
 
-  .contact-detail-value:hover { color: var(--white); }
+  .contact-detail-value:hover { color: var(--black); }
 
   .what-happens {
     margin-top: 3rem;
@@ -92,7 +96,7 @@
     font-size: 0.75rem;
     font-weight: 500;
     letter-spacing: 0.08em;
-    color: var(--accent);
+    color: var(--black);
     margin-bottom: 1.2rem;
   }
 
@@ -110,15 +114,15 @@
     gap: 1rem;
     align-items: flex-start;
     font-size: 0.85rem;
-    color: rgba(245,244,240,0.55);
+    color: var(--black);
     line-height: 1.6;
   }
 
   .what-happens ol li::before {
     content: counter(steps, decimal-leading-zero);
-    font-family: 'Bebas Neue', sans-serif;
+    font-family: 'DM Sans', sans-serif;
     font-size: 1rem;
-    color: var(--accent);
+    color: var(--black);
     opacity: 0.5;
     flex-shrink: 0;
     line-height: 1.4;
@@ -144,7 +148,7 @@
   .form-group label {
     font-size: 0.72rem;
     letter-spacing: 0.08em;
-    color: var(--accent);
+    color: var(--black);
     font-weight: 500;
   }
 
@@ -154,7 +158,7 @@
     background: transparent;
     border: none;
     outline: none;
-    color: var(--white);
+    color: var(--black);
     font-family: 'DM Sans', sans-serif;
     font-size: clamp(1rem, 1.5vw, 1.15rem);
     font-weight: 300;
@@ -167,7 +171,7 @@
   }
 
   .form-group input::placeholder,
-  .form-group textarea::placeholder { color: rgba(245,244,240,0.2); }
+  .form-group textarea::placeholder { color: var(--black); }
 
   .form-group textarea { min-height: 120px; }
 
@@ -180,12 +184,12 @@
     right: 0;
     top: 50%;
     transform: translateY(-50%);
-    color: var(--accent);
+    color: var(--black);
     font-size: 0.9rem;
     pointer-events: none;
   }
 
-  .form-group select option { background: var(--black); color: var(--white); }
+  .form-group select option { background: var(--black); color: var(--black); }
 
   /* Submit */
   .form-submit {
@@ -215,7 +219,7 @@
 
   .form-note {
     font-size: 0.78rem;
-    color: rgba(245,244,240,0.28);
+    color: var(--black);
     line-height: 1.6;
     max-width: 28ch;
   }
@@ -233,7 +237,7 @@
   .form-status.success {
     display: block;
     border: 1px solid rgba(0,245,160,0.3);
-    color: var(--accent);
+    color: var(--black);
   }
 
   .form-status.error {
@@ -241,6 +245,33 @@
     border: 1px solid rgba(255,100,100,0.3);
     color: rgba(255,150,150,0.9);
   }
+
+  .contact-socials { margin-top: 3rem; }
+
+  .contact-socials-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    color: var(--black);
+    font-weight: 500;
+    margin-bottom: 1rem;
+    max-width: none;
+  }
+
+  .contact-social-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .contact-social-links a {
+    font-size: 0.9rem;
+    color: #000000;
+    text-decoration: none;
+    transition: color 0.2s;
+    letter-spacing: 0.02em;
+  }
+
+  .contact-social-links a:hover { color: var(--black); }
 
   @media (max-width: 900px) {
     .form-layout { grid-template-columns: 1fr; }
@@ -250,7 +281,47 @@
 </head>
 <body>
 
-<div id="site-header"></div>
+<nav>
+  <a href="index.html" class="logo">Dhoop<span>.</span></a>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li class="has-dropdown">
+      <span class="dropdown-toggle">Services <span class="dropdown-arrow">&#9660;</span></span>
+      <ul class="dropdown">
+        <li><a href="web-design.html">Website Design</a></li>
+        <li><a href="rebuilds.html">Website Rebuild</a></li>
+        <li><a href="health-check.html">Website Health Check</a></li>
+      </ul>
+    </li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="work.html">Work</a></li>
+    <li><a href="insights.html">Insights</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="contact.html" class="nav-cta">Get Performance Audit</a>
+  <button class="hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-overlay" id="mobileOverlay">
+  <ul class="mobile-nav-links">
+    <li class="mobile-has-dropdown">
+      <button class="mobile-dropdown-toggle">Services <span class="mobile-dropdown-arrow">&#9660;</span></button>
+      <ul class="mobile-dropdown">
+        <li><a href="web-design.html">Website Design</a></li>
+        <li><a href="rebuilds.html">Website Rebuild</a></li>
+        <li><a href="health-check.html">Website Health Check</a></li>
+      </ul>
+    </li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="work.html">Work</a></li>
+    <li><a href="insights.html">Insights</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="contact.html" class="mobile-cta">Get Performance Audit</a>
+  <a href="mailto:hello@madebydhoop.co.uk" class="mobile-email">hello@madebydhoop.co.uk</a>
+</div>
 
 <!-- HERO -->
 <section id="hero">
@@ -273,31 +344,6 @@
       <span class="section-label">No Obligation</span>
       <h2>Tell us what you need</h2>
       <p>Fill in the form and we'll come back with an honest assessment — no jargon, no sales pressure, just a clear conversation about what's right for your business.</p>
-
-      <div class="contact-details">
-        <div class="contact-detail">
-          <span class="contact-detail-label">Email</span>
-          <a href="mailto:hello@madebydhoop.co.uk" class="contact-detail-value">hello@madebydhoop.co.uk</a>
-        </div>
-        <div class="contact-detail">
-          <span class="contact-detail-label">Based In</span>
-          <span class="contact-detail-value">Bournemouth, Dorset</span>
-        </div>
-        <div class="contact-detail">
-          <span class="contact-detail-label">Response Time</span>
-          <span class="contact-detail-value">Within one working day</span>
-        </div>
-      </div>
-
-      <div class="what-happens">
-        <h4>What Happens Next</h4>
-        <ol>
-          <li>We review your message and look at your current website if you have one</li>
-          <li>We come back to you within one working day with an honest response</li>
-          <li>If it's a good fit, we arrange a short call to discuss your project</li>
-          <li>You receive a clear, itemised quote — no obligation to proceed</li>
-        </ol>
-      </div>
     </div>
 
     <!-- Right — form -->
@@ -378,7 +424,46 @@
   </div>
 </section>
 
-<div id="site-footer"></div>
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="index.html" class="footer-logo-top">Dhoop<span>.</span></a>
+      <p>Fast, clean-coded websites built for performance, SEO, and long-term scalability.</p>
+      <a href="mailto:hello@madebydhoop.co.uk" class="email-link">hello@madebydhoop.co.uk</a>
+    </div>
+    <div class="footer-nav">
+      <p class="footer-nav-label">Services</p>
+      <ul>
+        <li><a href="web-design.html">Website Design</a></li>
+        <li><a href="rebuilds.html">Website Rebuild</a></li>
+        <li><a href="health-check.html">Health Check</a></li>
+        <li><a href="contact.html">Performance Audit</a></li>
+      </ul>
+    </div>
+    <div class="footer-nav">
+      <p class="footer-nav-label">Company</p>
+      <ul>
+        <li><a href="about.html">About</a></li>
+        <li><a href="work.html">Work</a></li>
+        <li><a href="insights.html">Insights</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="privacy.html">Privacy Policy</a></li>
+      </ul>
+    </div>
+    <div class="footer-nav">
+      <p class="footer-nav-label">Follow</p>
+      <ul>
+        <li><a href="https://www.linkedin.com/company/dhoop-agency" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a></li>
+        <li><a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">Instagram ↗</a></li>
+        <li><a href="https://x.com/made_by_dhoop" target="_blank" rel="noopener noreferrer">X ↗</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Dhoop Ltd &nbsp;·&nbsp; Bournemouth, Dorset &nbsp;·&nbsp; Registered in England &amp; Wales</p>
+    <a href="index.html" class="footer-logo">Dhoop<span>.</span></a>
+  </div>
+</footer>
 <script src="main.js" defer></script>
 <script>
   const form = document.getElementById('contactForm');

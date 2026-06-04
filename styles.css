@@ -54,6 +54,9 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 
+a { transition: color 0.2s; }
+a:hover { color: var(--accent); }
+
 body {
   background: var(--black);
   color: var(--white);
@@ -75,28 +78,29 @@ nav {
   align-items: center;
   padding: 1.4rem var(--edge);
   gap: 1.5rem;
+  background: var(--accent);
+  transition: transform 0.35s ease;
 }
 
-nav::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: var(--black);
-  opacity: 0.88;
-  backdrop-filter: blur(14px);
-  z-index: -1;
+nav.nav-hidden {
+  transform: translateY(-100%);
 }
 
 .logo {
   font-family: 'Bebas Neue', sans-serif;
   font-size: 1.55rem;
   letter-spacing: 0.08em;
-  color: var(--white);
+  color: var(--black);
   text-decoration: none;
   flex-shrink: 0;
 }
 
-.logo span { color: var(--accent); }
+.logo:hover { color: var(--black); }
+.logo span { color: #ffffff; }
+
+/* footer logo keeps accent green dot */
+.footer-logo span { color: var(--accent); opacity: 0.5; }
+.footer-logo-top span { color: var(--accent); }
 
 nav ul {
   flex: 1;
@@ -110,7 +114,7 @@ nav ul {
 nav ul li { display: flex; align-items: center; }
 
 nav ul a {
-  color: var(--mid);
+  color: var(--black);
   text-decoration: none;
   font-size: 0.78rem;
   font-weight: 400;
@@ -119,7 +123,19 @@ nav ul a {
   white-space: nowrap;
 }
 
-nav ul a:hover { color: var(--white); }
+nav ul a:hover { color: #555 !important; }
+
+.dropdown-toggle {
+  color: var(--black);
+  font-size: 0.78rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  cursor: default;
+  font-family: 'DM Sans', sans-serif;
+}
+
+.dropdown-toggle:hover { color: #555; }
 
 /* ── DROPDOWN ── */
 .has-dropdown { position: relative; }
@@ -173,21 +189,21 @@ nav ul a:hover { color: var(--white); }
   display: block;
   padding: 0.75rem 1.2rem;
   font-size: 0.78rem;
-  color: var(--mid);
+  color: var(--white);
   border-bottom: 1px solid rgba(255,255,255,0.05);
   white-space: nowrap;
   transition: color 0.2s, background 0.2s;
 }
 
 .dropdown li:last-child a { border-bottom: none; }
-.dropdown a:hover { color: var(--white); background: rgba(255,255,255,0.04); }
+.dropdown a:hover { color: var(--accent); background: rgba(255,255,255,0.04); }
 
 /* ── MOBILE DROPDOWN ── */
 .mobile-dropdown-toggle {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: 'DM Sans', sans-serif;
   font-size: clamp(1.8rem, 6vw, 2.5rem);
   color: var(--white);
   background: none;
@@ -228,7 +244,7 @@ nav ul a:hover { color: var(--white); }
   font-family: 'DM Sans', sans-serif;
   font-size: 1rem;
   font-weight: 400;
-  color: var(--mid);
+  color: var(--white);
   text-decoration: none;
   padding: 0.45rem 0;
   letter-spacing: 0.03em;
@@ -244,15 +260,15 @@ nav ul a:hover { color: var(--white); }
   font-weight: 500;
   letter-spacing: 0.04em;
   padding: 0.6rem 1.3rem;
-  background: var(--accent);
-  color: var(--black);
+  background: var(--black);
+  color: var(--white);
   border-radius: 2px;
   transition: background 0.2s, transform 0.2s;
   white-space: nowrap;
   flex-shrink: 0;
 }
 
-.nav-cta:hover { background: var(--accent-dark); transform: translateY(-1px); }
+.nav-cta:hover { background: #222; transform: translateY(-1px); }
 
 /* ── MOBILE MENU ── */
 .hamburger {
@@ -275,7 +291,7 @@ nav ul a:hover { color: var(--white); }
   display: block;
   width: 100%;
   height: 1.5px;
-  background: var(--white);
+  background: var(--black);
   transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.3s ease, width 0.3s ease;
   transform-origin: center;
 }
@@ -305,13 +321,14 @@ nav ul a:hover { color: var(--white); }
 
 .mobile-nav-links a {
   display: block;
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: 'DM Sans', sans-serif;
   font-size: clamp(1.8rem, 6vw, 2.5rem);
   color: var(--white);
   text-decoration: none;
   padding: 0.7rem 0;
-  letter-spacing: 0.02em;
+  letter-spacing: -0.02em;
   line-height: 1;
+  font-weight: 500;
   transition: color 0.2s;
 }
 
@@ -337,7 +354,7 @@ nav ul a:hover { color: var(--white); }
 .mobile-email {
   margin-top: 2rem;
   font-size: 0.82rem;
-  color: var(--mid);
+  color: var(--white);
   letter-spacing: 0.03em;
   text-decoration: none;
 }
@@ -376,33 +393,33 @@ nav ul a:hover { color: var(--white); }
 
 /* ── TYPOGRAPHY ── */
 h1 {
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: 'DM Sans', sans-serif;
   font-size: clamp(3.8rem, 10vw, 10rem);
   line-height: 0.92;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
   color: var(--white);
-  font-weight: 400;
+  font-weight: 500;
 }
 
 h2 {
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: 'DM Sans', sans-serif;
   font-size: clamp(2rem, 4.5vw, 4rem);
   line-height: 1;
-  letter-spacing: 0.01em;
-  font-weight: 400;
+  letter-spacing: -0.02em;
+  font-weight: 500;
   color: var(--white);
 }
 
 h3 {
   font-size: 0.9rem;
   font-weight: 400;
-  color: var(--mid);
+  color: var(--white);
   margin-top: 1.4rem;
   line-height: 1.6;
 }
 
 p {
-  color: rgba(245,244,240,0.62);
+  color: var(--white);
   max-width: 52ch;
   line-height: 1.85;
 }
@@ -424,15 +441,15 @@ section { padding: var(--gap) var(--edge); }
   align-items: center;
   gap: 0.6rem;
   font-size: 0.75rem;
-  color: var(--mid);
+  color: var(--white);
   margin-bottom: 2rem;
   letter-spacing: 0.03em;
 }
 
-.breadcrumb a { color: var(--mid); text-decoration: none; transition: color 0.2s; }
+.breadcrumb a { color: var(--white); text-decoration: none; transition: color 0.2s; }
 .breadcrumb a:hover { color: var(--white); }
 .breadcrumb-sep { color: rgba(255,255,255,0.15); }
-.breadcrumb span { color: rgba(245,244,240,0.4); }
+.breadcrumb span { color: var(--white); }
 
 /* ── TWO COL ── */
 .two-col {
@@ -450,15 +467,17 @@ section { padding: var(--gap) var(--edge); }
 .stat { flex: 1; min-width: 140px; padding: 0; }
 
 .stat-num {
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: 'DM Sans', sans-serif;
   font-size: clamp(2.5rem, 5vw, 4rem);
   color: var(--accent);
   line-height: 1;
   display: block;
   margin-bottom: 0.4rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
 }
 
-.stat p { font-size: 0.78rem; max-width: none; color: var(--mid); letter-spacing: 0.05em; }
+.stat p { font-size: 0.78rem; max-width: none; color: var(--white); letter-spacing: 0.05em; }
 
 /* ── SERVICE LINK CARDS ── */
 .services-row {
@@ -487,7 +506,7 @@ section { padding: var(--gap) var(--edge); }
 .slc-tag { font-size: 0.75rem; letter-spacing: 0.06em; color: var(--accent); font-weight: 400; }
 
 .slc-title {
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: 'DM Sans', sans-serif;
   font-size: clamp(1.6rem, 2.5vw, 2.4rem);
   color: var(--white);
   line-height: 1;
@@ -508,10 +527,10 @@ section { padding: var(--gap) var(--edge); }
 /* ── CTA SECTION ── */
 #cta { background: var(--white); color: var(--black); }
 #cta h2 { color: var(--black); }
-#cta p { color: rgba(0,0,0,0.55); }
-#cta .section-label { color: rgba(0,0,0,0.28); }
-#cta h3 { font-size: 0.85rem; font-weight: 300; font-style: italic; color: rgba(0,0,0,0.38); margin-top: 1rem; }
-#cta .btn-outline { color: var(--black); border-color: rgba(0,0,0,0.2); }
+#cta p { color: var(--black); }
+#cta .section-label { color: var(--black); }
+#cta h3 { font-size: 0.85rem; font-weight: 300; font-style: italic; color: var(--black); margin-top: 1rem; }
+#cta .btn-outline { color: var(--black); border-color: var(--black); }
 #cta .btn-outline:hover { border-color: var(--black); }
 
 /* ── FOOTER ── */
@@ -519,22 +538,25 @@ footer { padding: clamp(3rem, 6vw, 5rem) var(--edge); }
 
 .footer-top {
   display: grid;
-  grid-template-columns: 1.4fr 1fr 1fr;
+  grid-template-columns: 1.6fr 1fr 1fr 1fr;
   gap: 3rem;
   padding-bottom: 3rem;
   align-items: start;
 }
 
-.footer-brand h2 {
+.footer-logo-top {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(1.2rem, 1.8vw, 1.7rem);
+  font-size: 1.55rem;
+  letter-spacing: 0.08em;
   color: var(--white);
-  font-weight: 400;
-  margin-bottom: 0.8rem;
-  line-height: 1.1;
+  text-decoration: none;
+  display: block;
+  margin-bottom: 1rem;
 }
 
-.footer-brand p { font-size: 0.85rem; color: var(--mid); max-width: 38ch; line-height: 1.7; }
+.footer-logo-top span { color: var(--accent); }
+
+.footer-brand p { font-size: 0.85rem; color: var(--white); max-width: 30ch; line-height: 1.7; }
 
 .footer-brand .email-link {
   display: inline-block;
@@ -546,12 +568,12 @@ footer { padding: clamp(3rem, 6vw, 5rem) var(--edge); }
   transition: opacity 0.2s;
 }
 
-.footer-brand .email-link:hover { opacity: 0.7; }
+.footer-brand .email-link:hover { color: var(--accent) !important; opacity: 1; }
 .footer-nav h4,
 .footer-nav-label { font-size: 0.75rem; font-weight: 500; letter-spacing: 0.04em; color: rgba(255,255,255,0.5); margin-bottom: 1.2rem; }
 .footer-nav ul { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; }
-.footer-nav a { color: var(--mid); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
-.footer-nav a:hover { color: var(--white); }
+.footer-nav a { color: var(--white); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
+.footer-nav a:hover { color: var(--accent) !important; }
 
 .footer-bottom {
   padding-top: 2rem;
@@ -562,13 +584,30 @@ footer { padding: clamp(3rem, 6vw, 5rem) var(--edge); }
   gap: 1rem;
 }
 
-.footer-bottom p { font-size: 0.72rem; color: #9a9a9a; max-width: none; letter-spacing: 0.05em; }
+.footer-bottom p { font-size: 0.72rem; color: var(--white); max-width: none; letter-spacing: 0.05em; }
+
+.footer-socials {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.footer-socials a {
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  color: var(--white);
+  text-decoration: none;
+  transition: color 0.2s;
+  font-weight: 500;
+}
+
+.footer-socials a:hover { color: var(--accent) !important; }
 
 .footer-logo {
   font-family: 'Bebas Neue', sans-serif;
   font-size: 1.2rem;
   letter-spacing: 0.08em;
-  color: #7a7a7a;
+  color: var(--white);
   text-decoration: none;
 }
 
@@ -591,11 +630,12 @@ footer { padding: clamp(3rem, 6vw, 5rem) var(--edge); }
   .two-col { grid-template-columns: 1fr; }
   .two-col.flip { direction: ltr; }
   .services-row { grid-template-columns: 1fr; }
-  .footer-top { grid-template-columns: 1fr 1fr; }
-}
+  .footer-top { grid-template-columns: 1fr 1fr; }}
 
 @media (max-width: 560px) {
   .footer-top { grid-template-columns: 1fr; }
   .footer-bottom { flex-direction: column; align-items: flex-start; }
   .stat { min-width: 120px; }
 }
+
+/* end nav */

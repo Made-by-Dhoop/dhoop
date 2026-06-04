@@ -15,16 +15,14 @@
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-<!-- Preload critical fonts to break the CSS → font chain -->
-<link rel="preload" href="/fonts/BebasNeue-Regular.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/fonts/dm-sans-v17-latin-500.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/fonts/dm-sans-v17-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/fonts/dm-sans-v17-latin-300.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/fonts/dm-sans-v17-latin-300italic.woff2" as="font" type="font/woff2" crossorigin>
-<!-- Load styles.css asynchronously to remove render-blocking -->
+<link rel="preload" href="fonts/BebasNeue-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/dm-sans-v17-latin-500.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/dm-sans-v17-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="styles.css" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="styles.css"></noscript>
 <style>
+
+  /* ── HERO ── */
   #hero {
     min-height: 100svh;
     display: flex;
@@ -32,69 +30,265 @@
     justify-content: flex-end;
     padding-top: 9rem;
     padding-bottom: clamp(4rem, 8vw, 7rem);
+    background: var(--accent);
+    position: sticky;
+    top: 0;
+    z-index: 0;
+  }
+
+  #hero .hero-eyebrow {
+    font-size: 0.82rem;
+    letter-spacing: 0.08em;
+    color: var(--black);
+    font-weight: 500;
+    margin-bottom: 1.8rem;
+    display: block;
+  }
+
+  #hero h1 {
+    color: var(--black);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    will-change: transform;
+  }
+
+  .hero-sub {
+    margin-top: 2rem;
+    font-size: clamp(1rem, 1.4vw, 1.15rem);
+    font-weight: 300;
+    color: var(--black);
+    max-width: 52ch;
+    line-height: 1.8;
+  }
+
+  .hero-btns { margin-top: 2.5rem; }
+
+  .btn-dark {
+    background: var(--black);
+    color: var(--white);
+    border: none;
+  }
+
+  .btn-dark:hover { background: #222; transform: translateY(-2px); }
+
+  .btn-outline-dark {
+    background: transparent;
+    color: var(--black);
+    border: 1.5px solid rgba(0,0,0,0.3);
+  }
+
+  .btn-outline-dark:hover { border-color: var(--black); transform: translateY(-2px); }
+
+  /* ── SCROLL CONTAINER ── */
+  #scroll-content {
     position: relative;
+    z-index: 1;
   }
-  #hero::before {
-    content: '';
-    position: absolute;
-    top: 0; right: 0;
-    width: 50vw; height: 50vw;
-    background: radial-gradient(circle, rgba(0,245,160,0.06) 0%, transparent 65%);
-    pointer-events: none;
+
+  /* ── PROBLEM — light section slides up ── */
+  #problem {
+    background: #f5f4f0;
+    color: var(--black);
+    padding: var(--gap) var(--edge);
+    position: relative;
+    z-index: 2;
+    border-radius: 12px 12px 0 0;
   }
-  .hero-eyebrow { font-size: 0.82rem; letter-spacing: 0.06em; color: var(--accent); font-weight: 400; margin-bottom: 1.8rem; display: block; }
-  .hero-sub { margin-top: 2.5rem; font-size: clamp(1rem, 1.4vw, 1.15rem); font-weight: 300; color: rgba(245,244,240,0.55); max-width: 60ch; line-height: 1.8; }
-  .hero-whisper { font-size: 0.8rem; font-style: italic; font-weight: 300; letter-spacing: 0.03em; color: rgba(245,244,240,0.28); margin-top: 0.8rem; }
-  .cta-note { font-size: 0.85rem; font-weight: 300; font-style: italic; color: rgba(0,0,0,0.38); margin-top: 1rem; max-width: none; }
-  #hero h3 { font-size: 0.8rem; font-style: italic; font-weight: 300; letter-spacing: 0.03em; color: rgba(245,244,240,0.28); margin-top: 0.8rem; }
-  #problem h3 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(1.4rem, 2.2vw, 2rem); letter-spacing: 0.02em; color: rgba(245,244,240,0.18); font-weight: 400; margin-top: 2rem; line-height: 1.15; }
-  #positioning { padding-top: var(--gap); padding-bottom: var(--gap); }
-  .positioning-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 3rem; margin-bottom: 3.5rem; flex-wrap: wrap; }
-  .positioning-top .section-label { margin-bottom: 0; }
-  .positioning-statement { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3rem, 8.5vw, 9rem); line-height: 0.92; color: var(--white); font-weight: 400; letter-spacing: 0.01em; }
-  .positioning-body { padding-top: 3rem; margin-top: 3rem; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem clamp(3rem, 6vw, 7rem); align-items: center; }
-  #positioning h3 { font-size: 0.9rem; letter-spacing: 0.02em; font-weight: 500; color: var(--accent); margin-top: 0; border-left: 2px solid var(--accent); padding-left: 0.85rem; align-self: center; }
-  .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1px; background: rgba(255,255,255,0.05); margin-top: 4rem; }
-  .service-card { background: var(--black); padding: clamp(2rem, 3.5vw, 3rem); transition: background 0.25s; text-decoration: none; display: block; }
+
+  #problem .section-label { color: var(--black); }
+  #problem h2 { color: var(--black); }
+  #problem p { color: var(--black); }
+  #problem h3 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: clamp(1.4rem, 2.2vw, 2rem);
+    letter-spacing: -0.02em;
+    color: var(--black);
+    font-weight: 500;
+    margin-top: 2rem;
+    line-height: 1.15;
+   
+  }
+
+  /* ── POSITIONING ── */
+  #positioning {
+    background: #f5f4f0;
+    padding: var(--gap) var(--edge);
+    position: relative;
+    z-index: 2;
+  }
+
+  #positioning .positioning-statement {
+    font-family: 'DM Sans', sans-serif;
+    font-size: clamp(3rem, 8.5vw, 9rem);
+    line-height: 0.92;
+    color: var(--black);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+  }
+
+  #positioning .section-label { color: var(--black); margin-bottom: 3.5rem; }
+
+  .positioning-body {
+    padding-top: 3rem;
+    margin-top: 3rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem clamp(3rem, 6vw, 7rem);
+    align-items: center;
+  }
+
+  #positioning p { color: var(--black); }
+
+  #positioning h3 {
+    font-size: 0.9rem;
+    letter-spacing: 0.02em;
+    font-weight: 500;
+    color: var(--black);
+    margin-top: 0;
+    border-left: 2px solid var(--black);
+    padding-left: 0.85rem;
+    align-self: center;
+  }
+
+  /* ── SERVICES — back to dark ── */
+  #services {
+    background: var(--black);
+    padding: var(--gap) var(--edge);
+    position: relative;
+    z-index: 2;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1px;
+    background: rgba(255,255,255,0.05);
+    margin-top: 4rem;
+  }
+
+  .service-card {
+    background: var(--black);
+    padding: clamp(2rem, 3.5vw, 3rem);
+    transition: background 0.25s;
+    text-decoration: none;
+    display: block;
+  }
+
   .service-card:hover { background: #111; }
   .card-tag { font-size: 0.75rem; letter-spacing: 0.06em; color: var(--accent); display: block; margin-bottom: 1.2rem; font-weight: 400; }
-  .card-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(1.6rem, 2.5vw, 2.2rem); line-height: 1; color: var(--white); margin-bottom: 1.3rem; font-weight: 400; letter-spacing: 0.02em; }
+  .card-title { font-family: 'DM Sans', sans-serif; font-size: clamp(1.6rem, 2.5vw, 2.2rem); font-weight: 500; letter-spacing: -0.02em; line-height: 1; color: var(--white); margin-bottom: 1.3rem; font-weight: 400; letter-spacing: 0.02em; }
   .service-card p { font-size: 0.9rem; max-width: 38ch; }
-  #performance h3 { font-size: 0.88rem; font-weight: 300; font-style: italic; color: rgba(245,244,240,0.32); margin-top: 1.5rem; }
-  #outcome { text-align: center; padding-top: var(--gap); padding-bottom: var(--gap); }
-  #outcome .section-label { text-align: center; }
-  #outcome h2 { font-size: clamp(2.5rem, 6vw, 6rem); max-width: 16ch; margin: 0 auto; line-height: 0.95; }
-  #outcome > p { margin: 2rem auto 0; text-align: center; max-width: 48ch; }
+
+  /* ── PERFORMANCE — light ── */
+  #performance {
+    background: #f5f4f0;
+    padding: var(--gap) var(--edge);
+    position: relative;
+    z-index: 2;
+  }
+
+  #performance .section-label { color: var(--black); }
+  #performance h2 { color: var(--black); }
+  #performance p { color: var(--black); }
+  #performance h3 { font-size: 0.88rem; font-weight: 300; font-style: italic; color: var(--black); margin-top: 1.5rem; }
+  #performance .stat-num { color: var(--accent); }
+  #performance .stat p { color: var(--black); }
+
+  /* ── OUTCOME — accent ── */
+  #outcome {
+    background: var(--accent);
+    padding: var(--gap) var(--edge);
+    text-align: center;
+    position: relative;
+    z-index: 2;
+  }
+
+  #outcome .section-label { color: var(--black); text-align: center; }
+  #outcome h2 { color: var(--black); font-size: clamp(2.5rem, 6vw, 6rem); max-width: 16ch; margin: 0 auto; line-height: 0.95; }
+  #outcome > p { margin: 2rem auto 0; text-align: center; max-width: 48ch; color: var(--black); }
+
   .outcome-pills { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.6rem; margin-top: 3rem; }
-  .pill { display: inline-flex; align-items: center; gap: 0.5rem; border: 1px solid rgba(255,255,255,0.12); border-radius: 100px; padding: 0.55rem 1.3rem; font-size: 0.85rem; font-weight: 400; color: var(--mid); transition: border-color 0.2s, color 0.2s; }
-  .pill:hover { border-color: var(--accent); color: var(--white); }
-  .pill-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
-  #outcome h3 { font-size: 0.85rem; font-weight: 400; color: var(--mid); letter-spacing: 0.02em; margin-top: 2.5rem; text-align: center; }
-  #outcome h3::before { content: '— '; color: var(--accent); }
-  @media (max-width: 900px) { .positioning-body { grid-template-columns: 1fr; } }
+  .pill { display: inline-flex; align-items: center; gap: 0.5rem; border: 1.5px solid rgba(0,0,0,0.2); border-radius: 100px; padding: 0.55rem 1.3rem; font-size: 0.85rem; font-weight: 400; color: var(--black); transition: border-color 0.2s, color 0.2s; }
+  .pill:hover { border-color: var(--black); color: var(--black); }
+  .pill-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--black); flex-shrink: 0; }
+
+  #outcome h3 { font-size: 0.85rem; font-weight: 400; color: var(--black); letter-spacing: 0.02em; margin-top: 2.5rem; text-align: center; }
+  #outcome h3::before { content: '— '; color: var(--black); }
+
+  .cta-note { font-size: 0.85rem; font-weight: 300; font-style: italic; color: var(--black); margin-top: 1rem; max-width: none; }
+
+  @media (max-width: 900px) {
+    .positioning-body { grid-template-columns: 1fr; }
+    #hero { position: relative; }
+  }
 </style>
 </head>
 <body>
 
-<div id="site-header"></div>
+<nav>
+  <a href="index.html" class="logo">Dhoop<span>.</span></a>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li class="has-dropdown">
+      <span class="dropdown-toggle">Services <span class="dropdown-arrow">&#9660;</span></span>
+      <ul class="dropdown">
+        <li><a href="web-design.html">Website Design</a></li>
+        <li><a href="rebuilds.html">Website Rebuild</a></li>
+        <li><a href="health-check.html">Website Health Check</a></li>
+      </ul>
+    </li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="work.html">Work</a></li>
+    <li><a href="insights.html">Insights</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="contact.html" class="nav-cta">Get Performance Audit</a>
+  <button class="hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-overlay" id="mobileOverlay">
+  <ul class="mobile-nav-links">
+    <li class="mobile-has-dropdown">
+      <button class="mobile-dropdown-toggle">Services <span class="mobile-dropdown-arrow">&#9660;</span></button>
+      <ul class="mobile-dropdown">
+        <li><a href="web-design.html">Website Design</a></li>
+        <li><a href="rebuilds.html">Website Rebuild</a></li>
+        <li><a href="health-check.html">Website Health Check</a></li>
+      </ul>
+    </li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="work.html">Work</a></li>
+    <li><a href="insights.html">Insights</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="contact.html" class="mobile-cta">Get Performance Audit</a>
+  <a href="mailto:hello@madebydhoop.co.uk" class="mobile-email">hello@madebydhoop.co.uk</a>
+</div>
 
 <main>
+
+<!-- HERO — sticky green -->
 <section id="hero">
   <span class="hero-eyebrow">Bournemouth Web Design Agency</span>
-  <h1>Clean Code.<br>Fast Websites.<br>Better Rankings.</h1>
+  <h1 id="hero-heading">Clean Code.<br>Fast Websites.<br>Better Rankings.</h1>
   <p class="hero-sub">Performance-first website design in Bournemouth — built for Google Web Vitals, not page builders.</p>
-  <div class="btn-group">
-    <a href="contact.html" class="btn btn-primary">Get a Performance Audit</a>
-    <a href="web-design.html" class="btn btn-outline">Start a Web Design Project</a>
+  <div class="btn-group hero-btns">
+    <a href="contact.html" class="btn btn-dark">Get a Performance Audit</a>
+    <a href="web-design.html" class="btn btn-outline-dark">Start a Web Design Project</a>
   </div>
-  <p class="hero-whisper">Built in Bournemouth. Optimised for speed, search, and scale.</p>
 </section>
+
+<!-- SCROLL CONTENT — slides up over hero -->
+<div id="scroll-content">
 
 <section id="problem">
   <div class="two-col">
     <div class="reveal">
       <span class="section-label">The Problem</span>
-      <h2>Most websites are too slow to perform</h2>
+      <h2>Your website is probably slower than you think</h2>
     </div>
     <div class="reveal">
       <p>Most modern websites are weighed down by unnecessary code, page builders, and inefficient design choices. The result is slower load times, weaker SEO performance, and poor user experience.</p>
@@ -104,9 +298,7 @@
 </section>
 
 <section id="positioning">
-  <div class="positioning-top reveal">
-    <span class="section-label" style="margin-bottom:0">Our Approach</span>
-  </div>
+  <span class="section-label reveal">Our Approach</span>
   <div class="positioning-statement reveal">We build websites properly — from the ground up</div>
   <div class="positioning-body">
     <div class="reveal">
@@ -190,9 +382,65 @@
   </div>
 </section>
 
-<div id="site-footer"></div>
-
+</div><!-- end scroll-content -->
 </main>
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="index.html" class="footer-logo-top">Dhoop<span>.</span></a>
+      <p>Fast, clean-coded websites built for performance, SEO, and long-term scalability.</p>
+      <a href="mailto:hello@madebydhoop.co.uk" class="email-link">hello@madebydhoop.co.uk</a>
+    </div>
+    <div class="footer-nav">
+      <p class="footer-nav-label">Services</p>
+      <ul>
+        <li><a href="web-design.html">Website Design</a></li>
+        <li><a href="rebuilds.html">Website Rebuild</a></li>
+        <li><a href="health-check.html">Health Check</a></li>
+        <li><a href="contact.html">Performance Audit</a></li>
+      </ul>
+    </div>
+    <div class="footer-nav">
+      <p class="footer-nav-label">Company</p>
+      <ul>
+        <li><a href="about.html">About</a></li>
+        <li><a href="work.html">Work</a></li>
+        <li><a href="insights.html">Insights</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="privacy.html">Privacy Policy</a></li>
+      </ul>
+    </div>
+    <div class="footer-nav">
+      <p class="footer-nav-label">Follow</p>
+      <ul>
+        <li><a href="https://www.linkedin.com/company/dhoop-agency" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a></li>
+        <li><a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">Instagram ↗</a></li>
+        <li><a href="https://x.com/made_by_dhoop" target="_blank" rel="noopener noreferrer">X ↗</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Dhoop Ltd &nbsp;·&nbsp; Bournemouth, Dorset &nbsp;·&nbsp; Registered in England &amp; Wales</p>
+    <a href="index.html" class="footer-logo">Dhoop<span>.</span></a>
+  </div>
+</footer>
+
 <script src="main.js" defer></script>
+<script>
+  // ── HERO SCROLL — text slides left ──
+  const heroHeading = document.getElementById('hero-heading');
+  const hero = document.getElementById('hero');
+
+  function onScroll() {
+    if (!heroHeading || !hero) return;
+    const scrolled = window.scrollY;
+    const heroHeight = hero.offsetHeight;
+    const progress = Math.min(scrolled / heroHeight, 1);
+    heroHeading.style.transform = `translateX(${progress * -600}px)`;
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+</script>
 </body>
 </html>

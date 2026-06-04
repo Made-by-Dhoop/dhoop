@@ -13,26 +13,30 @@
 <link rel="stylesheet" href="styles.css">
 
 <style>
+  #hero h1, #hero h2, #hero p, #hero h3 { color: var(--black); }
+  #hero { background: var(--accent); min-height: 100svh; }
+  .breadcrumb, .breadcrumb a, .breadcrumb span, .breadcrumb-sep { color: #000000 !important; opacity: 1 !important; }
+  .breadcrumb a:hover { text-decoration: underline; }
+  .hero-eyebrow { color: #000000 !important; }
+  .hero-sub { color: var(--black) !important; }
   #hero {
-    min-height: 60svh;
+    background: var(--accent);
+    min-height: 100svh;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     padding-top: 9rem;
-    padding-bottom: clamp(3rem, 6vw, 5rem);
+    padding-bottom: clamp(4rem, 8vw, 7rem);
     position: relative;
-    overflow: hidden;
   }
 
   .hero-bg { position: absolute; inset: 0; z-index: 0; }
   .hero-bg img { width: 100%; height: 100%; object-fit: cover; opacity: 0.15; display: block; }
   .hero-bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, var(--black) 40%, transparent 100%); }
   #hero > *:not(.hero-bg) { position: relative; z-index: 1; }
-
-  .hero-eyebrow { font-size: 0.82rem; letter-spacing: 0.06em; color: var(--accent); font-weight: 400; margin-bottom: 1.8rem; display: block; }
   .post-meta-hero { display: flex; align-items: center; gap: 1.5rem; margin-top: 2rem; flex-wrap: wrap; }
-  .post-meta-hero span { font-size: 0.8rem; color: var(--mid); letter-spacing: 0.04em; }
-  .post-meta-hero .tag { color: var(--accent); font-weight: 500; letter-spacing: 0.08em; }
+  .post-meta-hero span { font-size: 0.8rem; color: var(--black); letter-spacing: 0.04em; }
+  .post-meta-hero .tag { color: var(--black); font-weight: 500; letter-spacing: 0.08em; }
 
   #article { padding-top: var(--gap); padding-bottom: var(--gap); border-top: 1px solid rgba(255,255,255,0.06); }
 
@@ -44,26 +48,26 @@
   }
 
   .article-sidebar { position: sticky; top: 8rem; display: flex; flex-direction: column; gap: 2rem; }
-  .sidebar-label { font-size: 0.72rem; letter-spacing: 0.08em; color: var(--accent); font-weight: 500; display: block; margin-bottom: 0.8rem; }
+  .sidebar-label { font-size: 0.72rem; letter-spacing: 0.08em; color: var(--black); font-weight: 500; display: block; margin-bottom: 0.8rem; }
   .sidebar-toc ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
-  .sidebar-toc a { font-size: 0.82rem; color: var(--mid); text-decoration: none; line-height: 1.5; transition: color 0.2s; }
-  .sidebar-toc a:hover { color: var(--white); }
+  .sidebar-toc a { font-size: 0.82rem; color: var(--black); text-decoration: none; line-height: 1.5; transition: color 0.2s; }
+  .sidebar-toc a:hover { color: var(--black); }
   .sidebar-cta { padding: 1.5rem; border: 1px solid rgba(0,245,160,0.2); border-radius: 2px; }
-  .sidebar-cta p { font-size: 0.82rem; margin-bottom: 1rem; max-width: none; color: rgba(245,244,240,0.55); }
+  .sidebar-cta p { font-size: 0.82rem; margin-bottom: 1rem; max-width: none; color: var(--black); }
   .sidebar-cta .btn { width: 100%; text-align: center; font-size: 0.78rem; padding: 0.7rem 1rem; }
 
   .article-body { max-width: 68ch; }
-  .article-body h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(1.6rem, 2.5vw, 2.4rem); color: var(--white); font-weight: 400; letter-spacing: 0.02em; margin-top: 3rem; margin-bottom: 1.2rem; line-height: 1; padding-top: 3rem; border-top: 1px solid rgba(255,255,255,0.06); }
+  .article-body h2 { font-family: 'DM Sans', sans-serif; font-size: clamp(1.6rem, 2.5vw, 2.4rem); color: var(--black); font-weight: 400; letter-spacing: 0.02em; margin-top: 3rem; margin-bottom: 1.2rem; line-height: 1; padding-top: 3rem; border-top: 1px solid rgba(255,255,255,0.06); }
   .article-body h2:first-child { margin-top: 0; padding-top: 0; border-top: none; }
-  .article-body p { font-size: 1rem; color: rgba(245,244,240,0.72); line-height: 1.9; max-width: none; margin-bottom: 1.4rem; }
+  .article-body p { font-size: 1rem; color: var(--black); line-height: 1.9; max-width: none; margin-bottom: 1.4rem; }
   .article-body p:last-child { margin-bottom: 0; }
-  .article-body strong { color: var(--white); font-weight: 500; }
+  .article-body strong { color: var(--black); font-weight: 500; }
   .article-body ul { margin: 1.2rem 0 1.4rem 0; display: flex; flex-direction: column; gap: 0.6rem; }
-  .article-body ul li { font-size: 1rem; color: rgba(245,244,240,0.72); line-height: 1.75; padding-left: 1.5rem; position: relative; }
-  .article-body ul li::before { content: '—'; position: absolute; left: 0; color: var(--accent); font-size: 0.85rem; }
+  .article-body ul li { font-size: 1rem; color: var(--black); line-height: 1.75; padding-left: 1.5rem; position: relative; }
+  .article-body ul li::before { content: '—'; position: absolute; left: 0; color: var(--black); font-size: 0.85rem; }
 
   .article-callout { border-left: 2px solid var(--accent); padding: 1.2rem 1.5rem; margin: 2rem 0; background: rgba(0,245,160,0.04); }
-  .article-callout p { font-size: 0.95rem; color: rgba(245,244,240,0.8); margin: 0; font-style: italic; }
+  .article-callout p { font-size: 0.95rem; color: var(--black); margin: 0; font-style: italic; }
 
   /* Metric cards */
   .metric-cards {
@@ -87,18 +91,18 @@
   .metric-card:hover { background: #111; }
 
   .metric-abbr {
-    font-family: 'Bebas Neue', sans-serif;
+    font-family: 'DM Sans', sans-serif;
     font-size: 3rem;
-    color: var(--accent);
+    color: var(--black);
     line-height: 1;
     letter-spacing: 0.02em;
     min-width: 5rem;
   }
 
   .metric-name {
-    font-family: 'Bebas Neue', sans-serif;
+    font-family: 'DM Sans', sans-serif;
     font-size: 1.3rem;
-    color: var(--white);
+    color: var(--black);
     line-height: 1;
     letter-spacing: 0.02em;
     margin-bottom: 0.5rem;
@@ -121,14 +125,14 @@
     font-weight: 500;
   }
 
-  .threshold.good { background: rgba(0,245,160,0.1); color: var(--accent); }
+  .threshold.good { background: rgba(0,245,160,0.1); color: var(--black); }
   .threshold.ok { background: rgba(255,180,0,0.1); color: rgba(255,180,0,0.9); }
   .threshold.bad { background: rgba(255,80,80,0.1); color: rgba(255,100,100,0.9); }
 
   .article-end { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.06); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
-  .back-link { font-size: 0.82rem; color: var(--mid); text-decoration: none; letter-spacing: 0.04em; transition: color 0.2s; }
-  .back-link:hover { color: var(--white); }
-  .cta-note { font-size: 0.85rem; font-weight: 300; font-style: italic; color: rgba(0,0,0,0.38); margin-top: 1rem; max-width: none; }
+  .back-link { font-size: 0.82rem; color: var(--black); text-decoration: none; letter-spacing: 0.04em; transition: color 0.2s; }
+  .back-link:hover { color: var(--black); }
+  .cta-note { font-size: 0.85rem; font-weight: 300; font-style: italic; color: var(--black); margin-top: 1rem; max-width: none; }
 
   @media (max-width: 900px) {
     .article-layout { grid-template-columns: 1fr; }
@@ -140,7 +144,47 @@
 </head>
 <body>
 
-<div id="site-header"></div>
+<nav>
+  <a href="index.html" class="logo">Dhoop<span>.</span></a>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li class="has-dropdown">
+      <span class="dropdown-toggle">Services <span class="dropdown-arrow">&#9660;</span></span>
+      <ul class="dropdown">
+        <li><a href="web-design.html">Website Design</a></li>
+        <li><a href="rebuilds.html">Website Rebuild</a></li>
+        <li><a href="health-check.html">Website Health Check</a></li>
+      </ul>
+    </li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="work.html">Work</a></li>
+    <li><a href="insights.html">Insights</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="contact.html" class="nav-cta">Get Performance Audit</a>
+  <button class="hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-overlay" id="mobileOverlay">
+  <ul class="mobile-nav-links">
+    <li class="mobile-has-dropdown">
+      <button class="mobile-dropdown-toggle">Services <span class="mobile-dropdown-arrow">&#9660;</span></button>
+      <ul class="mobile-dropdown">
+        <li><a href="web-design.html">Website Design</a></li>
+        <li><a href="rebuilds.html">Website Rebuild</a></li>
+        <li><a href="health-check.html">Website Health Check</a></li>
+      </ul>
+    </li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="work.html">Work</a></li>
+    <li><a href="insights.html">Insights</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="contact.html" class="mobile-cta">Get Performance Audit</a>
+  <a href="mailto:hello@madebydhoop.co.uk" class="mobile-email">hello@madebydhoop.co.uk</a>
+</div>
 
 <main>
 <section id="hero">
@@ -306,7 +350,46 @@
 </section>
 </main>
 
-<div id="site-footer"></div>
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="index.html" class="footer-logo-top">Dhoop<span>.</span></a>
+      <p>Fast, clean-coded websites built for performance, SEO, and long-term scalability.</p>
+      <a href="mailto:hello@madebydhoop.co.uk" class="email-link">hello@madebydhoop.co.uk</a>
+    </div>
+    <div class="footer-nav">
+      <p class="footer-nav-label">Services</p>
+      <ul>
+        <li><a href="web-design.html">Website Design</a></li>
+        <li><a href="rebuilds.html">Website Rebuild</a></li>
+        <li><a href="health-check.html">Health Check</a></li>
+        <li><a href="contact.html">Performance Audit</a></li>
+      </ul>
+    </div>
+    <div class="footer-nav">
+      <p class="footer-nav-label">Company</p>
+      <ul>
+        <li><a href="about.html">About</a></li>
+        <li><a href="work.html">Work</a></li>
+        <li><a href="insights.html">Insights</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="privacy.html">Privacy Policy</a></li>
+      </ul>
+    </div>
+    <div class="footer-nav">
+      <p class="footer-nav-label">Follow</p>
+      <ul>
+        <li><a href="https://www.linkedin.com/company/dhoop-agency" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a></li>
+        <li><a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">Instagram ↗</a></li>
+        <li><a href="https://x.com/made_by_dhoop" target="_blank" rel="noopener noreferrer">X ↗</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Dhoop Ltd &nbsp;·&nbsp; Bournemouth, Dorset &nbsp;·&nbsp; Registered in England &amp; Wales</p>
+    <a href="index.html" class="footer-logo">Dhoop<span>.</span></a>
+  </div>
+</footer>
 
 <script src="main.js" defer></script>
 </body>
