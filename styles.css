@@ -437,6 +437,7 @@ section { padding: var(--gap) var(--edge); }
 
 /* ── HERO CONSISTENCY ── */
 #hero { justify-content: flex-start !important; padding-top: clamp(14rem, 32vw, 28rem) !important; }
+#hero h1 { margin-top: auto; }
 
 /* ── BREADCRUMB ── */
 .breadcrumb {
