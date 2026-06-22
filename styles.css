@@ -435,6 +435,10 @@ section { padding: var(--gap) var(--edge); }
   margin-bottom: 2rem;
 }
 
+/* ── HERO CONSISTENCY ── */
+/* Ensures hero text block sits at a consistent height across all pages */
+#hero h1 { min-height: clamp(12rem, 28vw, 28rem); display: flex; flex-direction: column; justify-content: flex-end; }
+
 /* ── BREADCRUMB ── */
 .breadcrumb {
   display: flex;
