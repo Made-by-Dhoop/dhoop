@@ -27,8 +27,8 @@
     min-height: 100svh;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
-    padding-top: 9rem;
+    justify-content: flex-end !important;
+    padding-top: 9rem !important;
     padding-bottom: clamp(4rem, 8vw, 7rem);
     background: var(--accent);
     position: sticky;
@@ -78,7 +78,7 @@
     border: 1.5px solid rgba(0,0,0,0.3);
   }
 
-  .btn-outline-dark:hover { border-color: var(--black); transform: translateY(-2px); }
+  .btn-outline-dark:hover { border-color: var(--black); color: var(--black); transform: translateY(-2px); }
 
   /* ── SCROLL CONTAINER ── */
   #scroll-content {
@@ -180,6 +180,93 @@
   .card-title { font-family: 'DM Sans', sans-serif; font-size: clamp(1.6rem, 2.5vw, 2.2rem); font-weight: 500; letter-spacing: -0.02em; line-height: 1; color: var(--white); margin-bottom: 1.3rem; font-weight: 400; letter-spacing: 0.02em; }
   .service-card p { font-size: 0.9rem; max-width: 38ch; }
 
+  /* ── WORK — merged services + real project showcase ── */
+  #work {
+    background: var(--black);
+    padding: var(--gap) var(--edge);
+    position: relative;
+    z-index: 2;
+  }
+
+  .work-intro { margin-top: 1.5rem; max-width: 56ch; }
+
+  .capability-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-top: 2.5rem;
+  }
+
+  .pill-dark {
+    display: inline-flex;
+    align-items: center;
+    border: 1.5px solid rgba(255,255,255,0.18);
+    border-radius: 100px;
+    padding: 0.55rem 1.2rem;
+    font-size: 0.82rem;
+    font-weight: 400;
+    color: var(--white);
+  }
+
+  .work-list {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(3rem, 6vw, 5rem);
+    margin-top: 4.5rem;
+  }
+
+  .work-feature {
+    display: block;
+    text-decoration: none;
+  }
+
+  .work-feature-head { margin-bottom: 1.8rem; max-width: 60ch; }
+  .work-feature-head .work-title { font-family: 'DM Sans', sans-serif; font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 500; color: var(--white); margin-bottom: 0.6rem; }
+  .work-feature-head p { font-size: 1rem; color: var(--white); margin-bottom: 0.8rem; }
+
+  .work-badge {
+    display: inline-block;
+    background: var(--accent);
+    color: var(--black);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    padding: 0.4rem 0.8rem;
+    border-radius: 100px;
+    margin-bottom: 1rem;
+  }
+
+  .work-link { display: inline-block; text-decoration: none; font-size: 0.85rem; color: var(--accent); font-weight: 500; letter-spacing: 0.02em; }
+  .work-link:hover { color: var(--accent-dark); text-decoration: underline; }
+
+  .work-feature-image {
+    width: 100%;
+    min-height: 92vh;
+    border-radius: 4px;
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+    transition: transform 0.5s ease;
+  }
+
+  .work-feature-video {
+    display: block;
+    width: 100%;
+    min-height: 92vh;
+    max-height: 92vh;
+    border-radius: 4px;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+
+  .work-feature:hover .work-feature-video { transform: scale(1.015); }
+
+  .work-feature:hover .work-feature-image { transform: scale(1.015); } /* subtle, full-bleed images don't want an aggressive zoom */
+
+  @media (max-width: 900px) {
+    .work-feature-image { min-height: 60vh; }
+  }
+
   /* ── PERFORMANCE — light ── */
   #performance {
     background: #f5f4f0;
@@ -272,9 +359,9 @@
 
 <!-- HERO — sticky green -->
 <section id="hero">
-  <span class="hero-eyebrow">Bournemouth Web Design Agency</span>
+  <span class="hero-eyebrow">Hand-Coded Web Design</span>
   <h1 id="hero-heading">Clean Code.<br>Fast Websites.<br>Better Rankings.</h1>
-  <p class="hero-sub">Performance-first website design in Bournemouth — built for Google Web Vitals, not page builders.</p>
+  <p class="hero-sub">Performance-first web design: built for your users, measured by Google Web Vitals.</p>
   <div class="btn-group hero-btns">
     <a href="contact.html" class="btn btn-dark">Get a Performance Audit</a>
     <a href="web-design.html" class="btn btn-outline-dark">Start a Web Design Project</a>
@@ -284,15 +371,75 @@
 <!-- SCROLL CONTENT — slides up over hero -->
 <div id="scroll-content">
 
+<section id="work">
+  <span class="section-label reveal">What we do</span>
+  <h2 class="reveal">We build really fast websites</h2>
+  <p class="reveal work-intro">No page builders, no bloat — just clean code that loads instantly. Here's what that looks like, live.</p>
+
+  <div class="capability-pills reveal">
+    <span class="pill-dark">Hand-coded HTML &amp; CSS</span>
+    <span class="pill-dark">100 Google Web Vitals</span>
+    <span class="pill-dark">Sub-2s Load Times</span>
+    <span class="pill-dark">Mobile Optimised</span>
+    <span class="pill-dark">SEO Ready</span>
+    <span class="pill-dark">Scroll &amp; Parallax Effects</span>
+    <span class="pill-dark">+ a few tricks</span>
+  </div>
+
+  <div class="work-list">
+    <div class="work-feature reveal">
+      <div class="work-feature-head">
+        <span class="work-badge">100 Lighthouse</span>
+        <div class="work-title">Stomp</div>
+        <p>Vintage streetwear, built to load instantly and feel as sharp as the stock on the rail.</p>
+        <a href="https://www.stompdownsouth.com" target="_blank" rel="noopener noreferrer" class="work-link">Visit live site ↗</a>
+      </div>
+      <div class="work-feature-image" style="background-image:url('https://images.unsplash.com/photo-1620794341491-76be6eeb6946?q=80&w=1920&auto=format&fit=crop&ixlib=rb-4.1.0');"></div>
+    </div>
+
+    <div class="work-feature reveal">
+      <div class="work-feature-head">
+        <span class="work-badge">100 Lighthouse</span>
+        <div class="work-title">Bjorn &amp; Strand</div>
+        <p>A Scandinavian architecture studio site — subtle scroll motion and clean typography, built to feel as considered as the work itself.</p>
+        <a href="https://www.bjornstrand.co.uk" target="_blank" rel="noopener noreferrer" class="work-link">Visit live site ↗</a>
+      </div>
+      <div class="work-feature-image" style="background-image:url('https://images.pexels.com/photos/34010690/pexels-photo-34010690.jpeg?auto=compress&cs=tinysrgb&w=1920');"></div>
+    </div>
+
+    <div class="work-feature reveal">
+      <div class="work-feature-head">
+        <span class="work-badge">100 Lighthouse</span>
+        <div class="work-title">RD Plumbing</div>
+        <p>A local trade site built for speed and simple enquiries — no unnecessary steps between "found you" and "booked you".</p>
+        <a href="https://rd-plumbing.co.uk" target="_blank" rel="noopener noreferrer" class="work-link">Visit live site ↗</a>
+      </div>
+      <div class="work-feature-image" style="background-image:url('images/rd-plumbing-pagespeed.png');"></div>
+    </div>
+
+    <div class="work-feature reveal">
+      <div class="work-feature-head">
+        <span class="work-badge">Concept</span>
+        <div class="work-title">Greystone</div>
+        <p>A moodier, editorial-style build — motion and layout doing the heavy lifting instead of stock imagery.</p>
+        <a href="https://greystone.old-hall-370c.workers.dev" target="_blank" rel="noopener noreferrer" class="work-link">Visit live site ↗</a>
+      </div>
+      <video class="work-feature-video" autoplay muted loop playsinline preload="auto">
+        <source src="images/greystone-video.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+</section>
+
 <section id="problem">
   <div class="two-col">
     <div class="reveal">
       <span class="section-label">The Problem</span>
-      <h2>Your website is probably slower than you think</h2>
+      <h2>Google penalises slow sites. Visitors just leave.</h2>
     </div>
     <div class="reveal">
-      <p>Most modern websites are weighed down by unnecessary code, page builders, and inefficient design choices. The result is slower load times, weaker SEO performance, and poor user experience.</p>
-      <h3>Slow websites don't just look bad — they lose business</h3>
+      <p>Most modern websites are weighed down by unnecessary code, page builders, and inefficient design choices. Every extra second of load time is a visitor closing the tab — and a lower ranking that makes the next one harder to find.</p>
+      <h3>A slow website isn't just annoying — it's costing you customers</h3>
     </div>
   </div>
 </section>
@@ -310,33 +457,11 @@
   </div>
 </section>
 
-<section id="services">
-  <span class="section-label reveal">Services</span>
-  <h2 class="reveal">Website design services<br>in Bournemouth</h2>
-  <div class="services-grid">
-    <a href="web-design.html" class="service-card reveal">
-      <span class="card-tag">New Builds</span>
-      <div class="card-title">New Website Builds</div>
-      <p>Custom website design and development for businesses that need a fast, scalable, and high-performing online presence.</p>
-    </a>
-    <a href="rebuilds.html" class="service-card reveal">
-      <span class="card-tag">Rebuilds</span>
-      <div class="card-title">Website Rebuilds</div>
-      <p>We take underperforming websites and rebuild them from scratch — improving speed, SEO, structure, and conversion performance.</p>
-    </a>
-    <a href="health-check.html" class="service-card reveal">
-      <span class="card-tag">Audits</span>
-      <div class="card-title">Website Health Checks</div>
-      <p>A full technical audit of your website against Google Web Vitals and Lighthouse metrics, identifying performance issues and SEO opportunities.</p>
-    </a>
-  </div>
-</section>
-
 <section id="performance">
   <div class="two-col">
     <div class="reveal">
       <span class="section-label">Performance Authority</span>
-      <h2>Built for Google Web Vitals</h2>
+      <h2>Built with Google Web Vitals in mind</h2>
     </div>
     <div class="reveal">
       <p>Every website we build is measured against real performance standards — not guesswork. That means faster load times, stronger SEO signals, and better user experience across all devices.</p>
