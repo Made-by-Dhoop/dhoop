@@ -27,10 +27,12 @@
     min-height: 100svh;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end !important;
-    padding-top: 9rem !important;
-    padding-bottom: clamp(4rem, 8vw, 7rem);
-    background: var(--accent);
+    align-items: center;
+    justify-content: center !important;
+    text-align: center;
+    padding: 4rem var(--edge) !important;
+    gap: 2.2rem;
+    background: #f5f4f0;
     position: sticky;
     top: 0;
     z-index: 0;
@@ -41,28 +43,55 @@
     letter-spacing: 0.08em;
     color: var(--black);
     font-weight: 500;
-    margin-bottom: 1.8rem;
+    margin-bottom: 0;
     display: block;
+  }
+
+  .hero-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4em;
+    background: #ffffff;
+    color: var(--black);
+    padding: 0.08em 0.5em;
+    border-radius: 100px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 0.85em;
+    vertical-align: 0.02em;
+    position: relative;
+    box-shadow: 0 0 0 1.5px rgba(0,245,160,0.5), 0 4px 16px rgba(0,0,0,0.06);
+  }
+
+  .hero-pill svg {
+    width: 0.8em;
+    height: 0.8em;
+    stroke: var(--black);
+    fill: none;
+    stroke-width: 2.2;
   }
 
   #hero h1 {
     color: var(--black);
     font-family: 'DM Sans', sans-serif;
-    font-weight: 500;
-    letter-spacing: -0.02em;
+    font-weight: 700;
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    max-width: 16ch;
     will-change: transform;
   }
 
   .hero-sub {
-    margin-top: 2rem;
-    font-size: clamp(1rem, 1.4vw, 1.15rem);
-    font-weight: 300;
-    color: var(--black);
-    max-width: 52ch;
-    line-height: 1.8;
+    margin-top: 0;
+    font-size: clamp(1rem, 1.4vw, 1.2rem);
+    font-weight: 400;
+    color: rgba(10,10,10,0.65);
+    max-width: 42ch;
+    line-height: 1.6;
   }
 
-  .hero-btns { margin-top: 2.5rem; }
+  .hero-btns { margin-top: 0.3rem; }
 
   .btn-dark {
     background: var(--black);
@@ -366,7 +395,12 @@
 <!-- HERO — sticky green -->
 <section id="hero">
   <span class="hero-eyebrow">Hand-Coded Web Design Bournemouth</span>
-  <h1 id="hero-heading">Clean Code.<br>Fast Websites.<br>Better Rankings.</h1>
+  <h1 id="hero-heading">Websites that load fast and
+    <span class="hero-pill">
+      <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      convert
+    </span>
+  </h1>
   <p class="hero-sub">Performance-first web design: built for your users, measured by Google Web Vitals.</p>
   <div class="btn-group hero-btns">
     <a href="contact.html" class="btn btn-dark">Get a Performance Audit</a>
@@ -563,20 +597,5 @@
 </footer>
 
 <script src="main.js" defer></script>
-<script>
-  // ── HERO SCROLL — text slides left ──
-  const heroHeading = document.getElementById('hero-heading');
-  const hero = document.getElementById('hero');
-
-  function onScroll() {
-    if (!heroHeading || !hero) return;
-    const scrolled = window.scrollY;
-    const heroHeight = hero.offsetHeight;
-    const progress = Math.min(scrolled / heroHeight, 1);
-    heroHeading.style.transform = `translateX(${progress * -600}px)`;
-  }
-
-  window.addEventListener('scroll', onScroll, { passive: true });
-</script>
 </body>
 </html>
