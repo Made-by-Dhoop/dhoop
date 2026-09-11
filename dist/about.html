@@ -34,6 +34,10 @@
   #founder {
     background: #f5f4f0;
     padding: var(--gap) var(--edge);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
   #founder * { color: var(--black) !important; }
   #founder .section-label { color: var(--black) !important; opacity: 1; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.08em; display: block; margin-bottom: 2rem; }
@@ -86,6 +90,10 @@
   #tagline {
     background: var(--black);
     padding: var(--gap) var(--edge);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
   .tagline-text {
@@ -106,6 +114,10 @@
   #principles {
     background: #f5f4f0;
     padding: var(--gap) var(--edge);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
   #principles .section-label { color: var(--black) !important; opacity: 0.45; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.08em; display: block; margin-bottom: 2rem; }
@@ -143,6 +155,13 @@
   @media (max-width: 900px) {
     .founder-grid { grid-template-columns: 1fr; }
     .founder-photo { aspect-ratio: 1/1; max-width: 320px; }
+  }
+
+  #cta {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 </style>
 </head>

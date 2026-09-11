@@ -49,6 +49,10 @@
     grid-template-columns: 1fr 3fr;
     gap: 4rem clamp(3rem, 6vw, 7rem);
     align-items: start;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
   .article-sidebar { position: sticky; top: 8rem; display: flex; flex-direction: column; gap: 2rem; }
@@ -143,6 +147,13 @@
     .article-sidebar { display: none; }
     .metric-card { grid-template-columns: 1fr; gap: 0.5rem; }
     .metric-abbr { font-size: 2rem; min-width: auto; }
+  }
+
+  #cta {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 </style>
 </head>

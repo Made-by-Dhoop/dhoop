@@ -82,6 +82,10 @@
     padding-top: var(--gap);
     padding-bottom: var(--gap);
     border-top: 1px solid rgba(255,255,255,0.06);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
   .article-layout {
@@ -246,6 +250,13 @@
     .article-layout { grid-template-columns: 1fr; }
     .article-sidebar { display: none; }
   }
+
+  #cta {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
 </style>
 </head>
 <body>
@@ -331,6 +342,10 @@
         <span class="sidebar-label">Free Audit</span>
         <p>Want to know your score? We'll run a full audit and tell you exactly what's holding it back.</p>
         <a href="contact.html" class="btn btn-primary">Get a Health Check</a>
+      </div>
+      <div class="sidebar-cta">
+        <span class="sidebar-label">Related</span>
+        <p><a href="post-slow-website-fix.html" style="color: var(--black); text-decoration: underline;">How to Fix a Slow Website — the five most common causes</a></p>
       </div>
     </aside>
 

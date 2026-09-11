@@ -46,6 +46,10 @@
     background: #f5f4f0;
     padding: var(--gap) var(--edge);
     padding-bottom: calc(var(--gap) * 1.5);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
   .work-grid {
@@ -111,6 +115,10 @@
   #vitals {
     background: var(--black);
     padding: var(--gap) var(--edge);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
   #vitals .section-label { color: var(--accent); }
@@ -120,6 +128,13 @@
   #vitals .stat p { color: var(--white); font-size: 0.78rem; letter-spacing: 0.05em; }
   #vitals .stat-row { display: flex; justify-content: center; text-align: center; gap: 3rem; flex-wrap: wrap; margin-top: 2rem; }
   #vitals .stat { text-align: center; min-width: 100px; flex: 0 1 auto; }
+
+  #cta {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
 </style>
 </head>
 <body>
