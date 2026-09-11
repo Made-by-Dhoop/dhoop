@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Why Your PageSpeed Score Matters More Than You Think — Dhoop</title>
-<meta name="description" content="Most business owners have never seen their PageSpeed score. Here's why it matters, what's dragging it down, and what you can do about it.">
+<title>How to Fix a Slow Website — Dhoop</title>
+<meta name="description" content="A slow website isn't a mystery — it's usually one of five things. Here's how to diagnose what's actually dragging your site down, and what to do about each cause.">
 <meta name="robots" content="index, follow">
-<link rel="canonical" href="https://www.madebydhoop.co.uk/post-pagespeed.html">
+<link rel="canonical" href="https://www.madebydhoop.co.uk/post-slow-website-fix.html">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -313,14 +313,14 @@
     <span class="breadcrumb-sep">/</span>
     <a href="insights.html">Insights</a>
     <span class="breadcrumb-sep">/</span>
-    <span>PageSpeed</span>
+    <span>Slow Website Fix</span>
   </div>
   <span class="hero-eyebrow">Performance</span>
-  <h1>Why Your PageSpeed<br>Score Matters More<br>Than You Think</h1>
+  <h1>How to Fix<br>a Slow<br>Website</h1>
   <div class="post-meta-hero">
     <span class="tag">Performance</span>
-    <span>May 2025</span>
-    <span>6 min read</span>
+    <span>September 2026</span>
+    <span>7 min read</span>
   </div>
 </section>
 
@@ -331,76 +331,62 @@
       <div class="sidebar-toc">
         <span class="sidebar-label">In This Article</span>
         <ul>
-          <li><a href="#what-is-pagespeed">What is PageSpeed?</a></li>
-          <li><a href="#why-it-matters">Why it matters</a></li>
-          <li><a href="#what-kills-scores">What kills your score</a></li>
-          <li><a href="#what-good-looks-like">What good looks like</a></li>
-          <li><a href="#how-to-fix-it">How to fix it</a></li>
+          <li><a href="#why-slow">Why your site is slow</a></li>
+          <li><a href="#cause-page-builders">Cause 1: Page builders</a></li>
+          <li><a href="#cause-images">Cause 2: Unoptimised images</a></li>
+          <li><a href="#cause-hosting">Cause 3: Slow hosting</a></li>
+          <li><a href="#cause-scripts">Cause 4: Third-party scripts</a></li>
+          <li><a href="#cause-caching">Cause 5: No caching</a></li>
+          <li><a href="#where-to-start">Where to actually start</a></li>
         </ul>
       </div>
       <div class="sidebar-cta">
         <span class="sidebar-label">Free Audit</span>
-        <p>Want to know your score? We'll run a full audit and tell you exactly what's holding it back.</p>
-        <a href="contact.html" class="btn btn-primary">Get a Health Check</a>
-      </div>
-      <div class="sidebar-cta">
-        <span class="sidebar-label">Related</span>
-        <p><a href="post-slow-website-fix.html" style="color: var(--black); text-decoration: underline;">How to Fix a Slow Website — the five most common causes</a></p>
+        <p>Not sure which of these is slowing your site down? We'll find out and tell you straight.</p>
+        <a href="health-check.html" class="btn btn-primary">Get a Health Check</a>
       </div>
     </aside>
 
     <div class="article-body">
 
-      <h2 id="what-is-pagespeed">What is PageSpeed, exactly?</h2>
-      <p>PageSpeed Insights is a free tool from Google that measures how fast your website loads and how well it performs for users. It gives you a score out of 100 — separately for mobile and desktop — and breaks down exactly what's slowing your site down.</p>
-      <p>The score is based on a set of real-world performance metrics called <strong>Core Web Vitals</strong>. These measure things like how quickly your main content appears on screen, how stable the page is as it loads, and how fast it responds to user interaction.</p>
-      <p>Most business owners have never checked their score. Of those that have, most don't know what to do about it. That's a problem — because Google does.</p>
+      <h2 id="why-slow">Why your site is slow</h2>
+      <p>Every slow website is slow for a reason — it's never random, and it's never unfixable. The problem is that most business owners have no way of knowing which of the common causes applies to them, so they either ignore it or throw money at the wrong fix.</p>
+      <p>There are really only five causes worth checking, in roughly the order they're worth investigating. Most sites have at least two of these stacked on top of each other.</p>
 
-      <h2 id="why-it-matters">Why it matters for your business</h2>
-      <p>In 2021, Google officially made Core Web Vitals a ranking factor. That means your PageSpeed score directly affects where you appear in search results. A slow website doesn't just frustrate visitors — it actively costs you rankings.</p>
-      <p>But it goes beyond SEO. Research consistently shows that:</p>
+      <h2 id="cause-page-builders">Cause 1: Page builders</h2>
+      <p>If your site runs on Wix, Squarespace, Elementor, or a similar drag-and-drop tool, this is almost certainly your biggest issue. These platforms load a huge amount of JavaScript and CSS to support every possible feature — even the ones your page doesn't use.</p>
+      <p>You can optimise images and add caching on top of a page builder, and it'll help a little. But the underlying bloat stays. This is the one cause on this list that patching doesn't really fix — it needs a rebuild.</p>
+
+      <h2 id="cause-images">Cause 2: Unoptimised images</h2>
+      <p>This is the easiest one to fix and one of the most common. A single unoptimised hero image can add 2-3 seconds to load time on its own — especially on mobile.</p>
       <ul>
-        <li>53% of mobile users abandon a page that takes longer than 3 seconds to load</li>
-        <li>A 1-second delay in page load time can reduce conversions by up to 7%</li>
-        <li>Pages that load in under 2 seconds have a significantly lower bounce rate than slower pages</li>
+        <li>Use modern formats — WebP or AVIF instead of PNG or JPEG</li>
+        <li>Resize images to the dimensions they're actually displayed at, not the original camera resolution</li>
+        <li>Compress before uploading — tools like Squoosh or TinyPNG take seconds</li>
       </ul>
+
+      <h2 id="cause-hosting">Cause 3: Slow hosting</h2>
+      <p>Cheap shared hosting means your site is queuing behind hundreds of other sites on the same server. This shows up as a slow Time to First Byte (TTFB) — the delay before your server even starts sending the page, before any of the actual content loads.</p>
+      <p>No amount of front-end optimisation fixes a slow server. If your TTFB is consistently above 600ms, hosting is worth investigating before anything else.</p>
+
+      <h2 id="cause-scripts">Cause 4: Third-party scripts</h2>
+      <p>Chat widgets, tracking pixels, review plugins, font loaders — each one adds a request, and most of them block the page from rendering until they've loaded. It's common to find sites running 8-10 third-party scripts that nobody remembers adding.</p>
 
       <div class="article-callout">
-        <p>A slow website isn't just a technical problem. It's a business problem. Every second your site takes to load, you're losing visitors — and potential customers — before they've even seen what you offer.</p>
+        <p>A useful exercise: open your site in an incognito window and count how many separate services are loading in the background. Most business owners are surprised by the number.</p>
       </div>
 
-      <h2 id="what-kills-scores">What kills most PageSpeed scores</h2>
-      <p>The most common causes of poor PageSpeed scores are almost always the same — and most of them trace back to how the website was built in the first place.</p>
-      <ul>
-        <li><strong>Page builders</strong> — Wix, Squarespace, Elementor, and similar tools load enormous amounts of JavaScript and CSS that your page doesn't need. This alone can account for 2-3 seconds of extra load time.</li>
-        <li><strong>Render-blocking resources</strong> — External fonts, tracking scripts, and stylesheets that load before the page content can be displayed.</li>
-        <li><strong>Unoptimised images</strong> — Large, uncompressed images in outdated formats are one of the most common performance killers on small business websites.</li>
-        <li><strong>No caching</strong> — Without proper cache headers, every visitor has to download every asset from scratch, every time.</li>
-        <li><strong>Cheap or slow hosting</strong> — A slow server means a slow Time to First Byte (TTFB), which delays everything that follows.</li>
-      </ul>
+      <h2 id="cause-caching">Cause 5: No caching</h2>
+      <p>Without proper cache headers, a returning visitor downloads every image, script, and stylesheet from scratch — every single time. Proper caching means their browser only re-downloads what's actually changed. This is usually a quick server-side fix, not a redesign.</p>
 
-      <h2 id="what-good-looks-like">What a good score actually looks like</h2>
-      <p>Google categorises scores into three bands:</p>
-      <ul>
-        <li><strong>0–49</strong> — Poor. Your website has serious performance issues that are likely costing you rankings and visitors.</li>
-        <li><strong>50–89</strong> — Needs improvement. There are meaningful issues that should be addressed.</li>
-        <li><strong>90–100</strong> — Good. Your website is performing well against Google's standards.</li>
-      </ul>
-      <p>At Dhoop, we target 100 across the board — on both mobile and desktop. That's not marketing. It's the standard we hold every build to, and it's achievable when a website is built properly from the start.</p>
-
-      <div class="article-callout">
-        <p>The difference between a score of 45 and a score of 98 isn't about having a better design. It's about how the website was built. Clean code, no page builders, and the right technical decisions from day one.</p>
-      </div>
-
-      <h2 id="how-to-fix-it">How to actually fix it</h2>
-      <p>If your score is low, the fix depends entirely on what's causing the problem. Some issues can be resolved without rebuilding — image optimisation, caching headers, script deferral. But if the root cause is a bloated page builder or an inefficient theme, patching around it only gets you so far.</p>
-      <p>The most reliable way to get a genuinely high score is to build the site properly from the ground up — hand-coded, with performance considered at every stage, not bolted on at the end.</p>
-      <p>If you're not sure where your site stands, the first step is to check. Go to <strong>pagespeed.web.dev</strong>, enter your URL, and run the test on mobile. Whatever number comes back, that's the honest picture of how Google sees your website.</p>
-      <p>And if you want someone to look at it properly and tell you exactly what's holding it back — that's what our health check is for.</p>
+      <h2 id="where-to-start">Where to actually start</h2>
+      <p>Don't guess. Run your site through <strong>pagespeed.web.dev</strong> and read the diagnostics section — it names the specific cause, not just the symptom. That tells you which of the five above actually applies to you.</p>
+      <p>If it comes back as a page builder problem, a rebuild is the only real fix. If it's images, hosting, or scripts, those can often be resolved without touching the rest of the site.</p>
+      <p>If you'd rather someone just tell you what's wrong and what it'll take to fix it, that's exactly what a health check is for.</p>
 
       <div class="article-end">
         <a href="insights.html" class="back-link">← Back to Insights</a>
-        <a href="contact.html" class="btn btn-primary">Get a Free Health Check</a>
+        <a href="health-check.html" class="btn btn-primary">Get a Free Health Check</a>
       </div>
 
     </div>
@@ -411,13 +397,13 @@
   <div class="two-col">
     <div class="reveal">
       <span class="section-label">Free Audit</span>
-      <h2>Want to know your PageSpeed score?</h2>
+      <h2>Not sure what's slowing your site down?</h2>
       <p class="cta-note">No jargon. Just clear, honest findings.</p>
     </div>
     <div class="reveal">
-      <p>We'll run a full technical audit of your website and tell you exactly what's holding it back — with a prioritised list of what to fix first.</p>
+      <p>We'll run a full technical audit of your website and tell you exactly which of these five causes applies to you — with a prioritised list of what to fix first.</p>
       <div class="btn-group">
-        <a href="contact.html" class="btn btn-primary">Get a Health Check</a>
+        <a href="health-check.html" class="btn btn-primary">Get a Health Check</a>
         <a href="insights.html" class="btn btn-outline">More Insights</a>
       </div>
     </div>

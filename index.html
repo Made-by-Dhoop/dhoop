@@ -27,12 +27,10 @@
     min-height: 100svh;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center !important;
-    text-align: center;
-    padding: 4rem var(--edge) !important;
-    gap: 2.2rem;
-    background: #f5f4f0;
+    justify-content: flex-end !important;
+    padding-top: 9rem !important;
+    padding-bottom: clamp(4rem, 8vw, 7rem);
+    background: var(--accent);
     position: sticky;
     top: 0;
     z-index: 0;
@@ -43,55 +41,28 @@
     letter-spacing: 0.08em;
     color: var(--black);
     font-weight: 500;
-    margin-bottom: 0;
+    margin-bottom: 1.8rem;
     display: block;
-  }
-
-  .hero-pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4em;
-    background: #ffffff;
-    color: var(--black);
-    padding: 0.08em 0.5em;
-    border-radius: 100px;
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 700;
-    font-size: 0.85em;
-    vertical-align: 0.02em;
-    position: relative;
-    box-shadow: 0 0 0 1.5px rgba(0,245,160,0.5), 0 4px 16px rgba(0,0,0,0.06);
-  }
-
-  .hero-pill svg {
-    width: 0.8em;
-    height: 0.8em;
-    stroke: var(--black);
-    fill: none;
-    stroke-width: 2.2;
   }
 
   #hero h1 {
     color: var(--black);
     font-family: 'DM Sans', sans-serif;
-    font-weight: 700;
-    font-size: clamp(2.5rem, 6vw, 4.5rem);
-    line-height: 1.15;
-    letter-spacing: -0.01em;
-    max-width: 16ch;
+    font-weight: 500;
+    letter-spacing: -0.02em;
     will-change: transform;
   }
 
   .hero-sub {
-    margin-top: 0;
-    font-size: clamp(1rem, 1.4vw, 1.2rem);
-    font-weight: 400;
-    color: rgba(10,10,10,0.65);
-    max-width: 42ch;
-    line-height: 1.6;
+    margin-top: 2rem;
+    font-size: clamp(1rem, 1.4vw, 1.15rem);
+    font-weight: 300;
+    color: var(--black);
+    max-width: 52ch;
+    line-height: 1.8;
   }
 
-  .hero-btns { margin-top: 0.3rem; }
+  .hero-btns { margin-top: 2.5rem; }
 
   .btn-dark {
     background: var(--black);
@@ -123,6 +94,10 @@
     position: relative;
     z-index: 2;
     border-radius: 12px 12px 0 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
   #problem .section-label { color: var(--black); }
@@ -145,6 +120,10 @@
     padding: var(--gap) var(--edge);
     position: relative;
     z-index: 2;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
   #positioning .positioning-statement {
@@ -215,16 +194,30 @@
     padding: var(--gap) var(--edge);
     position: relative;
     z-index: 2;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
-  .work-intro { margin-top: 1.5rem; max-width: 56ch; }
+  #work-examples {
+    background: var(--black);
+    padding: var(--gap) var(--edge);
+    position: relative;
+    z-index: 2;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .work-intro { margin-top: 2rem; max-width: 56ch; }
 
   .capability-pills {
     display: flex;
     flex-wrap: wrap;
     gap: 0.6rem;
-    margin-top: 2.5rem;
-    margin-bottom: 6rem;
+    margin-top: 3rem;
   }
 
   .pill-dark {
@@ -240,18 +233,21 @@
 
   .work-examples-label {
     display: block;
-    margin-top: 1rem;
+    margin-top: 0;
   }
 
   .work-list {
     display: flex;
     flex-direction: column;
-    gap: clamp(3rem, 6vw, 5rem);
+    gap: clamp(4rem, 10vw, 8rem);
     margin-top: 3.5rem;
   }
 
   .work-feature {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 70vh;
     text-decoration: none;
   }
 
@@ -308,6 +304,10 @@
     padding: var(--gap) var(--edge);
     position: relative;
     z-index: 2;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
   #performance .section-label { color: var(--black); }
@@ -324,6 +324,11 @@
     text-align: center;
     position: relative;
     z-index: 2;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 
   #outcome .section-label { color: var(--black); text-align: center; }
@@ -344,6 +349,63 @@
     .positioning-body { grid-template-columns: 1fr; }
     #hero { position: relative; }
   }
+  /* ── CONVERT — new centered pill concept, standalone section ── */
+  #convert {
+    background: #f5f4f0;
+    padding: var(--gap) var(--edge);
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 2.2rem;
+    min-height: 100vh;
+  }
+
+  .convert-headline {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    color: var(--black);
+    max-width: 16ch;
+  }
+
+  .convert-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4em;
+    background: #ffffff;
+    color: var(--black);
+    padding: 0.08em 0.5em;
+    border-radius: 100px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 0.85em;
+    vertical-align: 0.02em;
+    position: relative;
+    box-shadow: 0 0 0 1.5px rgba(0,245,160,0.5), 0 4px 16px rgba(0,0,0,0.06);
+  }
+
+  .convert-pill svg {
+    width: 0.8em;
+    height: 0.8em;
+    stroke: var(--black);
+    fill: none;
+    stroke-width: 2.2;
+  }
+
+  .convert-sub {
+    font-size: clamp(1rem, 1.4vw, 1.2rem);
+    font-weight: 400;
+    color: rgba(10,10,10,0.65);
+    max-width: 42ch;
+    line-height: 1.6;
+  }
+
 </style>
 </head>
 <body>
@@ -395,12 +457,7 @@
 <!-- HERO — sticky green -->
 <section id="hero">
   <span class="hero-eyebrow">Hand-Coded Web Design Bournemouth</span>
-  <h1 id="hero-heading">Websites that load fast and
-    <span class="hero-pill">
-      <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-      convert
-    </span>
-  </h1>
+  <h1 id="hero-heading">Clean Code.<br>Fast Websites.<br>Better Rankings.</h1>
   <p class="hero-sub">Performance-first web design: built for your users, measured by Google Web Vitals.</p>
   <div class="btn-group hero-btns">
     <a href="contact.html" class="btn btn-dark">Get a Performance Audit</a>
@@ -411,9 +468,19 @@
 <!-- SCROLL CONTENT — slides up over hero -->
 <div id="scroll-content">
 
+<section id="convert">
+  <h2 class="convert-headline">Websites that load fast and
+    <span class="convert-pill">
+      <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      convert
+    </span>
+  </h2>
+  <p class="convert-sub">Performance-first web design: built for your users, measured by Google Web Vitals.</p>
+</section>
+
 <section id="work">
   <span class="section-label reveal">What we do</span>
-  <h2 class="reveal">We build really fast websites</h2>
+  <h2 class="reveal">No bloat. Just fast websites.</h2>
   <p class="reveal work-intro">No page builders, no bloat — just clean code that loads instantly. Here's what that looks like, live.</p>
 
   <div class="capability-pills reveal">
@@ -425,7 +492,9 @@
     <span class="pill-dark">Scroll &amp; Parallax Effects</span>
     <span class="pill-dark">+ a few tricks</span>
   </div>
+</section>
 
+<section id="work-examples">
   <span class="section-label reveal work-examples-label">Work Examples</span>
 
   <div class="work-list">
@@ -597,5 +666,20 @@
 </footer>
 
 <script src="main.js" defer></script>
+<script>
+  // ── HERO SCROLL — text slides left ──
+  const heroHeading = document.getElementById('hero-heading');
+  const hero = document.getElementById('hero');
+
+  function onScroll() {
+    if (!heroHeading || !hero) return;
+    const scrolled = window.scrollY;
+    const heroHeight = hero.offsetHeight;
+    const progress = Math.min(scrolled / heroHeight, 1);
+    heroHeading.style.transform = `translateX(${progress * -600}px)`;
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+</script>
 </body>
 </html>
