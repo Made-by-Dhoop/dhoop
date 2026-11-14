@@ -1,4 +1,1111 @@
-<select id="service" name="service" required>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dhoop | Hand Coded Websites Bournemouth &amp; Technical SEO</title>
+    <meta name="description" content="Hand coded websites Bournemouth. Ultra-fast, zero-bloat bespoke web design, Google indexing, local SEO, hosting, and ongoing care for ambitious businesses.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;700&display=swap" media="print" onload="this.media='all'">
+    <noscript>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;700&display=swap">
+    </noscript>
+
+    <style>
+        :root {
+            --black: #0A0A0A;
+            --surface-dark: #121212;
+            --white: #FFFFFF;
+            --surface-light: #F8F8F8;
+            --grey-dark: #555555;
+            --grey-light: #9A9A9A;
+            --green: #00F5A0;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            border-radius: 0 !important;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            background-color: var(--black);
+            color: var(--white);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        /* Vertical Sticky Ticker */
+        .sticky-clock {
+            position: fixed;
+            right: 16px;
+            bottom: 24px;
+            z-index: 99;
+            writing-mode: vertical-rl;
+            transform: rotate(180deg);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.72rem;
+            font-weight: 300;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: #FFFFFF;
+            mix-blend-mode: difference;
+            pointer-events: none;
+            font-variant-numeric: tabular-nums;
+            user-select: none;
+        }
+        @media (min-width: 768px) {
+            .sticky-clock {
+                right: 28px;
+                bottom: 36px;
+                font-size: 0.76rem;
+            }
+        }
+
+        /* Film Grain Noise Texture */
+        .noise-bg {
+            position: relative;
+        }
+        .noise-bg::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 1;
+        }
+        .noise-bg > * {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Top Bar & Unified Logos */
+        .top-bar {
+            background-color: var(--green);
+            color: var(--black);
+            padding: 24px 32px;
+            position: relative;
+            z-index: 105;
+        }
+        .top-bar-inner {
+            max-width: 1350px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 800;
+            font-size: 1.4rem;
+            letter-spacing: -0.03em;
+            color: var(--black);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: baseline;
+        }
+        .logo .dot {
+            display: inline-block;
+            width: 0.32em;
+            height: 0.32em;
+            background-color: var(--white);
+            border-radius: 50% !important;
+            margin-left: 0.02em;
+            vertical-align: baseline;
+        }
+
+        /* Desktop Nav */
+        .nav-desktop {
+            display: none;
+            gap: 40px;
+            align-items: center;
+        }
+        .nav-desktop a {
+            font-size: 0.82rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            text-decoration: none;
+            color: var(--black);
+            transition: opacity 0.2s;
+        }
+        .nav-desktop a:hover {
+            opacity: 0.6;
+        }
+
+        /* Mobile Hamburger */
+        .nav-toggle {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 22px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            z-index: 106;
+            padding: 0;
+        }
+        .nav-toggle span {
+            display: block;
+            width: 100%;
+            height: 3px;
+            background-color: var(--black);
+            transition: all 0.3s ease;
+        }
+
+        /* Full-Screen Mobile Overlay Menu */
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: var(--green);
+            z-index: 101;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 90px 28px 30px 28px;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .mobile-menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .mobile-menu-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            max-width: 1100px;
+            margin: auto 0;
+            width: 100%;
+        }
+        .mobile-menu-links li a {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: -1.5px;
+            color: var(--black);
+            text-decoration: none;
+            display: inline-block;
+            transition: transform 0.2s;
+        }
+        .mobile-menu-links li a:hover {
+            transform: translateX(10px);
+        }
+        .mobile-menu-footer {
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--black);
+            padding-top: 16px;
+            flex-shrink: 0;
+        }
+
+        .nav-toggle.active span:nth-child(1) {
+            transform: translateY(9.5px) rotate(45deg);
+        }
+        .nav-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .nav-toggle.active span:nth-child(3) {
+            transform: translateY(-9.5px) rotate(-45deg);
+        }
+
+        /* Containers */
+        .container-dark {
+            background-color: var(--black);
+            color: var(--white);
+            padding: 140px 24px;
+        }
+        .container-light {
+            background-color: var(--white);
+            color: var(--black);
+            padding: 140px 24px;
+        }
+        .inner {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        /* Eyebrows & Headings */
+        .eyebrow {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.78rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2.5px;
+            color: var(--green);
+            margin-bottom: 28px;
+            display: block;
+        }
+        .container-light .eyebrow {
+            color: #007A4D;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 32px;
+            letter-spacing: -1.5px;
+        }
+
+        p.sub {
+            font-size: 1.15rem;
+            color: var(--grey-light);
+            margin-bottom: 56px;
+            max-width: 860px;
+        }
+        .container-light p.sub {
+            color: var(--grey-dark);
+        }
+
+        /* Magnetic Buttons */
+        .cta-group {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 70px;
+            flex-direction: column;
+        }
+        .btn {
+            display: inline-block;
+            text-align: center;
+            padding: 20px 36px;
+            font-weight: 800;
+            text-decoration: none;
+            font-size: 0.86rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: color 0.25s, background-color 0.25s, border-color 0.25s;
+            will-change: transform;
+        }
+        .btn-primary {
+            background: var(--green);
+            color: var(--black);
+            border: 2px solid var(--green);
+        }
+        .btn-primary:hover {
+            background: transparent;
+            color: var(--green);
+        }
+        .container-light .btn-primary {
+            background: var(--black);
+            color: var(--white);
+            border: 2px solid var(--black);
+        }
+        .container-light .btn-primary:hover {
+            background: transparent;
+            color: var(--black);
+        }
+        .btn-secondary {
+            background: var(--surface-dark);
+            color: var(--white);
+            border: 2px solid var(--surface-dark);
+        }
+
+        /* Metrics */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        .metric-card {
+            background: var(--surface-dark);
+            padding: 36px 28px;
+        }
+        .metric-card .num {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 2.4rem;
+            font-weight: 700;
+            color: var(--green);
+            display: block;
+            margin-bottom: 12px;
+        }
+        .metric-card .label {
+            font-size: 0.75rem;
+            color: var(--grey-light);
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            font-weight: 700;
+        }
+
+        /* Section Titles */
+        .section-title {
+            font-size: 2.3rem;
+            font-weight: 800;
+            margin-bottom: 18px;
+            letter-spacing: -1px;
+        }
+        .section-sub {
+            font-size: 1.05rem;
+            color: var(--grey-light);
+            margin-bottom: 60px;
+        }
+        .container-light .section-sub {
+            color: var(--grey-dark);
+        }
+
+        /* Editorial Cards */
+        .card-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 28px;
+        }
+        .card {
+            background: var(--surface-dark);
+            padding: 48px 36px;
+        }
+        .container-light .card {
+            background: var(--surface-light);
+            color: var(--black);
+        }
+        .card-num {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 2rem;
+            font-weight: 400;
+            color: var(--green);
+            opacity: 0.5;
+            display: block;
+            margin-bottom: 24px;
+            line-height: 1;
+        }
+        .container-light .card-num {
+            color: #007A4D;
+        }
+        .card h3 {
+            font-size: 1.4rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+        .card p {
+            font-size: 1.02rem;
+            color: var(--grey-light);
+        }
+        .container-light .card p {
+            color: var(--grey-dark);
+        }
+
+        /* Project Showcase */
+        .project-card {
+            background: var(--white);
+            color: var(--black);
+            margin-bottom: 50px;
+            overflow: hidden;
+            border: 1px solid rgba(0,0,0,0.08);
+        }
+        .project-img-wrap {
+            width: 100%;
+            height: 360px;
+            background: #111;
+            position: relative;
+            overflow: hidden;
+        }
+        .project-img-wrap img, .project-img-wrap video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        
+        @supports (animation-timeline: view()) {
+            .parallax-media {
+                height: 130% !important;
+                margin-top: -15%;
+                will-change: transform;
+                animation: parallaxShift linear both;
+                animation-timeline: view();
+                animation-range: entry 0% exit 100%;
+            }
+            @keyframes parallaxShift {
+                from { transform: translateY(-8%); }
+                to { transform: translateY(8%); }
+            }
+        }
+
+        .project-content {
+            padding: 48px 40px;
+            background: var(--white);
+        }
+        .project-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #007A4D;
+            margin-bottom: 14px;
+            display: block;
+        }
+        .project-content h3 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 14px;
+            color: var(--black);
+        }
+        .project-content p {
+            font-size: 1.05rem;
+            color: var(--grey-dark);
+            margin-bottom: 28px;
+        }
+        .project-footer-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            padding-top: 28px;
+            border-top: 1px solid rgba(0,0,0,0.08);
+        }
+        .project-stat {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.82rem;
+            color: var(--grey-dark);
+        }
+        .project-link {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            color: #007A4D;
+            text-decoration: none;
+        }
+        .project-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Care Box */
+        .care-box {
+            background: var(--surface-light);
+            color: var(--black);
+            padding: 60px 48px;
+            border: 1px solid rgba(0,0,0,0.08);
+        }
+        .care-box h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 18px;
+            color: var(--black);
+        }
+        .care-box p {
+            font-size: 1.05rem;
+            color: var(--grey-dark);
+            margin-bottom: 36px;
+        }
+        .scope-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+        }
+        .scope-item {
+            background: var(--white);
+            color: var(--black);
+            padding: 22px 26px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            border: 1px solid rgba(0,0,0,0.06);
+        }
+        .scope-marker {
+            width: 8px;
+            height: 8px;
+            background: #007A4D;
+            flex-shrink: 0;
+        }
+
+        /* FAQ Accordion */
+        details.faq-item {
+            background: var(--surface-dark);
+            color: var(--white);
+            margin-bottom: 20px;
+        }
+        details.faq-item summary {
+            padding: 28px;
+            font-weight: 800;
+            font-size: 1.1rem;
+            cursor: pointer;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            color: var(--white);
+        }
+        details.faq-item summary::-webkit-details-marker {
+            display: none;
+        }
+        details.faq-item summary::after {
+            content: '+';
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.4rem;
+            color: var(--green);
+            flex-shrink: 0;
+        }
+        details.faq-item[open] summary::after {
+            content: '−';
+        }
+        details.faq-item .faq-answer {
+            padding: 0 28px 28px 28px;
+            font-size: 1.02rem;
+            color: var(--grey-light);
+        }
+
+        /* Form Section */
+        #contact-form {
+            background: #f5f4f0;
+            padding-top: 140px;
+            padding-bottom: 140px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        #contact-form h2, #contact-form p, #contact-form label, #contact-form input, #contact-form textarea, #contact-form select {
+            color: var(--black) !important;
+        }
+        .form-layout {
+            max-width: 1100px;
+            margin: 0 auto;
+            width: 100%;
+            padding: 0 24px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem clamp(3rem, 6vw, 7rem);
+            align-items: start;
+        }
+        .form-info h2 { margin-bottom: 0.5rem; font-size: 2.2rem; font-weight: 800; }
+        .form-info p { margin-bottom: 1.5rem; line-height: 1.7; color: var(--grey-dark); }
+        .contact-details {
+            margin-top: 3rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+        .contact-detail {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+        .contact-detail-label {
+            font-size: 0.72rem;
+            letter-spacing: 0.08em;
+            color: var(--black);
+            font-weight: 500;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .contact-detail-value {
+            font-size: 1rem;
+            color: var(--black);
+            text-decoration: none;
+            transition: opacity 0.2s;
+            font-weight: 600;
+        }
+        .contact-detail-value:hover { opacity: 0.7; }
+        
+        .form-wrap {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            border-bottom: 1px solid rgba(0,0,0,0.12);
+            padding: 1.8rem 0;
+        }
+        .form-group:first-child { border-top: 1px solid rgba(0,0,0,0.12); }
+        .form-group label {
+            font-size: 0.72rem;
+            letter-spacing: 0.08em;
+            color: var(--black);
+            font-weight: 500;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            background: transparent;
+            border: none;
+            outline: none;
+            color: var(--black);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: clamp(1rem, 1.5vw, 1.15rem);
+            font-weight: 300;
+            line-height: 1.6;
+            width: 100%;
+            padding: 0;
+            resize: none;
+            appearance: none;
+            -webkit-appearance: none;
+        }
+        .form-group input::placeholder,
+        .form-group textarea::placeholder { color: rgba(0,0,0,0.4); }
+        .form-group textarea { min-height: 120px; }
+        .select-wrap { position: relative; }
+        .select-wrap::after {
+            content: '↓';
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--black);
+            font-size: 0.9rem;
+            pointer-events: none;
+        }
+        .form-group select option { background: #f5f4f0; color: var(--black); }
+        
+        .form-submit {
+            margin-top: 2.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+        .btn-submit {
+            background: var(--black);
+            color: #FFFFFF !important;
+            border: none;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            padding: 1.1rem 2.4rem;
+            border-radius: 0 !important;
+            cursor: pointer;
+            transition: opacity 0.2s, transform 0.2s;
+        }
+        .btn-submit:hover { opacity: 0.85; transform: translateY(-2px); }
+        .btn-submit:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+        .form-note {
+            font-size: 0.78rem;
+            color: var(--grey-dark);
+            line-height: 1.6;
+            max-width: 28ch;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .shortcut-hint {
+            display: inline-block;
+            margin-bottom: 1.2rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--grey-dark);
+        }
+        .shortcut-key {
+            background: rgba(0,0,0,0.08);
+            padding: 2px 6px;
+            border: 1px solid rgba(0,0,0,0.15);
+            font-weight: 700;
+        }
+        .form-status {
+            display: none;
+            margin-top: 2rem;
+            padding: 1.5rem;
+            border-radius: 0 !important;
+            font-size: 0.88rem;
+            line-height: 1.6;
+        }
+        .form-status.success {
+            display: block;
+            border: 1px solid rgba(0,245,160,0.5);
+            background: rgba(0,245,160,0.1);
+            color: var(--black);
+        }
+        .form-status.error {
+            display: block;
+            border: 1px solid rgba(255,100,100,0.4);
+            background: rgba(255,100,100,0.1);
+            color: #b30000;
+        }
+
+        /* Giant Footer & Unified Logo */
+        footer {
+            background-color: var(--green);
+            color: var(--black);
+            padding: 60px 0 24px 0;
+            position: relative;
+            overflow: visible;
+        }
+        .footer-inner-aligned {
+            max-width: 1350px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+        .footer-grid-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            color: var(--black);
+        }
+        .footer-col-left {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .footer-col-right a {
+            color: var(--black);
+            text-decoration: none;
+            transition: opacity 0.2s;
+        }
+        .footer-col-right a:hover {
+            opacity: 0.5;
+        }
+
+        .giant-brand-container {
+            width: 100%;
+            margin-top: 20px;
+            margin-bottom: 45px;
+            white-space: nowrap;
+            overflow: visible;
+        }
+        .giant-brand {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: clamp(3.8rem, 18.5vw, 21rem);
+            font-weight: 800;
+            letter-spacing: -0.05em;
+            color: var(--black);
+            text-transform: none;
+            user-select: none;
+            line-height: 0.78;
+            display: inline-flex;
+            align-items: baseline;
+        }
+        .giant-brand .dot {
+            display: inline-block;
+            width: 0.32em;
+            height: 0.32em;
+            background-color: var(--white);
+            border-radius: 50% !important;
+            margin-left: 0.02em;
+            vertical-align: baseline;
+        }
+
+        .footer-grid-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--black);
+            padding-top: 20px;
+        }
+
+        @media (max-width: 900px) {
+            .form-layout { grid-template-columns: 1fr; }
+            .scope-grid { grid-template-columns: 1fr; }
+        }
+        @media (min-width: 768px) {
+            .nav-toggle { display: none; }
+            .nav-desktop { display: flex; }
+            .mobile-menu-overlay { display: none !important; }
+            .top-bar { padding: 28px 40px; }
+            .container-dark, .container-light { padding: 160px 36px; }
+            h1 { font-size: 3.6rem; }
+            .cta-group { flex-direction: row; }
+            footer { padding: 70px 0 24px 0; }
+            .footer-inner-aligned { padding: 0 60px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="sticky-clock" id="stickyClock" aria-hidden="true">BOURNEMOUTH · --:--:--</div>
+
+    <header class="top-bar">
+        <div class="top-bar-inner">
+            <a href="#" class="logo">Dhoop<span class="dot"></span></a>
+            
+            <nav class="nav-desktop">
+                <a href="#work">Work</a>
+                <a href="#services">Services</a>
+                <a href="#standards">Standards</a>
+                <a href="#contact-form">Contact</a>
+            </nav>
+
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <div class="mobile-menu-overlay" id="mobileMenu">
+        <ul class="mobile-menu-links">
+            <li><a href="#work" class="mobile-link">01. Work</a></li>
+            <li><a href="#services" class="mobile-link">02. Services</a></li>
+            <li><a href="#standards" class="mobile-link">03. Standards</a></li>
+            <li><a href="#contact-form" class="mobile-link">04. Contact</a></li>
+        </ul>
+        <div class="mobile-menu-footer">
+            <span>MADEBYDHOOP.CO.UK</span>
+            <span>BOURNEMOUTH, UK</span>
+        </div>
+    </div>
+
+    <main>
+        <!-- HERO SECTION -->
+        <section class="container-dark noise-bg">
+            <div class="inner">
+                <span class="eyebrow">// Hand Coded Websites Bournemouth</span>
+                <h1>Stop sending big clients to a website that holds you back.</h1>
+                <p class="sub">We build bespoke, hand-coded websites in Bournemouth for ambitious UK businesses. Zero laggy page builders, technical SEO baked in from line one, and full Google indexing so new customers actually find you.</p>
+
+                <div class="cta-group">
+                    <a href="#contact-form" class="btn btn-primary magnetic-btn">Start a Conversation</a>
+                    <a href="#work" class="btn btn-secondary magnetic-btn">View Recent Work</a>
+                </div>
+
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <span class="num">100</span>
+                        <span class="label">Lighthouse</span>
+                    </div>
+                    <div class="metric-card">
+                        <span class="num">&lt;1.5s</span>
+                        <span class="label">Load Speed</span>
+                    </div>
+                    <div class="metric-card">
+                        <span class="num">0</span>
+                        <span class="label">Bloat / Plugins</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SELECTED WORK -->
+        <section id="work" class="container-light">
+            <div class="inner">
+                <span class="eyebrow">// Portfolio</span>
+                <h2 class="section-title">Selected Hand-Coded Projects.</h2>
+                <p class="section-sub">Real work built for speed, clean aesthetics, and conversion.</p>
+
+                <div class="project-card">
+                    <div class="project-img-wrap">
+                        <img class="parallax-media" src="https://images.unsplash.com/photo-1584432383613-82c341c2b84d?q=75&w=680&fm=webp" alt="Stomp Project Preview" loading="lazy">
+                    </div>
+                    <div class="project-content">
+                        <span class="project-tag">Bespoke Web Design</span>
+                        <h3>Stomp</h3>
+                        <p>Clean, ultra-responsive hand-coded build replacing a sluggish WordPress theme to eliminate mobile friction and load instantly.</p>
+                        <div class="project-footer-row">
+                            <span class="project-stat">100/100 Lighthouse &bull; Sub-1.5s Load</span>
+                            <a href="https://www.madebydhoop.co.uk" target="_blank" rel="noopener" class="project-link">View Live Site &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-img-wrap">
+                        <img class="parallax-media" src="https://images.unsplash.com/photo-1487958449943-2429e8be8625?q=75&w=740&fm=webp" alt="Bjorn & Strand Project Preview" loading="lazy">
+                    </div>
+                    <div class="project-content">
+                        <span class="project-tag">Performance &amp; SEO</span>
+                        <h3>Bjorn &amp; Strand</h3>
+                        <p>Minimalist structural architecture designed to showcase professional services with zero bloat and complete search visibility.</p>
+                        <div class="project-footer-row">
+                            <span class="project-stat">Google Indexed &bull; Zero Plugins</span>
+                            <a href="https://www.madebydhoop.co.uk" target="_blank" rel="noopener" class="project-link">View Live Site &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-img-wrap">
+                        <video class="parallax-media" autoplay muted loop playsinline preload="none">
+                            <source src="https://www.madebydhoop.co.uk/images/greystone-video.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="project-content">
+                        <span class="project-tag">Full-Stack Architecture</span>
+                        <h3>Greystone</h3>
+                        <p>High-performance digital asset built with bespoke motion, lightning-fast edge delivery, and optimized conversion pathways.</p>
+                        <div class="project-footer-row">
+                            <span class="project-stat">Sub-1s Load &bull; Zero Bloat</span>
+                            <a href="https://www.madebydhoop.co.uk" target="_blank" rel="noopener" class="project-link">View Live Site &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SERVICES -->
+        <section id="services" class="container-dark noise-bg">
+            <div class="inner">
+                <span class="eyebrow">// Capabilities</span>
+                <h2 class="section-title">Designed for speed, optimized for search, built without compromise.</h2>
+                <p class="section-sub">A great-looking site is useless if nobody finds it on Google or it stalls on mobile.</p>
+                
+                <div class="card-grid">
+                    <div class="card">
+                        <span class="card-num">01</span>
+                        <h3>Hand-Coded Speed &amp; Conversion</h3>
+                        <p>Every second your page takes to load on mobile costs you leads. Our clean HTML, CSS, and JavaScript sites load instantaneously so local buyers and corporate clients engage immediately.</p>
+                    </div>
+                    <div class="card">
+                        <span class="card-num">02</span>
+                        <h3>Technical SEO &amp; Google Indexing</h3>
+                        <p>We don't just launch and hope. We configure Google Search Console, submit XML sitemaps, structure your meta titles, headings, and schema data, and optimize for local Bournemouth and UK search terms.</p>
+                    </div>
+                    <div class="card">
+                        <span class="card-num">03</span>
+                        <h3>Enterprise-Grade Credibility</h3>
+                        <p>Look like the market leader you are. We build sharp, zero-glitch websites that give high-value clients complete confidence in working with you.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- STANDARDS -->
+        <section id="standards" class="container-light">
+            <div class="inner">
+                <div class="care-box">
+                    <span class="eyebrow" style="color: #007A4D !important;">// Complete Execution</span>
+                    <h2>AI can write code. We run the whole machine.</h2>
+                    <p>Anyone can generate a rough layout with AI—but raw code doesn't rank on Google or win clients. Dhoop handles every moving part required to launch, index, and maintain a revenue-ready website:</p>
+                    <div class="scope-grid">
+                        <div class="scope-item"><span class="scope-marker"></span>Google Listing &amp; Indexing</div>
+                        <div class="scope-item"><span class="scope-marker"></span>On-Page &amp; Local SEO</div>
+                        <div class="scope-item"><span class="scope-marker"></span>Domain &amp; DNS Setup</div>
+                        <div class="scope-item"><span class="scope-marker"></span>High-Speed UK Hosting</div>
+                        <div class="scope-item"><span class="scope-marker"></span>SSL &amp; Hardened Security</div>
+                        <div class="scope-item"><span class="scope-marker"></span>Ongoing Care &amp; Edits</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section id="faq" class="container-dark noise-bg">
+            <div class="inner">
+                <span class="eyebrow">// FAQ</span>
+                <h2 class="section-title">Frequently Asked Questions</h2>
+                <p class="section-sub">Straight answers on SEO, Google visibility, and how we manage your site.</p>
+
+                <details class="faq-item" open>
+                    <summary>What is the scope of website sizes you design and build?</summary>
+                    <div class="faq-answer">
+                        We build websites of all sizes—from high-impact single-page landing pages and boutique portfolios to large, multi-page business platforms. Because every site is hand-coded from scratch, there are no rigid platform limits, plugin dependencies, or template restrictions.
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>Are your services exclusively limited to web design?</summary>
+                    <div class="faq-answer">
+                        We started with high-performance web design and technical SEO, but our engineering capabilities extend beyond standard sites. We also build custom web applications, interactive digital tools, and bespoke software solutions tailored to your exact business workflow.
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>Will you get my new website listed and showing on Google?</summary>
+                    <div class="faq-answer">
+                        Yes. Every website we build includes full Google Search Console verification, XML sitemap submission, clean URL architecture, and properly structured meta titles, descriptions, and heading tags.
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>How does hand-coded web design improve SEO?</summary>
+                    <div class="faq-answer">
+                        Google uses Core Web Vitals and mobile page speed as direct ranking signals. Our hand-coded sites hit 99–100 Lighthouse performance scores, giving you a clean technical foundation.
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>Why hire Dhoop when anyone can make a site with AI?</summary>
+                    <div class="faq-answer">
+                        Generating code is the easy 10%. Making a website commercially effective requires persuasive copywriting, technical SEO, Google indexing, DNS and SSL configuration, fast hosting, and ongoing maintenance. We handle every detail end-to-end.
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>Do you look after hosting, domains, security, and updates?</summary>
+                    <div class="faq-answer">
+                        Everything is taken care of. We handle domain setup, fast hosting, SSL certificates, and uptime monitoring—and whenever you need text, photos, or new pages added, just message us directly and we update it for you.
+                    </div>
+                </details>
+            </div>
+        </section>
+
+        <!-- CONTACT SECTION -->
+        <section id="contact-form">
+            <div class="form-layout">
+                <div class="form-info">
+                    <span class="eyebrow" style="color: #007A4D !important;">// No Obligation</span>
+                    <h2>Tell us what you need</h2>
+                    <div class="shortcut-hint">Press <span class="shortcut-key">/</span> on your keyboard to jump straight to the form</div>
+                    <p>Fill in the form and we'll come back with an honest assessment — no jargon, no sales pressure, just a clear conversation about what's right for your business.</p>
+                    <div class="contact-details">
+                        <div class="contact-detail">
+                            <span class="contact-detail-label">EMAIL</span>
+                            <a href="mailto:hello@madebydhoop.co.uk" class="contact-detail-value">hello@madebydhoop.co.uk</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <form
+                        id="contactForm"
+                        action="https://formspree.io/f/maqvpgka"
+                        method="POST"
+                        class="form-wrap"
+                    >
+                        <div class="form-group">
+                            <label for="name">YOUR NAME</label>
+                            <input
+                                type="text"
+                                id="name"
+                                name="name"
+                                placeholder="Jane Smith"
+                                required
+                                autocomplete="name"
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">EMAIL ADDRESS</label>
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                placeholder="jane@yourbusiness.co.uk"
+                                required
+                                autocomplete="email"
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="service">WHAT CAN WE HELP WITH?</label>
+                            <div class="select-wrap">
+                                
+                                   <select id="service" name="service" required>
     <option value="" disabled selected>Select what you need...</option>
     <option value="bespoke-website">Bespoke Website Build</option>
     <option value="web-app">Custom Web Application</option>
@@ -6,3 +1113,182 @@
     <option value="performance-audit">Performance & Technical SEO Audit</option>
     <option value="managed-hosting">Managed Hosting & Ongoing Care</option>
 </select>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">TELL US A BIT MORE</label>
+                            <textarea
+                                id="message"
+                                name="message"
+                                placeholder="What's the project? What's not working? What are you trying to achieve?"
+                                required
+                            ></textarea>
+                        </div>
+
+                        <input type="text" name="_gotcha" style="display:none">
+
+                        <div class="form-submit">
+                            <button type="submit" class="btn-submit" id="submitBtn">Send Message</button>
+                            <p class="form-note">We'll come back to you within one working day.</p>
+                        </div>
+
+                        <div class="form-status" id="formStatus"></div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- GIANT FOOTER -->
+    <footer>
+        <div class="footer-inner-aligned">
+            <div class="footer-grid-top">
+                <div class="footer-col-left">
+                    <span id="footerClock">--:--:-- AM</span>
+                </div>
+                <div class="footer-col-right">
+                    <a href="#" style="color: var(--black); font-weight: 700; text-decoration: none; text-transform: uppercase;">Top ↑</a>
+                </div>
+            </div>
+
+            <div class="giant-brand-container">
+                <h2 class="giant-brand">Dhoop<span class="dot"></span></h2>
+            </div>
+
+            <div class="footer-grid-bottom">
+                <span>&copy; 2026 DHOOP LTD</span>
+                <span>HELLO@MADEBYDHOOP.CO.UK</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Mobile Menu
+            const navToggle = document.getElementById('navToggle');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const mobileLinks = document.querySelectorAll('.mobile-link');
+
+            if (navToggle && mobileMenu) {
+                navToggle.addEventListener('click', () => {
+                    navToggle.classList.toggle('active');
+                    mobileMenu.classList.toggle('active');
+                    document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : 'auto';
+                });
+            }
+
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    navToggle.classList.remove('active');
+                    mobileMenu.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                });
+            });
+
+            // Live Bournemouth Clock & Open-Meteo Temperature
+            let cachedTemp = '--°C';
+            async function fetchBournemouthTemp() {
+                try {
+                    const res = await fetch('https://api.open-meteo.com/v1/forecast?latitude=50.72&longitude=-1.88&current=temperature_2m');
+                    const data = await res.json();
+                    if (data && data.current && typeof data.current.temperature_2m === 'number') {
+                        cachedTemp = Math.round(data.current.temperature_2m) + '°C';
+                    }
+                } catch (e) {
+                    // fallback quietly
+                }
+            }
+            fetchBournemouthTemp();
+            setInterval(fetchBournemouthTemp, 600000); // refresh every 10 mins
+
+            function updateStudioClock() {
+                const now = new Date();
+                const timeStr = now.toLocaleTimeString('en-GB', {
+                    timeZone: 'Europe/London',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit'
+                });
+
+                const stickyClock = document.getElementById('stickyClock');
+                const footerClock = document.getElementById('footerClock');
+
+                if (stickyClock) {
+                    stickyClock.textContent = `BOURNEMOUTH · ${cachedTemp} · ${timeStr} UK`;
+                }
+                if (footerClock) {
+                    footerClock.textContent = `${cachedTemp} · ${timeStr}`;
+                }
+            }
+
+            updateStudioClock();
+            setInterval(updateStudioClock, 1000);
+
+            // Magnetic Hover Pull on Primary Buttons
+            const magneticBtns = document.querySelectorAll('.magnetic-btn');
+            magneticBtns.forEach(btn => {
+                btn.addEventListener('mousemove', (e) => {
+                    const rect = btn.getBoundingClientRect();
+                    const x = e.clientX - rect.left - rect.width / 2;
+                    const y = e.clientY - rect.top - rect.height / 2;
+                    btn.style.transform = `translate(${x * 0.25}px, ${y * 0.25}px)`;
+                });
+                btn.addEventListener('mouseleave', () => {
+                    btn.style.transform = 'translate(0px, 0px)';
+                });
+            });
+
+            // Keyboard Shortcut '/'
+            window.addEventListener('keydown', (e) => {
+                if (e.key === '/' && document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA' && document.activeElement.tagName !== 'SELECT') {
+                    e.preventDefault();
+                    const nameInput = document.getElementById('name');
+                    if (nameInput) {
+                        nameInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        nameInput.focus();
+                    }
+                }
+            });
+
+            // Form Submission
+            const form = document.getElementById('contactForm');
+            const btn = document.getElementById('submitBtn');
+            const status = document.getElementById('formStatus');
+
+            if (form && btn && status) {
+                form.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    btn.disabled = true;
+                    btn.textContent = 'Sending...';
+                    status.className = 'form-status';
+
+                    try {
+                        const res = await fetch(form.action, {
+                            method: 'POST',
+                            body: new FormData(form),
+                            headers: { 'Accept': 'application/json' }
+                        });
+
+                        if (res.ok) {
+                            status.className = 'form-status success';
+                            status.textContent = "Thanks — we've received your message and will be in touch within one working day.";
+                            form.reset();
+                        } else {
+                            throw new Error('Send failed');
+                        }
+                    } catch {
+                        status.className = 'form-status error';
+                        status.textContent = "Something went wrong. Please try emailing us directly at hello@madebydhoop.co.uk";
+                    }
+
+                    btn.disabled = false;
+                    btn.textContent = 'Send Message';
+                });
+            }
+        });
+    </script>
+</body>
+</html>
