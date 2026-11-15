@@ -43,6 +43,7 @@
 
         /* Vertical Sticky Ticker */
        
+
 .sticky-clock {
     position: fixed;
     right: 12px;
@@ -60,6 +61,16 @@
     pointer-events: none;
     font-variant-numeric: tabular-nums;
     user-select: none;
+    white-space: nowrap; /* Prevents text from wrapping horizontally */
+}
+@media (min-width: 768px) {
+    .sticky-clock {
+        right: 28px;
+        bottom: 36px;
+        font-size: 0.76rem;
+        letter-spacing: 2.5px;
+    }
+}
 }
 @media (min-width: 768px) {
     .sticky-clock {
