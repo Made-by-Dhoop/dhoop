@@ -20,7 +20,7 @@
             --surface-dark: #121212;
             --white: #FFFFFF;
             --surface-light: #F8F8F8;
-            --grey-dark: #555555;
+            --grey-dark: #222222;
             --grey-light: #9A9A9A;
             --green: #00F5A0;
         }
@@ -36,12 +36,14 @@
             overflow-x: hidden;
             max-width: 100%;
             width: 100%;
+            background-color: var(--black);
         }
         body {
-            background-color: var(--black);
             color: var(--white);
             line-height: 1.8;
             padding-top: 74px;
+            /* Leave room at the bottom for the fixed footer reveal */
+            margin-bottom: 380px; 
         }
 
         /* Vertical Sticky Ticker */
@@ -243,11 +245,15 @@
             background-color: var(--black);
             color: var(--white);
             padding: 100px 24px;
+            position: relative;
+            z-index: 2;
         }
         .container-light {
             background-color: var(--white);
             color: var(--black);
             padding: 100px 24px;
+            position: relative;
+            z-index: 2;
         }
         .inner {
             max-width: 1100px;
@@ -434,8 +440,6 @@
             object-position: center 35%;
             display: block;
         }
-        
-/* parallax removed to eliminate bottom gap/black bar */
 
         .project-content {
             padding: 36px 28px;
@@ -574,6 +578,8 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
+            position: relative;
+            z-index: 10;
         }
         #contact-form h2, #contact-form p, #contact-form label, #contact-form input, #contact-form textarea, #contact-form select {
             color: var(--black) !important;
@@ -735,88 +741,118 @@
             color: #b30000;
         }
 
-        /* Giant Footer & Unified Logo */
+        /* FIXED REVEAL FOOTER (Pinned at viewport bottom underneath page flow) */
         footer {
             background-color: var(--green);
             color: var(--black);
-            padding: 50px 0 24px 0;
-            position: relative;
-            overflow: hidden;
-        }
-        .footer-inner-aligned {
-            max-width: 1350px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-        .footer-grid-top {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.75rem;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-            margin-bottom: 20px;
-            color: var(--black);
-        }
-        .footer-col-left {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 380px; /* Matches body margin-bottom */
+            z-index: 1;
+            padding: 90px 24px 20px 24px;
             display: flex;
             flex-direction: column;
-            gap: 4px;
-        }
-        .footer-col-right a {
-            color: var(--black);
-            text-decoration: none;
-            transition: opacity 0.2s;
-        }
-        .footer-col-right a:hover {
-            opacity: 0.5;
-        }
-
-        /* Giant Brand */
-        .giant-brand-container {
-            width: 100%;
-            margin-top: 20px;
-            margin-bottom: 40px;
-            white-space: nowrap;
-            overflow: hidden;
-        }
-        .giant-brand {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            font-size: clamp(3.0rem, 18.5vw, 21rem);
-            font-weight: 800;
-            letter-spacing: -0.05em;
-            color: var(--black);
-            text-transform: none;
-            user-select: none;
-            line-height: 0.78;
-            display: inline-flex;
-            align-items: baseline;
-        }
-        .giant-brand .dot {
-            display: inline-block;
-            width: 0.32em;
-            height: 0.32em;
-            background-color: var(--white);
-            border-radius: 50% !important;
-            margin-left: 0.02em;
-            vertical-align: baseline;
-        }
-
-        .footer-grid-bottom {
-            display: flex;
             justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
+        }
+        .footer-inner {
+            max-width: 1350px;
+            width: 100%;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 72px;
+        }
+        .footer-top-row {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+        .footer-brand-col .logo {
+            font-size: 1.5rem;
+            color: var(--black);
+            margin-bottom: 16px;
+            display: inline-flex;
+        }
+        .footer-brand-col .logo .dot {
+            background-color: var(--white);
+        }
+        .footer-tagline {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--grey-dark);
+            max-width: 320px;
+            line-height: 1.5;
+        }
+
+        /* Social Links Column replacing duplicate nav */
+        .footer-social-col {
+            display: flex;
+            flex-direction: column;
             gap: 12px;
+        }
+        .footer-social-title {
             font-family: 'JetBrains Mono', monospace;
             font-size: 0.72rem;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.5px;
+            color: var(--grey-dark);
+        }
+        .footer-social-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .footer-social-links li a {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
             color: var(--black);
-            padding-top: 20px;
+            text-decoration: none;
+            transition: opacity 0.2s;
+            display: inline-block;
+        }
+        .footer-social-links li a:hover {
+            opacity: 0.5;
+        }
+
+        .footer-bottom-row {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            padding-top: 24px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--grey-dark);
+        }
+        .footer-bottom-info {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .footer-bottom-right {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        .footer-bottom-right a {
+            color: var(--grey-dark);
+            text-decoration: none;
+            transition: opacity 0.2s;
+        }
+        .footer-bottom-right a:hover {
+            opacity: 0.5;
         }
 
         @media (min-width: 768px) {
@@ -836,8 +872,30 @@
             .care-box { padding: 60px 48px; }
             .scope-grid { grid-template-columns: repeat(2, 1fr); gap: 18px; }
             #contact-form { padding-top: 140px; padding-bottom: 140px; }
-            footer { padding: 70px 0 24px 0; }
-            .footer-inner-aligned { padding: 0 60px; }
+            
+            body { margin-bottom: 340px; }
+            footer { height: 340px; padding: 90px 40px 20px 40px; }
+            .footer-inner {
+                gap: 96px;
+            }
+            .footer-top-row {
+                grid-template-columns: 1fr auto;
+                justify-content: space-between;
+            }
+            .footer-social-col {
+                text-align: right;
+            }
+            .footer-bottom-row {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                border-top: none;
+                padding-top: 0;
+            }
+            .footer-bottom-info {
+                flex-direction: row;
+                gap: 24px;
+            }
         }
         @media (min-width: 901px) {
             .form-layout {
@@ -1104,7 +1162,7 @@
             </div>
         </section>
 
-        <!-- CONTACT SECTION -->
+        <!-- CONTACT SECTION (Slides over fixed footer) -->
         <section id="contact-form">
             <div class="form-layout">
                 <div class="form-info">
@@ -1189,25 +1247,33 @@
         </section>
     </main>
 
-    <!-- GIANT FOOTER -->
+    <!-- FIXED REVEAL FOOTER WITH SOCIAL LINKS -->
     <footer>
-        <div class="footer-inner-aligned">
-            <div class="footer-grid-top">
-                <div class="footer-col-left">
+        <div class="footer-inner">
+            <div class="footer-top-row">
+                <div class="footer-brand-col">
+                    <a href="#" class="logo">Dhoop<span class="dot"></span></a>
+                    <p class="footer-tagline">Hand-coded websites in Bournemouth. Built for zero bloat, lightning speed, and local Google search visibility.</p>
+                </div>
+                
+                <div class="footer-social-col">
+                    
+                    <ul class="footer-social-links">
+                        <li><a href="https://www.instagram.com/madebydhoop/?hl=en" target="_blank" rel="noopener">Instagram &nearr;</a></li>
+                        <li><a href="https://www.linkedin.com/company/dhoop-agency" target="_blank" rel="noopener">LinkedIn &nearr;</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom-row">
+                <div class="footer-bottom-info">
                     <span id="footerClock">--:--:-- AM</span>
+                    <span>BOURNEMOUTH, UK</span>
                 </div>
-                <div class="footer-col-right">
-                    <a href="#" style="color: var(--black); font-weight: 700; text-decoration: none; text-transform: uppercase;">Top ↑</a>
+                <div class="footer-bottom-right">
+                    <span>&copy; 2026 DHOOP LTD. ALL RIGHTS RESERVED.</span>
+                    <a href="#">Top ↑</a>
                 </div>
-            </div>
-
-            <div class="giant-brand-container">
-                <h2 class="giant-brand">Dhoop<span class="dot"></span></h2>
-            </div>
-
-            <div class="footer-grid-bottom">
-                <span>&copy; 2026 DHOOP LTD</span>
-                <span>HELLO@MADEBYDHOOP.CO.UK</span>
             </div>
         </div>
     </footer>
