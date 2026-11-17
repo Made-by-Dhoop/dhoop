@@ -46,7 +46,7 @@
             margin-bottom: 380px; 
         }
 
-        /* Vertical Sticky Ticker */
+        /* Vertical Sticky Ticker with smooth fade out */
         .sticky-clock {
             position: fixed;
             right: 10px;
@@ -65,6 +65,13 @@
             font-variant-numeric: tabular-nums;
             user-select: none;
             white-space: nowrap;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            opacity: 1;
+            visibility: visible;
+        }
+        .sticky-clock.hidden {
+            opacity: 0;
+            visibility: hidden;
         }
         @media (min-width: 768px) {
             .sticky-clock {
@@ -787,19 +794,10 @@
             line-height: 1.5;
         }
 
-        /* Social Links Column replacing duplicate nav */
+        /* Social Links Column */
         .footer-social-col {
             display: flex;
             flex-direction: column;
-            gap: 12px;
-        }
-        .footer-social-title {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.72rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            color: var(--grey-dark);
         }
         .footer-social-links {
             list-style: none;
@@ -1257,7 +1255,6 @@
                 </div>
                 
                 <div class="footer-social-col">
-                    
                     <ul class="footer-social-links">
                         <li><a href="https://www.instagram.com/madebydhoop/?hl=en" target="_blank" rel="noopener">Instagram &nearr;</a></li>
                         <li><a href="https://www.linkedin.com/company/dhoop-agency" target="_blank" rel="noopener">LinkedIn &nearr;</a></li>
@@ -1340,6 +1337,21 @@
 
             updateStudioClock();
             setInterval(updateStudioClock, 1000);
+
+            // Hide Side Vertical Ticker When Reaching the Bottom Footer
+            const stickyClock = document.getElementById('stickyClock');
+            window.addEventListener('scroll', () => {
+                const scrollPosition = window.innerHeight + window.scrollY;
+                const threshold = document.documentElement.scrollHeight - 300;
+                
+                if (stickyClock) {
+                    if (scrollPosition >= threshold) {
+                        stickyClock.classList.add('hidden');
+                    } else {
+                        stickyClock.classList.remove('hidden');
+                    }
+                }
+            });
 
             // Magnetic Hover Pull on Primary Buttons
             const magneticBtns = document.querySelectorAll('.magnetic-btn');
